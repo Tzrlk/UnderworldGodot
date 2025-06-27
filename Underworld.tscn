@@ -2549,7 +2549,6 @@ line 3
 line 4"
 
 [node name="Chargen" type="CanvasLayer" parent="UI"]
-visible = false
 
 [node name="ChargenBG" type="TextureRect" parent="UI/Chargen"]
 offset_right = 1280.0
@@ -2716,10 +2715,10 @@ autowrap_mode = 0
 
 [node name="GameSelectFileDialog" type="FileDialog" parent="UI/LaunchScreen"]
 mode = 3
-title = "Open a File"
+title = "Select a File"
 initial_position = 1
 size = Vector2i(1200, 700)
-ok_button_text = "Open"
+ok_button_text = "Select"
 file_mode = 0
 access = 2
 filters = PackedStringArray("uw*.exe")

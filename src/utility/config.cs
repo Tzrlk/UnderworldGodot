@@ -8,73 +8,83 @@ namespace Underworld
 {
     public class uwsettings
     {
-        public string pathuw1 { get; set; }
-        public string pathuw2 { get; set; }
-        public string gametoload { get; set; }
-        public int level { get; set; }
+        public string pathuw1 { get; set; } = "C:\\Games\\UW1";
+        public string pathuw2 { get; set; } = "C:\\Games\\UW2";
+        public string gametoload { get; set; } = "UW1";
+        public int level { get; set; } = 0;
 
-        public float FOV { get; set; }
+        public float FOV { get; set; } = 75.0f;
 
-        public bool showcolliders { get; set; }
-        public int shaderbandsize { get; set; }
+        public bool showcolliders { get; set; } = false;
+        public int shaderbandsize { get; set; } = 8;
+
         public static uwsettings instance;
 
         static uwsettings()
         {
-            LoadSettings();
-        }
-        
-        public static void Save()
-        {
-            var appfolder = OS.GetExecutablePath();
-            appfolder = Path.GetDirectoryName(appfolder);
-            var json = JsonSerializer.Serialize(instance);
-            Debug.Print($"If I was to save settings now the value would be\n{json}");
-        }
-
-        public static void LoadSettings()
-        {
-            var appfolder = OS.GetExecutablePath();
-            appfolder = Path.GetDirectoryName(appfolder);
-            var settingsfile = Path.Combine(appfolder, "uwsettings.json");
-            Debug.Print($"Loading settings at {settingsfile}");
-            uwsettings gamesettings;
-
-            if (!File.Exists(settingsfile))
-            {
-                //OS.Alert($"Missing file uwsettings.json at {settingsfile}\nCreating defaults.");
-                gamesettings = new uwsettings();
-                gamesettings.FOV=75;
-                gamesettings.level = 0;
-                gamesettings.shaderbandsize = 8;
-                gamesettings.gametoload = "UW1";
-                gamesettings.pathuw1 = "c:\\games";
-                gamesettings.pathuw2 = "c:\\games";
-            }
-            else
-            {
-                gamesettings = JsonSerializer.Deserialize<uwsettings>(File.ReadAllText(settingsfile));
-            }
-            instance = gamesettings;
-            if (main.gamecam!=null)
+            instance = LoadSettings();
+            
+            // Update the camera FOV immediately if it's available. 
+            if (main.gamecam != null)
             {
                 main.gamecam.Fov = Math.Max(50, instance.FOV);
             }
-            
 
-            setGame(gamesettings.gametoload);
-            switch (UWClass._RES)
+            SetGame(instance.gametoload);
+
+            UWClass.BasePath = UWClass._RES switch
             {
-                case UWClass.GAME_UW1:
-                    UWClass.BasePath = gamesettings.pathuw1; break;
-                case UWClass.GAME_UW2:
-                    UWClass.BasePath = gamesettings.pathuw2; break;
-                default:
-                    throw new InvalidOperationException("Invalid Game Selected");
+                UWClass.GAME_UW1 => instance.pathuw1,
+                UWClass.GAME_UW2 => instance.pathuw2,
+                _ => throw new InvalidOperationException("Invalid Game Selected"),
+            };
+
+        }
+
+        private static string CfgFolder => Path.GetDirectoryName(OS.GetExecutablePath());
+        private static string CfgFile => Path.Combine(CfgFolder, "uwsettings.json");
+        private static JsonSerializerOptions CfgJson => new()
+        {
+            PropertyNameCaseInsensitive = true,
+            WriteIndented = true,
+        };
+
+        public static void SaveSettings()
+        {
+            string cfgFile = CfgFile;
+            try
+            {
+                Debug.Print($"Saving current config to {cfgFile}");
+                using FileStream stream = File.OpenWrite(cfgFile);
+                JsonSerializer.Serialize(stream, instance, CfgJson);
+            }
+            catch (Exception err)
+            {
+                throw new Exception($"Failed to save current settings to {cfgFile}", err);
             }
         }
 
-        public static void setGame(string gamemode)
+        public static uwsettings LoadSettings()
+        {
+            string cfgFile = CfgFile;
+            try
+            {
+                Debug.Print($"Loading config from {cfgFile}.");
+                using FileStream stream = File.OpenRead(cfgFile);
+                return JsonSerializer.Deserialize<uwsettings>(stream, CfgJson);
+            }
+            catch (FileNotFoundException)
+            {
+                Debug.Print("Unable to find existing config. Using defaults.");
+                return new uwsettings();
+            }
+            catch (Exception err)
+            {
+                throw new Exception($"Failed to load game config from {cfgFile}.", err);
+            }
+        }
+
+        public static void SetGame(string gamemode)
         {
             switch (gamemode.ToUpper())
             {
