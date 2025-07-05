@@ -1,6 +1,8 @@
+using System.Threading.Tasks;
 using Godot;
-using System.Diagnostics;
-
+using Microsoft.Extensions.DependencyInjection;
+using Underworld.config;
+using Underworld.utility;
 
 namespace Underworld
 {
@@ -14,20 +16,41 @@ namespace Underworld
 		[Export] public TextureRect placeholderuw2;
 
 
-		public override void _Ready()
-		{			
-			//Debug.Print("Uimanager about to set instance to this");
-			instance = this;
+        public override void _Ready()
+        {
+            //Debug.Print("Uimanager about to set instance to this");
+            instance = this;
 
-			// if (uwsettings.instance==null)
-			// {				
-			// 	uwsettings.LoadSettings();
-			// }			
-			instance.pathuw1.Text = uwsettings.instance.pathuw1;
-			Debug.Print(uwsettings.instance.pathuw1);
-			instance.pathuw2.Text = uwsettings.instance.pathuw2;
-			Debug.Print(uwsettings.instance.pathuw2);
-			Debug.Print("Settings loaded");
+            // TODO: Can this be put somewhere even earlier in the application?
+            Injection.Configure(services =>
+            {
+                services.AddSingleton<IGameConfig, GameConfig>();
+            }).RunSynchronously();
+
+            // Get settings instance from services.
+            var config = Injection.GetService<IGameConfig>();
+
+            // Populate game selection path text and trigger saving any changes
+            // to the config.
+            pathuw1.Text = config.PathUW1;
+            pathuw1.TextChanged += delegate
+            {
+                if (!pathuw1.Text.Equals(config.PathUW1))
+                {
+                    config.PathUW1 = pathuw1.Text;
+                    config.Save();
+                }
+            };
+            pathuw2.Text = config.PathUW2;
+            pathuw2.TextChanged += delegate
+            {
+                if (!pathuw1.Text.Equals(config.PathUW2))
+                {
+                    config.PathUW2 = pathuw2.Text;
+                    config.Save();
+                }
+            };
+
 		}
 
 		public void InitUI()
@@ -59,10 +82,10 @@ namespace Underworld
 			EnableDisable(placeholderuw2, false);
 
 			EnableDisable(uw1UI, UWClass._RES == UWClass.GAME_UW1);
-			EnableDisable(uw2UI, UWClass._RES != UWClass.GAME_UW1);  
-			EnableDisable(PanelMainMenu,true);          
+			EnableDisable(uw2UI, UWClass._RES != UWClass.GAME_UW1);
+			EnableDisable(PanelMainMenu,true);
 		}
-		
+
 
 		public override void _Process(double delta)
 		{

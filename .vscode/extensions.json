@@ -1,6 +1,12 @@
 {
     "recommendations": [
         "neikeq.godot-csharp-vscode",
-        "github.vscode-github-actions"
+        "github.vscode-github-actions",
+        "ms-dotnettools.csharp",
+        "ms-vscode.mono-debug",
+        "ms-dotnettools.vscode-dotnet-runtime",
+        "ms-dotnettools.csdevkit",
+        "editorconfig.editorconfig",
+        "geequlim.godot-tools"
     ]
 }

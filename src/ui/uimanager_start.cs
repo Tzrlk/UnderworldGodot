@@ -60,17 +60,17 @@ namespace Underworld
                 switch (extra_arg_0)
                 {
                     case 1:
-                        uwsettings.instance.gametoload = "UW1";  
+                        UWSettings.instance.gametoload = "UW1";  
                         UWClass._RES = UWClass.GAME_UW1;
                         UWClass.BasePath = pathuw1.Text;//uwsettings.instance.pathuw1;  
-                        uwsettings.SaveSettings();                    
+                        UWSettings.SaveSettings();                    
                         main.StartGame();
                         break;
                     case 2:
-                        uwsettings.instance.gametoload = "UW2";
+                        UWSettings.instance.gametoload = "UW2";
                         UWClass._RES = UWClass.GAME_UW2;
                         UWClass.BasePath = pathuw2.Text;//uwsettings.instance.pathuw2;
-                        uwsettings.SaveSettings();
+                        UWSettings.SaveSettings();
                         main.StartGame();
                         break;
                 }

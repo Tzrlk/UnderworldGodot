@@ -47,7 +47,7 @@ namespace Underworld
             {
                 GreyScaleIndexPalette.red[i] = (byte)i;
                 GreyScaleIndexPalette.blue[i] = 0;// (byte)i;
-                GreyScaleIndexPalette.green[i] = 0;// (byte)i;                
+                GreyScaleIndexPalette.green[i] = 0;// (byte)i;
             }
             switch (_RES)
             {
@@ -112,25 +112,25 @@ namespace Underworld
                     }
                     break;
             }
-            int band = uwsettings.instance.shaderbandsize;
+            int band = GameConfig.instance.shaderbandsize;
             for (int i = 0; i < 8; i++)
             {
                 if (i > 3)
                 {
-                    uwsettings.instance.shaderbandsize = 1;
+                    UWSettings.instance.shaderbandsize = 1;
                 }
                 if ((i==6) && (_RES!=GAME_UW2))
                 {
                     Palettes[i].cycledGamePalette = CreateShadedPaletteCycles(Palettes[i]);
-                    Palettes[i].cycledUIPalette = MainMenuPaletteCycle(Palettes[i]);//main menu flames effect                    
+                    Palettes[i].cycledUIPalette = MainMenuPaletteCycle(Palettes[i]);//main menu flames effect
                 }
                 else
                 {
                     Palettes[i].cycledGamePalette = CreateShadedPaletteCycles(Palettes[i]);//init the first palette as cycled
                     Palettes[i].cycledUIPalette = CreateUnshadedPaletteCycles(Palettes[i]); //set up a simple palette cycle for fullbright ui sprites
-                }                
+                }
             }
-            uwsettings.instance.shaderbandsize = band;            
+            UWSettings.instance.shaderbandsize = band;
 
             //Init palette shader params
             RenderingServer.GlobalShaderParameterAdd(
@@ -272,7 +272,7 @@ namespace Underworld
             }
             var NewCycledPalette = new ImageTexture[64]; //cycle
             for (int c = 0; c <= NewCycledPalette.GetUpperBound(0); c++)
-            {//Create palette cycles                    
+            {//Create palette cycles
                 Palette.cyclePaletteReverse(tmpPalette, 64, 63);//Forward
                 NewCycledPalette[c] = tmpPalette.toImage();   // tmpPalette.toImage();
                 //tmpPalette.toImage().GetImage().SavePng($"c:\\temp\\p{c.ToString("##")}.png");
@@ -335,7 +335,7 @@ namespace Underworld
             NextPaletteCycle_GAME++;
             NextPaletteCycle_UI++;
 
-            //Cycle the palette		
+            //Cycle the palette
             UpdateShaderParams();
 
         }
@@ -348,7 +348,7 @@ namespace Underworld
                     name: "smoothpalette",
                     value: (Texture)Palettes[Palette.CurrentPalette].cycledGamePalette[Palette.ColourTone, playerdat.lightlevel, NextPaletteCycle_GAME]);
             }
-            
+
             if (NextPaletteCycle_UI!=-1)
             {
                 RenderingServer.GlobalShaderParameterSet(
