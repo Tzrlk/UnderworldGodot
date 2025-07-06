@@ -7,6 +7,7 @@
         "ms-dotnettools.vscode-dotnet-runtime",
         "ms-dotnettools.csdevkit",
         "editorconfig.editorconfig",
-        "geequlim.godot-tools"
+        "geequlim.godot-tools",
+        "formulahendry.dotnet-test-explorer"
     ]
 }

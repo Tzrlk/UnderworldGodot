@@ -1,24 +1,38 @@
-<Project Sdk="Godot.NET.Sdk/4.1.1">
+<Project Sdk="Godot.NET.Sdk/4.4.1">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
+    <!-- Catch compiler-mismatch issues with the Introspection generator -->
+    <WarningsAsErrors>CS9057</WarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.6" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.6" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
   </ItemGroup>
 
-   <!-- Only works with .Net 8+ -->
    <ItemGroup>
-     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
-     <!-- <PackageReference Include="gdUnit4.api" Version="4.1.4" /> -->
-     <!-- <PackageReference Include="gdUnit4.test.adapter" Version="3.0.0" /> -->
-     <!-- <PackageReference Include="gdUnit4.analyzers" Version="1.0.0">
-       <PrivateAssets>none</PrivateAssets>
-       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-     </PackageReference> -->
+     <PackageReference Include="gdUnit4.api" Version="5.0.0" />
+     <PackageReference Include="gdUnit4.test.adapter" Version="3.0.0" />
+     <PackageReference Include="gdUnit4.analyzers" Version="1.0.0"
+       PrivateAssets="none" IncludeAssets="runtime;build;native;contentfiles;analyzers;buildtransitive" />
    </ItemGroup>
+
+   <ItemGroup>
+      <PackageReference Include="Chickensoft.GodotNodeInterfaces" Version="2.4.20" />
+      <PackageReference Include="Chickensoft.Introspection" Version="3.0.2" />
+      <PackageReference Include="Chickensoft.Introspection.Generator" Version="3.0.2"
+        PrivateAssets="all" OutputItemType="analyzer" />
+      <PackageReference Include="Chickensoft.AutoInject" Version="2.7.13"
+        PrivateAssets="all" />
+      <PackageReference Include="Chickensoft.AutoInject.Analyzers" Version="2.7.13"
+        PrivateAssets="all" OutputItemType="analyzer" />
+    </ItemGroup>
+
+  <!-- <ItemGroup>
+    <PackageReference Include="Godot.DependencyInjection" Version="0.4.1"/>
+  </ItemGroup> -->
 
 </Project>

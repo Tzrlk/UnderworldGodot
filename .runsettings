@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+    <EnvironmentVariables>
+        <GODOT_BIN>$GODOT</GODOT_BIN>
+    </EnvironmentVariables>
+
+    <!-- Test result loggers -->
+    <LoggerRunSettings>
+        <Loggers>
+            <Logger friendlyName="console" enabled="True">
+                <Configuration>
+                    <Verbosity>normal</Verbosity>
+                </Configuration>
+            </Logger>
+        </Loggers>
+    </LoggerRunSettings>
+
+    <!-- GdUnit4-specific configuration -->
+    <GdUnit4>
+        <!-- Additional Godot runtime parameters -->
+        <Parameters>"--verbose"</Parameters>
+
+        <!-- Test display name format: SimpleName or FullyQualifiedName -->
+        <DisplayName>FullyQualifiedName</DisplayName>
+
+        <!-- Capture stdout from test cases -->
+        <CaptureStdOut>true</CaptureStdOut>
+
+        <!-- Compilation timeout for large projects (milliseconds) -->
+        <CompileProcessTimeout>20000</CompileProcessTimeout>
+    </GdUnit4>
+
+</RunSettings>
