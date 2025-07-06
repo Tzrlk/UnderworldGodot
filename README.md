@@ -117,10 +117,10 @@ See [https://godotengine.org/](https://godotengine.org/) for engine runtime down
 
 1. Clone the repository
 2. Install .Net 9.0 (https://dotnet.microsoft.com/en-us/download).
-3. Install the Godot engine (version 4.3.0)  https://godotengine.org/ and run it.
+3. Install the Godot engine (version 4.4.x) https://godotengine.org/ and run it.
     > [!NOTE]
     > Either make sure you have a ``GODOT`` environment variable pointing to the godot executable, or manage your godot version automatically with [`godotenv`](https://github.com/chickensoft-games/GodotEnv).
-    > Just run ``dotnet tool run godotenv godot install 4.3-stable`` and ``dotnet tool run godotenv godot env setup`` then restart your shell and everything should be ready to go.
+    > Just run ``dotnet tool run godotenv godot install 4.4-stable`` and ``dotnet tool run godotenv godot env setup`` then restart your shell and everything should be ready to go.
 4. Save a file called ``uwsettings.json`` in the Godot Folder. See below for format of the file.
 5. Godot project will open at ``LaunchScene.tscn``.
     > [!IMPORTANT]
