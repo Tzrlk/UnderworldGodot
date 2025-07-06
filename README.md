@@ -116,9 +116,12 @@ See [https://godotengine.org/](https://godotengine.org/) for engine runtime down
 
 1. Clone the repository
 2. Install .Net 9.0 (https://dotnet.microsoft.com/en-us/download).
-2. Install the Godot engine (version 4.1.1) dev  https://godotengine.org/ and run it.
-3. Save a file called ``uwsettings.json`` in the Godot Folder. See below for format of the file
-4. Godot project will open at ``LaunchScene.tscn``. IMPORTANT: Make sure you run BUILD on the project before continuing.
+2. Install the Godot engine (version 4.4.x) https://godotengine.org/ and run it.
+    * Make sure you have a ``GODOT`` environment variable pointing to the godot executable.
+3. Save a file called ``uwsettings.json`` in the Godot Folder. See below for format of the file.
+4. Godot project will open at ``LaunchScene.tscn``.
+    > [!IMPORTANT]
+    > Make sure you run BUILD on the project before continuing.
 5. Run. It might work
 
 This project is developed using VSCode using the C# Tools for Godot extensions. If you are configured to use Godot in VSCode then the project can alos just be compiled and ran from there.
