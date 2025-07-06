@@ -6,6 +6,10 @@
 # Custom project settings
 uwsettings.json
 
+# Backup files
+*.old
+*.old.*
+
 # User-specific files
 *.rsuser
 *.suo
