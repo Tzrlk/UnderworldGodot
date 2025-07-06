@@ -115,12 +115,13 @@ No exe builds yet. This is just a glorified map viewer at this point that you wi
 See [https://godotengine.org/](https://godotengine.org/) for engine runtime downloads.
 
 1. Clone the repository
-2. Install the Godot engine (version 4.3-stable) from https://godotengine.org/ and run it.
+2. Install .Net 9.0 (https://dotnet.microsoft.com/en-us/download).
+3. Install the Godot engine (version 4.3-stable) from https://godotengine.org/ and run it.
     > [!NOTE]
     > You can use the [`godotenv`](https://github.com/chickensoft-games/GodotEnv) tool to help with this. Just run ``dotnet tool run godotenv godot install 4.3.0`` and ``dotnet tool run godotenv godot env setup`` then restart your shell and everything should be ready to go.
-3. Save a file called ``uwsettings.json`` in the Godot Folder. See below for format of the file
-4. Godot project will open at ``LaunchScene.tscn``. IMPORTANT: Make sure you run BUILD on the project before continuing.
-5. Run. It might work
+4. Save a file called ``uwsettings.json`` in the Godot Folder. See below for format of the file
+5. Godot project will open at ``LaunchScene.tscn``. IMPORTANT: Make sure you run BUILD on the project before continuing.
+6. Run. It might work
 
 This project is developed using VSCode using the C# Tools for Godot extensions. If you are configured to use Godot in VSCode then the project can also just be compiled and ran from there.
 
