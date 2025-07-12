@@ -1,0 +1,46 @@
+<Project Sdk="Godot.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- The actual project we're testing. -->
+  <ItemGroup>
+    <ProjectReference Include="..\Underworld.csproj" />
+  </ItemGroup>
+
+  <!-- Base MSTest api (framework not included). -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+  </ItemGroup>
+
+  <!-- Property-based testing. -->
+  <ItemGroup>
+    <PackageReference Include="FsCheck" Version="3.3.0" />
+    <!-- Might look at https://github.com/AutoFixture/AutoFixture -->
+    <!-- or https://github.com/dsschneidermann/FsCheckCSharp -->
+  </ItemGroup>
+
+  <!-- GDUnit for godot-specific testing. -->
+  <ItemGroup>
+    <PackageReference Include="gdUnit4.api" Version="5.0.0" />
+    <PackageReference Include="gdUnit4.test.adapter" Version="3.0.0" />
+    <PackageReference Include="gdUnit4.analyzers" Version="1.0.0"
+        PrivateAssets="none" IncludeAssets="runtime;build;native;contentfiles;analyzers;buildtransitive" />
+  </ItemGroup>
+
+  <!-- Better editor integration? -->
+  <ItemGroup>
+    <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+  </ItemGroup>
+
+  <!-- Linting Tools. -->
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.354"
+        PrivateAssets="all" Condition="$(MSBuildProjectExtension) == '.csproj'" />
+  </ItemGroup>
+
+</Project>
