@@ -1,3 +1,5 @@
+using Chickensoft.AutoInject;
+using Chickensoft.Introspection;
 using Godot;
 using System;
 using System.Diagnostics;
@@ -7,10 +9,12 @@ using Underworld;
 /// <summary>
 /// Node to initialise the game
 /// </summary>
+[Meta(typeof(IAutoNode))]
 public partial class main : Node3D
 {
+    public override void _Notification(int what) => this.Notify(what);
 
-	static bool EnablePositionDebug = false;
+    static bool EnablePositionDebug = false;
 	/// <summary>
 	/// Blocks input for certain modes
 	/// </summary>
