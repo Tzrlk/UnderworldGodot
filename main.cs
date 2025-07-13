@@ -14,7 +14,16 @@ public partial class main : Node3D
 {
     public override void _Notification(int what) => this.Notify(what);
 
-    static bool EnablePositionDebug = false;
+    private static bool EnablePositionDebug = false;
+
+	public static bool DoRedraw = false;
+
+	private static byte EasyMoveFrameIncrement = 0;
+
+	private static byte ThisFrameDelta = 0;
+
+	private static byte PreviousFrameDelta = 0;
+
 	/// <summary>
 	/// Blocks input for certain modes
 	/// </summary>
@@ -41,39 +50,39 @@ public partial class main : Node3D
 			; //TODO and other menu modes that will stop input
 		}
 	}
-	public static main instance;
 
 	// Called when the node enters the scene tree for the first time.
-	[Export] public Camera3D cam;
-	public static Camera3D gamecam; //static ref to the above camera
-	[Export] public AudioStreamPlayer audioplayer;
-	[Export] public RichTextLabel lblPositionDebug;
-	//[Export] public uimanager uwUI;
+	[Export]
+	[Node("/root/Underworld/WorldViewContainer/SubViewport/Camera3D")]
+	public Camera3D cam { get; set; } = default!;
 
-	[Export] public SubViewport secondarycameras;
+	[Node("/root/Underworld/UI/uiManager")]
+	public uimanager uwUI { get; set; } = default!;
+
+	[Node("/root/Underworld/worldobjects")]
+	public Node3D WorldObjects = default!;
+
+	[Export]
+	public AudioStreamPlayer audioplayer;
+
+	[Export]
+	public RichTextLabel lblPositionDebug;
+
+	[Export]
+	public SubViewport secondarycameras;
 
 	double gameRefreshTimer = 0f;
 
 	double cycletime = 0;
 
-	public static bool DoRedraw = false;
-
-
 	//DOS INT8 (PIT) timer interupt. updates 18.2 times a second.
 	double Pit = 0f;
 	uint PitTimer = 0;
 	uint LastPitTimer = 0;
-	static byte EasyMoveFrameIncrement = 0;
-
-	static byte ThisFrameDelta = 0;
-	static byte PreviousFrameDelta = 0;
 
 	public override void _Ready()
 	{
-		instance = this;
-		gamecam = cam;
 
-		//uimanager.instance = uwUI;	
 		if (uwsettings.instance != null)
 		{
 			GetTree().DebugCollisionsHint = uwsettings.instance.showcolliders;
@@ -88,40 +97,17 @@ public partial class main : Node3D
 		// }
 	}
 
-	public static void StartGame()
+	public void StartGame()
 	{
-		if (gamecam == null)
-		{
-			if (instance.cam == null)
-			{
-				Debug.Print("Main Cam instance is null. trying to find it's node");
-				instance.cam = (Camera3D)instance.GetNode("/root/Underworld/WorldViewContainer/SubViewport/Camera3D");
-			}
-			gamecam = instance.cam;
-			if (gamecam == null)
-			{
-				Debug.Print("Gamecam is still null!");
-			}
-		}
-		if (uimanager.instance == null)
-		{
-			Debug.Print("UI Manager is null");
-			//UI/uiManager
-			uimanager.instance = (uimanager)instance.GetNode("/root/Underworld/UI/uiManager");
-			if (uimanager.instance == null)
-			{
-				Debug.Print("UIManager is still null!!");
-			}
-		}
-		gamecam.Fov = Math.Max(50, uwsettings.instance.FOV);
-		uimanager.EnableDisable(instance.lblPositionDebug, EnablePositionDebug);
-		uimanager.EnableDisable(uimanager.instance.StartMenuPanel, false);
-		ObjectCreator.grObjects = new GRLoader(GRLoader.OBJECTS_GR, GRLoader.GRShaderMode.BillboardSpriteShader);
-		ObjectCreator.grObjects.UseRedChannel = true;
-		ObjectCreator.grObjects.UseCropping = true;
+		cam.Fov = Math.Max(50, uwsettings.instance.FOV);
+    	uwUI.EnableDisable(lblPositionDebug, EnablePositionDebug);
+    	uwUI.EnableDisable(uwUI.StartMenuPanel, false);
+    	ObjectCreator.grObjects = new GRLoader(GRLoader.OBJECTS_GR, GRLoader.GRShaderMode.BillboardSpriteShader);
+    	ObjectCreator.grObjects.UseRedChannel = true;
+    	ObjectCreator.grObjects.UseCropping = true;
 		Palette.CurrentPalette = 0;
-		uimanager.instance.InitUI();
-		uimanager.AddToMessageScroll(GameStrings.GetString(1, 13));//welcome message
+		uwUI.InitUI();
+		uwUI.AddToMessageScroll(GameStrings.GetString(1, 13));//welcome message
 	}
 
 
@@ -129,25 +115,23 @@ public partial class main : Node3D
 	/// Draws a debug marker sprite on game load to show where the character is positioned
 	/// </summary>
 	/// <param name="gr"></param>
-	public static void DrawPlayerPositionSprite(GRLoader gr)
+	public void DrawPlayerPositionSprite(GRLoader gr)
 	{
 		int spriteNo = 127;
 		var a_sprite = new MeshInstance3D(); //new Sprite3D();
 		a_sprite.Name = "player";
 		a_sprite.Mesh = new QuadMesh();
-		Vector2 NewSize;
 		var img = gr.LoadImageAt(spriteNo);
 		if (img != null)
 		{
 			a_sprite.Mesh.SurfaceSetMaterial(0, gr.GetMaterial(spriteNo));
-			NewSize = new Vector2(
+			var newSize = new Vector2(
 					ArtLoader.SpriteScale * img.GetWidth(),
 					ArtLoader.SpriteScale * img.GetHeight()
 					);
-			a_sprite.Mesh.Set("size", NewSize);
-			Node3D worldobjects = instance.GetNode<Node3D>("/root/Underworld/worldobjects");
-			worldobjects.AddChild(a_sprite);
-			a_sprite.Position = gamecam.Position;
+			a_sprite.Mesh.Set("size", newSize);
+			WorldObjects.AddChild(a_sprite);
+			a_sprite.Position = cam.Position;
 		}
 	}
 
@@ -253,16 +237,16 @@ public partial class main : Node3D
 			if (EnablePositionDebug)
 			{
 				var fps = Engine.GetFramesPerSecond();
-				lblPositionDebug.Text = $"FPS:{fps} Time:{playerdat.game_time}\nL:{playerdat.dungeon_level} X:{tileX} Y:{tileY}\n{uimanager.instance.uwsubviewport.GetMousePosition()}\n {motion.playerMotionParams.x_0} {motion.playerMotionParams.y_2} {motion.playerMotionParams.z_4}";
+				lblPositionDebug.Text = $"FPS:{fps} Time:{playerdat.game_time}\nL:{playerdat.dungeon_level} X:{tileX} Y:{tileY}\n{uwUI.uwsubviewport.GetMousePosition()}\n {motion.playerMotionParams.x_0} {motion.playerMotionParams.y_2} {motion.playerMotionParams.z_4}";
 			}
 
 			if ((MessageDisplay.WaitingForTypedInput) || (MessageDisplay.WaitingForYesOrNo))
 			{
-				if (!uimanager.instance.TypedInput.HasFocus())
+				if (!uwUI.TypedInput.HasFocus())
 				{
-					uimanager.instance.TypedInput.GrabFocus();
+					uwUI.TypedInput.GrabFocus();
 				}
-				uimanager.instance.scroll.UpdateMessageDisplay();
+				uwUI.scroll.UpdateMessageDisplay();
 			}
 		}
 
@@ -294,7 +278,7 @@ public partial class main : Node3D
 			if (EnablePositionDebug)
 			{
 				var fps = Engine.GetFramesPerSecond();
-				lblPositionDebug.Text = $"FPS:{fps} Time:{playerdat.game_time}\nL:{playerdat.dungeon_level} X:{tileX} Y:{tileY}\n{uimanager.instance.uwsubviewport.GetMousePosition()}\n{cam.Rotation} {playerdat.heading_major} {(playerdat.heading_major >> 4) % 4} {xposvecto} {yposvecto} {newzpos}";
+				lblPositionDebug.Text = $"FPS:{fps} Time:{playerdat.game_time}\nL:{playerdat.dungeon_level} X:{tileX} Y:{tileY}\n{uwUI.uwsubviewport.GetMousePosition()}\n{cam.Rotation} {playerdat.heading_major} {(playerdat.heading_major >> 4) % 4} {xposvecto} {yposvecto} {newzpos}";
 			}
 
 
@@ -478,11 +462,11 @@ public partial class main : Node3D
 
 			if ((MessageDisplay.WaitingForTypedInput) || (MessageDisplay.WaitingForYesOrNo))
 			{
-				if (!uimanager.instance.TypedInput.HasFocus())
+				if (!uwUI.TypedInput.HasFocus())
 				{
-					uimanager.instance.TypedInput.GrabFocus();
+					uwUI.TypedInput.GrabFocus();
 				}
-				uimanager.instance.scroll.UpdateMessageDisplay();
+				uwUI.scroll.UpdateMessageDisplay();
 			}
 		}
 	}
@@ -540,7 +524,7 @@ public partial class main : Node3D
 		//Footsteps()
 	}
 
-	static void ProcessMotionInputs()
+	void ProcessMotionInputs()
 	{
 		motion.PlayerMotionWalk_77C = 0;
 		motion.PlayerMotionHeading_77E = 0;
@@ -624,7 +608,7 @@ public partial class main : Node3D
 		}
 	}
 
-	static void ProcessMobileObjects(byte AnimationFrameDelta)
+	void ProcessMobileObjects(byte AnimationFrameDelta)
 	{
 		ThisFrameDelta = (byte)((PreviousFrameDelta + AnimationFrameDelta) & 0xF);
 		for (int i = 0; i < UWTileMap.current_tilemap.NoOfActiveMobiles; i++)
@@ -691,7 +675,7 @@ public partial class main : Node3D
 	/// <param name="nextFrame"></param>
 	/// <param name="AnimationFrameDelta"></param>
 	/// <returns></returns>
-	static bool CheckIfUpdateNeeded(int nextFrame)
+	bool CheckIfUpdateNeeded(int nextFrame)
 	{
 		//if (AnimationFrameDelta)
 		if (ThisFrameDelta > nextFrame)
@@ -830,7 +814,7 @@ public partial class main : Node3D
 						// 		break;
 						// 	}
 						case Key.T:
-							var mouselook = (bool)gamecam.Get("MOUSELOOK");
+							var mouselook = (bool)cam.Get("MOUSELOOK");
 							if (mouselook)
 							{//toggle to free curso
 								Input.MouseMode = Input.MouseModeEnum.Hidden;
@@ -839,7 +823,7 @@ public partial class main : Node3D
 							{//toogle to mouselook
 								Input.MouseMode = Input.MouseModeEnum.Captured;
 							}
-							gamecam.Set("MOUSELOOK", !mouselook);
+							cam.Set("MOUSELOOK", !mouselook);
 							break;
 						// case Key.R: //fly up (not vanilla)
 						// 	if ((playerdat.MagicalMotionAbilities & 0x14) != 0)
@@ -952,7 +936,7 @@ public partial class main : Node3D
 					{
 						if (mouseEvent.Pressed && (mouseEvent.ButtonIndex == MouseButton.Left || mouseEvent.ButtonIndex == MouseButton.Right))
 						{
-							int result = uimanager.instance.HandleMessageScrollClick(mouseEvent);
+							int result = uwUI.HandleMessageScrollClick(mouseEvent);
 							if ((result > 0) && (result <= ConversationVM.MaxAnswer))
 							{
 								ConversationVM.PlayerNumericAnswer = result;
@@ -1008,16 +992,16 @@ public partial class main : Node3D
 							break;
 						case Key.Escape:
 							stop = true;
-							uimanager.instance.TypedInput.Text = "";
+							uwUI.TypedInput.Text = "";
 							break;
 					}
 					if (stop)
 					{//end typed input
-						uimanager.instance.scroll.Clear();
+						uwUI.scroll.Clear();
 						MessageDisplay.WaitingForTypedInput = false;
 						if (ConversationVM.InConversation == false)
 						{
-							gamecam.Set("MOVE", true);//re-enable movement
+							cam.Set("MOVE", true);//re-enable movement
 						}
 					}
 				}
@@ -1039,11 +1023,11 @@ public partial class main : Node3D
 							break;
 						case Key.Backspace:
 							{
-								var text = uimanager.instance.ChargenNameInput.Text;
+								var text = uwUI.ChargenNameInput.Text;
 								if (text.Length > 0)
 								{
 									text = text.Remove(text.Length - 1);
-									uimanager.instance.ChargenNameInput.Text = text;
+									uwUI.ChargenNameInput.Text = text;
 								}
 								break;
 							}
@@ -1058,11 +1042,11 @@ public partial class main : Node3D
 								{
 									inputed = ((char)keyinput.Unicode).ToString().ToLower();
 								}
-								var text = uimanager.instance.ChargenNameInput.Text;
+								var text = uwUI.ChargenNameInput.Text;
 								if (text.Length < 16)
 								{
 									text += inputed;
-									uimanager.instance.ChargenNameInput.Text = text;
+									uwUI.ChargenNameInput.Text = text;
 								}
 								break;
 							}
@@ -1111,18 +1095,18 @@ public partial class main : Node3D
 							break;
 						case Key.Escape:
 							stop = true;
-							uimanager.instance.TypedInput.Text = "No";
+							uwUI.TypedInput.Text = "No";
 							break;
 						case Key.Y:
-							uimanager.instance.TypedInput.Text = "Yes"; break;
+							uwUI.TypedInput.Text = "Yes"; break;
 						default:
-							uimanager.instance.TypedInput.Text = "No"; break;
+							uwUI.TypedInput.Text = "No"; break;
 					}
 					if (stop)
 					{//end typed input
-						uimanager.instance.scroll.Clear();
+						uwUI.scroll.Clear();
 						MessageDisplay.WaitingForYesOrNo = false;
-						gamecam.Set("MOVE", true);//re-enable movement
+						cam.Set("MOVE", true);//re-enable movement
 					}
 				}
 			}
@@ -1132,7 +1116,7 @@ public partial class main : Node3D
 	/// <summary>
 	/// Handles the end of chain events.
 	/// </summary>
-	public static void RefreshWorldState()
+	public void RefreshWorldState()
 	{
 		if (DoRedraw)
 		{
