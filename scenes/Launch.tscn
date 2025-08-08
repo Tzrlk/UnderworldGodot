@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ba5m1urf788ey"]
+[gd_scene load_steps=7 format=3 uid="uid://ba5m1urf788ey"]
 
+[ext_resource type="Theme" uid="uid://cgjwdvmp1klad" path="res://resources/styles/launch.theme" id="1_sqwh1"]
 [ext_resource type="Script" uid="uid://bmfqhfdlexxdi" path="res://src/ui/LaunchScreen.cs" id="1_ukjsy"]
 [ext_resource type="FontFile" uid="uid://bas6pohxbpgah" path="res://resources/fonts/FONT5X6P.ttf" id="4_pfbet"]
 [ext_resource type="Texture2D" uid="uid://ciqrdjocqcm2p" path="res://resources/splash/uw1_poster.jpg" id="22_2v7cv"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_sqwh1")
 script = ExtResource("1_ukjsy")
 SelectUW1 = NodePath("MenuMargins/Selections/Stygian/StygianPadding/StygianPoster")
 PathUW1 = NodePath("MenuMargins/Selections/Stygian/StygianPath")
@@ -74,6 +76,7 @@ focus_neighbor_top = NodePath("../StygianPadding/StygianPoster")
 focus_neighbor_right = NodePath("../../LabyrinthItems/LabyrinthPath")
 focus_next = NodePath("../../LabyrinthItems/LabyrinthPadding/LabyrinthPoster")
 focus_previous = NodePath("../StygianPadding/StygianPoster")
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("4_pfbet")
 theme_override_font_sizes/font_size = 64
 text = "c:\\games\\uw1"
@@ -108,6 +111,7 @@ focus_neighbor_bottom = NodePath("../../LabyrinthPath")
 focus_next = NodePath("../../LabyrinthPath")
 focus_previous = NodePath("../../../Stygian/StygianPath")
 focus_mode = 2
+theme = ExtResource("1_sqwh1")
 texture = ExtResource("23_f4jqj")
 expand_mode = 4
 stretch_mode = 5
