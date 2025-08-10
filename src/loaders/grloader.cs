@@ -167,6 +167,11 @@ namespace Underworld
         public override bool LoadImageFile()
         {
             var toLoad = Path.Combine(BasePath, "DATA", pathGR[FileToLoad]);
+            return LoadImageFile(toLoad);
+        }
+
+        public bool LoadImageFile(string toLoad)
+        {
             if (!ReadStreamFile(toLoad, out ImageFileData))
             {
                 Debug.Print("Unable to LoadImageFile() " + toLoad);
