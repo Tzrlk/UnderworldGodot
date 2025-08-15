@@ -1,12 +1,17 @@
+using Chickensoft.AutoInject;
+using Chickensoft.Introspection;
 using Godot;
 using System.Diagnostics;
 
 
 namespace Underworld
 {
+	[Meta(typeof(IAutoNode))]
 	public partial class uimanager : Node2D
 	{
-		public static uimanager instance;
+        public override void _Notification(int what) => this.Notify(what);
+
+        public static uimanager instance;
 
 		public static bool InGame = false;
 		[ExportGroup("Placeholders")]
@@ -42,7 +47,7 @@ namespace Underworld
 			InitWeaponAnimation();
 
 			AutomapBG.Texture = bitmaps.LoadImageAt(BytLoader.BLNKMAP_BYT);
-			EnableDisable(AutomapPanel,false);
+			EnableDisable(AutomapPanel, false);
 
 			mousecursor.InitCursor();
 
@@ -50,10 +55,10 @@ namespace Underworld
 			EnableDisable(placeholderuw2, false);
 
 			EnableDisable(uw1UI, UWClass._RES == UWClass.GAME_UW1);
-			EnableDisable(uw2UI, UWClass._RES != UWClass.GAME_UW1);  
-			EnableDisable(PanelMainMenu,true);          
+			EnableDisable(uw2UI, UWClass._RES != UWClass.GAME_UW1);
+			EnableDisable(PanelMainMenu, true);
 		}
-		
+
 
 		public override void _Process(double delta)
 		{
