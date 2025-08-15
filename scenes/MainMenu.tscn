@@ -1,0 +1,110 @@
+[gd_scene load_steps=3 format=3 uid="uid://bclxmt2nhhx27"]
+
+[ext_resource type="Texture2D" uid="uid://dlhf0nj7vj1o2" path="res://resources/placeholder_art/PanelBlack.jpg" id="1_0ykhv"]
+[ext_resource type="FontFile" uid="uid://dhrg5v5fecw5b" path="res://resources/fonts/FONTBIG.ttf" id="2_2wh52"]
+
+[node name="MainMenu" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MainMenuBlackground" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 800.0
+mouse_filter = 0
+texture = ExtResource("1_0ykhv")
+
+[node name="MainMenuBG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 800.0
+mouse_filter = 0
+
+[node name="Introduction" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 325.0
+offset_right = 844.0
+offset_bottom = 397.0
+
+[node name="CreateCharacter" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 324.0
+offset_top = 418.0
+offset_right = 960.0
+offset_bottom = 502.0
+
+[node name="Acknowledgements" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 512.0
+offset_right = 960.0
+offset_bottom = 604.0
+
+[node name="JourneyOnwards" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 612.0
+offset_right = 924.0
+offset_bottom = 704.0
+
+[node name="LoadingLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 324.0
+offset_top = 75.0
+offset_right = 980.0
+offset_bottom = 138.0
+theme_override_colors/font_color = Color(0.619608, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 64
+text = "You reenter the abyss..."
+
+[node name="Save1" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 525.0
+offset_top = 365.0
+offset_right = 717.0
+offset_bottom = 430.0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 65
+text = "SAVE1"
+
+[node name="Save2" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 525.0
+offset_top = 459.0
+offset_right = 717.0
+offset_bottom = 524.0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 65
+text = "SAVE1"
+
+[node name="Save3" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 524.0
+offset_top = 558.0
+offset_right = 716.0
+offset_bottom = 623.0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 65
+text = "SAVE1"
+
+[node name="Save4" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 524.0
+offset_top = 648.0
+offset_right = 716.0
+offset_bottom = 713.0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_2wh52")
+theme_override_font_sizes/font_size = 65
+text = "SAVE1"

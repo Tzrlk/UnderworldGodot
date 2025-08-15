@@ -1,6 +1,6 @@
 using Godot;
 using System.IO;
-using System.Diagnostics;
+using System.Linq;
 
 namespace Underworld;
 
@@ -11,9 +11,6 @@ namespace Underworld;
 public class GRLoader : ArtLoader
 {
     public bool UseRedChannel = false;
-    const int repeat_record_start = 0;
-    const int repeat_record = 1;
-    const int run_record = 2;
 
     public const int ThreeDWIN_GR = 0;
     public const int ANIMO_GR = 1;
@@ -50,7 +47,7 @@ public class GRLoader : ArtLoader
     public const int GEMPT_GR = 32;
     public const int GHED_GR = 33;
 
-    private readonly string[] pathGR = [
+    public static readonly string[] pathGR = [
         "3DWIN.GR",
         "ANIMO.GR",
         "ARMOR_F.GR",
@@ -87,13 +84,13 @@ public class GRLoader : ArtLoader
         "GHED.GR",
     ];
 
-    private readonly string AuxPalPath = "ALLPALS.DAT";
+    readonly string AuxPalPath = "ALLPALS.DAT";
     readonly bool useOverrideAuxPalIndex = false;
     readonly int OverrideAuxPalIndex = 0;
 
     public int FileToLoad;
     private bool ImageFileDataLoaded;
-    int NoOfImages;
+    public int NoOfImages;
 
     public Shader textureshader;
     public ImageTexture[] ImageCache = new ImageTexture[1];
@@ -109,27 +106,6 @@ public class GRLoader : ArtLoader
     //     PaletteNo = (short)PalToUse;
     //     LoadImageFile();
     // }
-    public enum GRShaderMode
-    {
-        None = 0,
-        SpriteShader = 1,  //Spritesthat will not be billboarded.
-        BillboardSpriteShader = 2, //Sprites that will be billboarded
-        TextureShader = 3,  //World textures
-        UIShader = 4  //For ui elements that need palette cycling
-
-    };
-
-    private static Shader GetShader(GRShaderMode shaderMode) => shaderMode switch
-    {
-        GRShaderMode.TextureShader or GRShaderMode.SpriteShader
-            => (Shader)ResourceLoader.Load("res://resources/shaders/uwshader.gdshader"),
-        GRShaderMode.BillboardSpriteShader
-            => (Shader)ResourceLoader.Load("res://resources/shaders/uwsprite.gdshader"),
-        GRShaderMode.UIShader
-            => (Shader)ResourceLoader.Load("res://resources/shaders/uisprite.gdshader"),
-        _
-            => null,
-    };
 
     public GRLoader(int File, GRShaderMode shaderMode)
     {
@@ -143,153 +119,103 @@ public class GRLoader : ArtLoader
     }
 
     public ShaderMaterial GetMaterial(int textureno)
-    {
-        if (materials[textureno] == null)
-        {
-            //materials[textureno] = new surfacematerial(textureno);
-            //create this material and add it to the list
-            var newmaterial = new ShaderMaterial { Shader = textureshader };
-            newmaterial.SetShaderParameter("texture_albedo", LoadImageAt(textureno, true));
-            newmaterial.SetShaderParameter("albedo", new Color(1, 1, 1, 1));
-            newmaterial.SetShaderParameter("uv1_scale", new Vector3(1, 1, 1));
-            newmaterial.SetShaderParameter("uv2_scale", new Vector3(1, 1, 1));
-            newmaterial.SetShaderParameter("UseAlpha", true);
-            materials[textureno] = newmaterial;
-        }
-        return materials[textureno];
-    }
+        => materials[textureno] ??= GetMaterial(LoadImageAt(textureno, true), textureshader);
 
     public override bool LoadImageFile()
     {
-        var toLoad = Path.Combine(BasePath, "DATA", pathGR[FileToLoad]);
-        if (!ReadStreamFile(toLoad, out ImageFileData))
-        {
-            Debug.Print("Unable to LoadImageFile() " + toLoad);
+        var fileToLoad = Path.Combine(BasePath, "DATA", pathGR[FileToLoad]);
+        NoOfImages = LoadImageFile(fileToLoad, out ImageFileData);
+        if (NoOfImages < 1) {
+            GD.PushError("Unable to load GR file from ", fileToLoad);
             return false;
         }
-        else
-        {
-            NoOfImages = (int)getAt(ImageFileData, 1, 16);
-            ImageCache = new ImageTexture[NoOfImages];
-            materials = new ShaderMaterial[NoOfImages];
-            ImageFileDataLoaded = true;
-            return true;
-        }
+
+        ImageCache = new ImageTexture[NoOfImages];
+        materials = new ShaderMaterial[NoOfImages];
+        ImageFileDataLoaded = true;
+        return true;
+
     }
 
     public override ImageTexture LoadImageAt(int index, bool UseAlphaChannel = true)
     {
-        if (!ImageFileDataLoaded)
-        {
-            if (!LoadImageFile())
-            {
-                return base.LoadImageAt(index);
-            }
-        }
-        else if (ImageCache[index] != null)
-        {
-            return ImageCache[index];
-        }
-
-        long imageOffset = getAt(ImageFileData, (index * 4) + 3, 32);
-        if (imageOffset >= ImageFileData.GetUpperBound(0)) //Image out of range
-            return base.LoadImageAt(index);
-
-        int BitMapWidth = (int)getAt(ImageFileData, imageOffset + 1, 8);
-        int BitMapHeight = (int)getAt(ImageFileData, imageOffset + 2, 8);
-        int datalen;
-        int auxPalIndex;
-        byte[] imgNibbles;
-
-        switch (getAt(ImageFileData, imageOffset, 8))//File type
-        {
-            case 0x4://8 bit uncompressed
-                {
-                    imageOffset += 5;
-                    ImageCache[index] = Image(
-                        databuffer: ImageFileData,
-                        dataOffSet: imageOffset,
-                        width: BitMapWidth, height: BitMapHeight,
-                        palette: PaletteLoader.Palettes[PaletteNo],
-                        useAlphaChannel: UseAlphaChannel,
-                        useSingleRedChannel: UseRedChannel,
-                        crop: UseCropping);
-                    return ImageCache[index];
-                }
-            case 0x8://4 bit run-length
-                {
-                    auxPalIndex = useOverrideAuxPalIndex
-                        ? OverrideAuxPalIndex
-                        : (int)getAt(ImageFileData, imageOffset + 3, 8);
-                    datalen = (int)getAt(ImageFileData, imageOffset + 4, 16);
-                    imgNibbles = new byte[Mathf.Max(BitMapWidth * BitMapHeight * 2, (datalen + 5) * 2)];
-                    imageOffset += 6;  //Start of raw data.
-                    CopyNibbles(ImageFileData, ref imgNibbles, datalen, imageOffset);
-                    //auxpal =PaletteLoader.LoadAuxilaryPal(Loader.BasePath+ AuxPalPath,PaletteLoader.Palettes[PaletteNo],auxPalIndex);
-                    int[] aux = PaletteLoader.LoadAuxilaryPalIndices(
-                        Path.Combine(BasePath, "DATA", AuxPalPath),
-                        auxPalIndex);
-                    ImageCache[index] = Image(
-                        databuffer: DecodeRLEBitmap(imgNibbles, datalen, BitMapWidth, BitMapHeight, 4, aux),
-                        dataOffSet: 0,
-                        width: BitMapWidth, height: BitMapHeight,
-                        palette: PaletteLoader.Palettes[PaletteNo],
-                        useAlphaChannel: UseAlphaChannel,
-                        useSingleRedChannel: UseRedChannel,
-                        crop: UseCropping);
-                    return ImageCache[index];
-                }
-            case 0xA://4 bit uncompressed//Same as above???
-                {
-                    auxPalIndex = useOverrideAuxPalIndex
-                        ? OverrideAuxPalIndex
-                        : (int)getAt(ImageFileData, imageOffset + 3, 8);
-                    datalen = (int)getAt(ImageFileData, imageOffset + 4, 16);
-                    imgNibbles = new byte[Mathf.Max(BitMapWidth * BitMapHeight * 2, (5 + datalen) * 2)];
-                    imageOffset += 6;  //Start of raw data.
-                    CopyNibbles(ImageFileData, ref imgNibbles, datalen, imageOffset);
-                    Palette auxpal = PaletteLoader.LoadAuxilaryPal(
-                        Path.Combine(BasePath, "DATA", AuxPalPath),
-                        PaletteLoader.Palettes[PaletteNo],
-                        auxPalIndex);
-                    ImageCache[index] = Image(
-                        databuffer: imgNibbles,
-                        dataOffSet: 0,
-                        width: BitMapWidth, height: BitMapHeight,
-                        palette: auxpal,
-                        useAlphaChannel: UseAlphaChannel,
-                        useSingleRedChannel: UseRedChannel,
-                        crop: UseCropping);
-                    return ImageCache[index];
-                }
-            //break;
-            default:
-                //Check to see if the file is panels.gr
-                if (pathGR[FileToLoad].ToUpper().EndsWith("PANELS.GR"))
-                {
-                    BitMapWidth = 83;  //getValAtAddress(textureFile, textureOffset + 1, 8);
-                    BitMapHeight = 114; // getValAtAddress(textureFile, textureOffset + 2, 8);
-                    if (_RES == GAME_UW2)
-                    {
-                        BitMapWidth = 79;
-                        BitMapHeight = 112;
-                    }
-                    imageOffset = getAt(ImageFileData, (index * 4) + 3, 32);
-                    ImageCache[index] = Image(
-                        databuffer: ImageFileData,
-                        dataOffSet: imageOffset,
-                        width: BitMapWidth, height: BitMapHeight,
-                        palette: PaletteLoader.Palettes[PaletteNo],
-                        useAlphaChannel: UseAlphaChannel,
-                        useSingleRedChannel: UseRedChannel,
-                        crop: UseCropping);
-                    return ImageCache[index];
-                }
-                break;
-        }
-
-        return null;
+        if (!ImageFileDataLoaded && !LoadImageFile())
+            return null;
+        return ImageCache[index] ??= LoadImageAt(
+            FileToLoad,
+            ImageFileData,
+            index,
+            PaletteNo,
+            AuxPalPath,
+            OverrideAuxPalIndex,
+            useOverrideAuxPalIndex,
+            UseAlphaChannel,
+            UseRedChannel,
+            UseCropping);
     }
+
+    public void ExportImages(string exportpath)
+        => Enumerable.Range(0, NoOfImages).AsParallel().ForAll(
+            (i) => LoadImageAt(i).GetImage()
+                .SavePng(Path.Combine(exportpath, $"{i:000}.png")));
+
+    ///////////////////////////////////////////////////////////////////////////
+    
+    public enum RecordState
+    {
+        RepeatStart = 0,
+        Repeat = 1,
+        Run = 2,
+    }
+
+    public enum GRShaderMode
+    {
+        None = 0,
+        SpriteShader = 1,  //Spritesthat will not be billboarded.
+        BillboardSpriteShader = 2, //Sprites that will be billboarded
+        TextureShader = 3,  //World textures
+        UIShader = 4,  //For ui elements that need palette cycling
+    };
+
+    private static Shader GetShader(GRShaderMode shaderMode) => shaderMode switch
+    {
+        GRShaderMode.TextureShader or GRShaderMode.SpriteShader
+            => ResourceLoader.Load<Shader>("res://resources/shaders/uwshader.gdshader"),
+        GRShaderMode.BillboardSpriteShader
+            => ResourceLoader.Load<Shader>("res://resources/shaders/uwsprite.gdshader"),
+        GRShaderMode.UIShader
+            => ResourceLoader.Load<Shader>("res://resources/shaders/uisprite.gdshader"),
+        _
+            => null,
+    };
+
+    /// <summary>
+    /// Configures and creates a shader material for the given texture and shader.
+    /// </summary>
+    /// <param name="texture">Texture with alpha-channel.</param>
+    /// <param name="textureShader">The particular shader to use.</param>
+    /// <returns></returns>
+    public static ShaderMaterial GetMaterial(ImageTexture texture, Shader textureShader)
+    {
+        var newmaterial = new ShaderMaterial { Shader = textureShader };
+        newmaterial.SetShaderParameter("texture_albedo", texture);
+        newmaterial.SetShaderParameter("albedo", new Color(1, 1, 1, 1));
+        newmaterial.SetShaderParameter("uv1_scale", new Vector3(1, 1, 1));
+        newmaterial.SetShaderParameter("uv2_scale", new Vector3(1, 1, 1));
+        newmaterial.SetShaderParameter("UseAlpha", true);
+        return newmaterial;
+    }
+
+    /// <summary>
+    /// Loads the requested .GR file, returning the number of images it contains.
+    /// </summary>
+    /// <param name="path">Path to the .GR file to load.</param>
+    /// <param name="data">The byte data obtained from the file.</param>
+    /// <returns>The number of images in the file.</returns>
+    public static int LoadImageFile(string path, out byte[] data)
+        => ReadStreamFile(path, out data)
+            ? (int)getAt(data, 1, 16)
+            : -1;
 
     /// <summary>
     /// Copies the nibbles.
@@ -299,7 +225,7 @@ public class GRLoader : ArtLoader
     /// <param name="NoOfNibbles">No of nibbles.</param>
     /// <param name="add_ptr">Add ptr.</param>
     /// This code from underworld adventures
-    protected static void CopyNibbles(byte[] InputData, ref byte[] OutputData, int NoOfNibbles, long add_ptr)
+    public static void CopyNibbles(byte[] InputData, ref byte[] OutputData, int NoOfNibbles, long add_ptr)
     {
         //Split the data up into it's nibbles.
         int i = 0;
@@ -331,11 +257,11 @@ public class GRLoader : ArtLoader
     /// <param name="imageHeight">Image height.</param>
     /// <param name="BitSize">Bit size.</param>
     /// This code from underworld adventures
-    static byte[] DecodeRLEBitmap(byte[] imageData, int datalen, int imageWidth, int imageHeight, int BitSize, int[] auxpal)
+    public static byte[] DecodeRLEBitmap(byte[] imageData, int datalen, int imageWidth, int imageHeight, int BitSize, int[] auxpal)
     //, palette *auxpal, int index, int BitSize, char OutFileName[255])
     {
         byte[] outputImg = new byte[imageWidth * imageHeight];
-        int state = 0;
+        RecordState state = 0;
         int curr_pxl = 0;
         int count = 0;
         int repeatcount = 0;
@@ -347,66 +273,51 @@ public class GRLoader : ArtLoader
         {
             switch (state)
             {
-                case repeat_record_start:
+                case RecordState.RepeatStart:
+                    count = GetCount(imageData, ref add_ptr, BitSize);
+                    switch (count)
                     {
-                        count = GetCount(imageData, ref add_ptr, BitSize);
-                        switch (count)
-                        {
-                            case 1:
-                                state = run_record;
-                                break;
-                            case 2:
-                                repeatcount = GetCount(imageData, ref add_ptr, BitSize) - 1;
-                                state = repeat_record_start;
-                                break;
-                            default:
-                                state = repeat_record;
-                                break;
+                        case 1:
+                            state = RecordState.Run;
+                            break;
+                        case 2:
+                            repeatcount = GetCount(imageData, ref add_ptr, BitSize) - 1;
+                            state = RecordState.RepeatStart;
+                            break;
+                        default:
+                            state = RecordState.Repeat;
+                            break;
+                    }
+                    break;
 
-                        }
+                case RecordState.Repeat:
+                    if (imageWidth * imageHeight - curr_pxl < count)
+                        count = imageWidth * imageHeight - curr_pxl;
+                    //for count times copy the palette data to the image at the output pointer
+                    nibble = GetNibble(imageData, ref add_ptr);
+                    for (int i = 0; i < count; i++)
+                        outputImg[curr_pxl++] = (byte)auxpal[nibble];
+                    if (repeatcount != 0)
+                    {
+                        state = RecordState.RepeatStart;
+                        repeatcount--;
                         break;
                     }
-                case repeat_record:
+                    state = RecordState.Run;
+                    break;
+
+                case RecordState.Run:
+                    count = GetCount(imageData, ref add_ptr, BitSize);
+                    if (imageWidth * imageHeight - curr_pxl < count)
+                        count = imageWidth * imageHeight - curr_pxl;
+                    for (int i = 0; i < count; i++)
                     {
+                        //get nibble for the palette;
                         nibble = GetNibble(imageData, ref add_ptr);
-                        //for count times copy the palette data to the image at the output pointer
-                        if (imageWidth * imageHeight - curr_pxl < count)
-                        {
-                            count = imageWidth * imageHeight - curr_pxl;
-                        }
-                        for (int i = 0; i < count; i++)
-                        {
-                            outputImg[curr_pxl++] = (byte)auxpal[nibble];
-                        }
-                        if (repeatcount == 0)
-                        {
-                            state = run_record;
-                        }
-                        else
-                        {
-                            state = repeat_record_start;
-                            repeatcount--;
-                        }
-                        break;
+                        outputImg[curr_pxl++] = (byte)auxpal[nibble];
                     }
-
-
-                case 2: //runrecord
-                    {
-                        count = GetCount(imageData, ref add_ptr, BitSize);
-                        if (imageWidth * imageHeight - curr_pxl < count)
-                        {
-                            count = imageWidth * imageHeight - curr_pxl;
-                        }
-                        for (int i = 0; i < count; i++)
-                        {
-                            //get nibble for the palette;
-                            nibble = GetNibble(imageData, ref add_ptr);
-                            outputImg[curr_pxl++] = (byte)auxpal[nibble];
-                        }
-                        state = repeat_record_start;
-                        break;
-                    }
+                    state = RecordState.RepeatStart;
+                    break;
             }
         }
         return outputImg;
@@ -419,50 +330,126 @@ public class GRLoader : ArtLoader
     /// <param name="addr_ptr">Address ptr.</param>
     /// <param name="size">Size.</param>
     /// This code from underworld adventures
-    static int GetCount(byte[] nibbles, ref int addr_ptr, int size)
+    public static int GetCount(byte[] nibbles, ref int addr_ptr, int size)
     {
-        int n1;
-        int n2;
-        int n3;
-        n1 = GetNibble(nibbles, ref addr_ptr);
+
+        int n1 = GetNibble(nibbles, ref addr_ptr);
         int count = n1;
-        if (count == 0)
-        {
-            n1 = GetNibble(nibbles, ref addr_ptr);
-            n2 = GetNibble(nibbles, ref addr_ptr);
-            count = (n1 << size) | n2;
-        }
-        if (count == 0)
-        {
-            n1 = GetNibble(nibbles, ref addr_ptr);
-            n2 = GetNibble(nibbles, ref addr_ptr);
-            n3 = GetNibble(nibbles, ref addr_ptr);
-            count = (((n1 << size) | n2) << size) | n3;
-        }
-        return count;
+        if (count != 0)
+            return count;
+
+        n1 = GetNibble(nibbles, ref addr_ptr);
+        int n2 = GetNibble(nibbles, ref addr_ptr);
+        count = (n1 << size) | n2;
+        if (count != 0)
+            return count;
+
+        n1 = GetNibble(nibbles, ref addr_ptr);
+        n2 = GetNibble(nibbles, ref addr_ptr);
+        int n3 = GetNibble(nibbles, ref addr_ptr);
+        return (((n1 << size) | n2) << size) | n3;
+
     }
 
     /// <summary>
-    /// Gets the nibble.
+    /// Gets the nibble, incrementing to the next.
     /// </summary>
     /// <returns>The nibble.</returns>
     /// <param name="nibbles">Nibbles.</param>
     /// <param name="addr_ptr">Address ptr.</param>
     /// This code from underworld adventures
-    static byte GetNibble(byte[] nibbles, ref int addr_ptr)
+    public static byte GetNibble(byte[] nibbles, ref int addr_ptr)
+        => nibbles[addr_ptr++];
+        
+    public static ImageTexture LoadImageAt(
+        int FileToLoad,
+        byte[] ImageFileData,
+        int index,
+        int PaletteNo,
+        string AuxPalPath,
+        int OverrideAuxPalIndex,
+        bool useOverrideAuxPalIndex,
+        bool UseAlphaChannel = true,
+        bool UseRedChannel = false,
+        bool UseCropping = false)
     {
-        byte n1 = nibbles[addr_ptr];
-        addr_ptr++;
-        return n1;
-    }
 
-    public void ExportImages(string exportpath)
-    {
-        for (int i = 0; i < NoOfImages; i++)
+        // Make sure the image being loaded is within range.
+        long imageOffset = getAt(ImageFileData, (index * 4) + 3, 32);
+        if (imageOffset >= ImageFileData.GetUpperBound(0)) //Image out of range
+            return null;
+
+        // Get our starting Palette
+        var palette = PaletteLoader.Palettes[PaletteNo];
+
+        //Check to see if the file is panels.gr
+        var fileName = pathGR[FileToLoad];
+        if (fileName.ToUpper().EndsWith("PANELS.GR"))
+            return Image(
+                databuffer: ImageFileData,
+                dataOffSet: imageOffset,
+                width: _RES == GAME_UW2 ? 79 : 83,
+                height: _RES == GAME_UW2 ? 112 : 114,
+                palette: palette,
+                useAlphaChannel: UseAlphaChannel,
+                useSingleRedChannel: UseRedChannel,
+                crop: UseCropping);
+
+        // Determine our size and type.
+        int BitMapWidth = (int)getAt(ImageFileData, imageOffset + 1, 8);
+        int BitMapHeight = (int)getAt(ImageFileData, imageOffset + 2, 8);
+        uint fileType = getAt(ImageFileData, imageOffset, 8);
+
+        // 8 bit uncompressed
+        if (fileType == 0x4)
+            return Image(
+                databuffer: ImageFileData,
+                dataOffSet: imageOffset + 5,
+                width: BitMapWidth,
+                height: BitMapHeight,
+                palette: palette,
+                useAlphaChannel: UseAlphaChannel,
+                useSingleRedChannel: UseRedChannel,
+                crop: UseCropping);
+
+        // If it's not one of the other file types we recognise, stop and report.
+        if (fileType != 0x8 && fileType != 0xA)
         {
-            var img = LoadImageAt(i);
-            img.GetImage().SavePng(Path.Combine(exportpath, $"{i.ToString("000")}.png"));
+            GD.PushError($"Can't understand fileType:{fileType} in {fileName}");
+            return null;
         }
+
+        // Retrieve the raw data.
+        int datalen = (int)getAt(ImageFileData, imageOffset + 4, 16);
+        byte[] imgNibbles = new byte[Mathf.Max(BitMapWidth * BitMapHeight * 2, (datalen + 5) * 2)];
+        CopyNibbles(ImageFileData, ref imgNibbles, datalen, imageOffset + 6);
+
+        // Determine which palette we should start with.
+        int auxPalIndex = useOverrideAuxPalIndex
+            ? OverrideAuxPalIndex
+            : (int)getAt(ImageFileData, imageOffset + 3, 8);
+        string auxPalPath = Path.Combine(BasePath, "DATA", AuxPalPath);
+
+        if (fileType == 0x8) // 4 bit run-length
+        {
+            int[] aux = PaletteLoader.LoadAuxilaryPalIndices(auxPalPath, auxPalIndex);
+            imgNibbles = DecodeRLEBitmap(imgNibbles, datalen, BitMapWidth, BitMapHeight, 4, aux);
+        }
+        else // 0xA 4 bit uncompressed
+        {
+            palette = PaletteLoader.LoadAuxilaryPal(auxPalPath, palette, auxPalIndex);
+        }
+
+        return Image(
+            databuffer: imgNibbles,
+            dataOffSet: 0,
+            width: BitMapWidth,
+            height: BitMapHeight,
+            palette: palette,
+            useAlphaChannel: UseAlphaChannel,
+            useSingleRedChannel: UseRedChannel,
+            crop: UseCropping);
+
     }
 
-}//end class
+}
