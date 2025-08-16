@@ -17,4 +17,15 @@
         PrivateAssets="all" OutputItemType="analyzer" />
   </ItemGroup>
 
+  <!-- Pre-build code generation templates -->
+  <ItemGroup>
+    <TextTemplate Include="**/*.tt" />
+  </ItemGroup>
+  <Target Name="TextTemplateTransform" BeforeTargets="BeforeBuild" Inputs="@(TextTemplate)" Outputs="%(Identity).cs">
+    <Exec WorkingDirectory="$(ProjectDir)" ConsoleToMSBuild="true"
+        Command="dotnet tool run t4 -- %(TextTemplate.Identity) -p ProjectFolder=$(ProjectDir) -v">
+      <Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
+    </Exec>
+  </Target>
+
 </Project>

@@ -1,0 +1,44 @@
+<#@ template language="C#" #>
+<#@ parameter type="System.String" name="ProjectFolder" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ output extension=".tt.cs" #>
+namespace Underworld;
+
+public static class Uids {
+<#
+    // Recurse through whole project and find all uid uid_files
+    Debug.WriteLine($"Searching {ProjectFolder} recursively for uid uid_files...");
+    var uid_files = Directory.EnumerateFiles(ProjectFolder, "*.uid", SearchOption.AllDirectories);
+    foreach (var uid_path in uid_files) {
+        Debug.WriteLine($"Working on '{uid_path}'");
+
+        // Just read the file to get its uid.
+        var uid_val = File.ReadAllText(uid_path).Trim();
+
+        // Derive the target resource path from the uid file path.
+        var res_path = Path.GetRelativePath(ProjectFolder, uid_path);
+        res_path = Regex.Replace(res_path, @"\.uid$", "");
+        res_path = Regex.Replace(res_path, @"\\", "/");
+
+        // Convert the target resource path to upper snake case.
+        var id_key = Path.GetFileName(res_path).ToUpper();
+        id_key = Regex.Replace(id_key, @"[ \-\.]", "_");
+
+#>
+
+    // res://<#= res_path #>
+    public const string <#= id_key #> = "<#= uid_val #>";
+<#
+        Debug.WriteLine($"Done processing '{id_key}'.");
+    }
+
+    Debug.WriteLine("Done processing all uids.");
+#>
+
+}
