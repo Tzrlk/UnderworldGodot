@@ -3,13 +3,36 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <RunSettingsFilePath>$(SolutionDir)/.runsettings</RunSettingsFilePath>
   </PropertyGroup>
 
-  <!-- Linting Tools -->
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Release'">
+    <Compile Remove="**/*.Tests.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' != 'Release'">
+
+    <!-- Base MSTest api (framework not included). -->
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+
+    <!-- Property-based testing. -->
+    <PackageReference Include="FsCheck" Version="3.3.0" />
+    <!-- Might look at https://github.com/AutoFixture/AutoFixture -->
+    <!-- or https://github.com/dsschneidermann/FsCheckCSharp -->
+
+    <!-- GDUnit for godot-specific testing. -->
+    <PackageReference Include="gdUnit4.api" Version="5.0.0" />
+    <PackageReference Include="gdUnit4.test.adapter" Version="3.0.0" />
+    <PackageReference Include="gdUnit4.analyzers" Version="1.0.0"
+        PrivateAssets="none" IncludeAssets="runtime;build;native;contentfiles;analyzers;buildtransitive" />
+
+    <!-- Linting Tools -->
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"
         PrivateAssets="all" Condition="$(MSBuildProjectExtension) == '.csproj'" />
-    <AdditionalFiles Include="$(SolutionDir)/stylecop.json" />
+    <AdditionalFiles Include="$(SolutionDir)/.stylecop.json" Link=".stylecop.json"/>
+    <AdditionalFiles Include="$(SolutionDir)/.editorconfig" Link=".editorconfig"/>
+
   </ItemGroup>
 
 </Project>

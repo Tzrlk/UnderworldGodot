@@ -1,0 +1,5 @@
+{
+    "dotnet.unitTests.runSettingsPath": ".runsettings",
+    "dotnet-test-explorer.testArguments": "--settings .runsettings",
+    "dotnet-test-explorer.testProjectPath": "Underworld.csproj"
+}
