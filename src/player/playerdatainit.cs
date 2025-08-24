@@ -104,9 +104,9 @@ namespace Underworld
                 case 2:
                 case 3:
                 case 4:
-                    uimanager.grWeapon = new WeaponsLoader(0); break;
+                    uimanager.instance.grWeapon = new WeaponsLoader(0); break;
                 default:
-                    uimanager.grWeapon = new WeaponsLoader(1); break;
+                    uimanager.instance.grWeapon = new WeaponsLoader(1); break;
             }
 
             //Clear cached UW2 SCD data.

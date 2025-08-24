@@ -61,9 +61,9 @@ namespace Underworld
                                 Palettes[palNo] = new Palette();
                                 for (int pixel = 0; pixel < 256; pixel++)
                                 {
-                                    Palettes[palNo].red[pixel] = (byte)(getAt(pals_dat, palNo * 256 + (pixel * 3) + 0, 8) << 2);
-                                    Palettes[palNo].green[pixel] = (byte)(getAt(pals_dat, palNo * 256 + (pixel * 3) + 1, 8) << 2);
-                                    Palettes[palNo].blue[pixel] = (byte)(getAt(pals_dat, palNo * 256 + (pixel * 3) + 2, 8) << 2);
+                                    Palettes[palNo].red[pixel] = (byte)(GetAt(pals_dat, palNo * 256 + (pixel * 3) + 0, 8) << 2);
+                                    Palettes[palNo].green[pixel] = (byte)(GetAt(pals_dat, palNo * 256 + (pixel * 3) + 1, 8) << 2);
+                                    Palettes[palNo].blue[pixel] = (byte)(GetAt(pals_dat, palNo * 256 + (pixel * 3) + 2, 8) << 2);
 
                                     switch (pixel)
                                     {
@@ -84,9 +84,9 @@ namespace Underworld
                                 light[palNo] = new lightmap();
                                 for (int pixel = 0; pixel < 256; pixel++)
                                 { //just store the index values.
-                                    light[palNo].red[pixel] = (byte)getAt(light_dat, palNo * 256 + pixel + 0, 8);
-                                    light[palNo].blue[pixel] = (byte)getAt(light_dat, palNo * 256 + pixel + 0, 8);
-                                    light[palNo].green[pixel] = (byte)getAt(light_dat, palNo * 256 + pixel + 0, 8);
+                                    light[palNo].red[pixel] = (byte)GetAt(light_dat, palNo * 256 + pixel + 0, 8);
+                                    light[palNo].blue[pixel] = (byte)GetAt(light_dat, palNo * 256 + pixel + 0, 8);
+                                    light[palNo].green[pixel] = (byte)GetAt(light_dat, palNo * 256 + pixel + 0, 8);
                                     light[palNo].alpha[pixel] = 255;
                                 }
                             }
@@ -101,9 +101,9 @@ namespace Underworld
                                 mono[palNo] = new lightmap();
                                 for (int pixel = 0; pixel < 256; pixel++)
                                 { //just store the index values.
-                                    mono[palNo].red[pixel] = (byte)getAt(mono_dat, palNo * 256 + pixel + 0, 8);
-                                    mono[palNo].blue[pixel] = (byte)getAt(mono_dat, palNo * 256 + pixel + 0, 8);
-                                    mono[palNo].green[pixel] = (byte)getAt(mono_dat, palNo * 256 + pixel + 0, 8);
+                                    mono[palNo].red[pixel] = (byte)GetAt(mono_dat, palNo * 256 + pixel + 0, 8);
+                                    mono[palNo].blue[pixel] = (byte)GetAt(mono_dat, palNo * 256 + pixel + 0, 8);
+                                    mono[palNo].green[pixel] = (byte)GetAt(mono_dat, palNo * 256 + pixel + 0, 8);
                                     mono[palNo].alpha[pixel] = 255;
                                 }
                             }
@@ -156,7 +156,7 @@ namespace Underworld
             {
                 for (int j = 0; j < 16; j++)
                 {
-                    auxpal[j] = (int)getAt(palf, auxPalIndex * 16 + j, 8);
+                    auxpal[j] = (int)GetAt(palf, auxPalIndex * 16 + j, 8);
                 }
             }
             return auxpal;
@@ -174,7 +174,7 @@ namespace Underworld
             {
                 for (int j = 0; j < 16; j++)
                 {
-                    int value = (int)getAt(palf, auxPalIndex * 16 + j, 8);
+                    int value = (int)GetAt(palf, auxPalIndex * 16 + j, 8);
                     auxpal.green[j] = gamepal.green[value];
                     auxpal.blue[j] = gamepal.blue[value];
                     auxpal.red[j] = gamepal.red[value];

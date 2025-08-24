@@ -27,7 +27,7 @@ namespace Underworld
         /// <returns></returns>
         public static short objectmask(int item_id)
         {
-           return (short)getAt(buffer,offset + 1 + (item_id & 0xF) * 3,16);
+           return (short)GetAt(buffer,offset + 1 + (item_id & 0xF) * 3,16);
         }
     
     }//end class

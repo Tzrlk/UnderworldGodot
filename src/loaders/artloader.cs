@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics.Contracts;
 using Godot;
 
 namespace Underworld
@@ -11,42 +13,49 @@ namespace Underworld
 
         public const byte BitMapHeaderSize = 28;
 
-        /// <summary>
-        /// The complete image file 
-        /// </summary>
-        protected byte[] ImageFileData;
-
-        /// <summary>
-        /// The palette no to use with this file.
-        /// </summary>
-        public short PaletteNo = 0;
-
-        /// <summary>
-        /// Instructs the image() function to crop out based on pixel 0
-        /// </summary>
-        public bool UseCropping = false;
-
-
         public const float SpriteScale = 0.02f;  //height of 1px of a sprite
 
         public const float NPCSpriteScale = 0.009f;
+
+        public struct ArtData()
+        {
+
+            /// <summary>
+            /// The complete image file 
+            /// </summary>
+            public byte[] ImageFileData;
+
+            /// <summary>
+            /// The palette no to use with this file.
+            /// </summary>
+            public short PaletteNo = 0;
+
+            /// <summary>
+            /// Instructs the image() function to crop out based on pixel 0
+            /// </summary>
+            public bool useCropping = false;
+
+        }
+
+        [Obsolete("-")]
+        protected ArtData artData = new();
+
+        [Obsolete("-")]
+        protected byte[] ImageFileData => artData.ImageFileData;
+
+        [Obsolete("-")]
+        public short PaletteNo => artData.PaletteNo;
+
+        [Obsolete("-")]
+        public bool UseCropping => artData.useCropping;
 
         /// <summary>
         /// Loads the image file into the buffer
         /// </summary>
         /// <returns><c>true</c>, if image file was loaded, <c>false</c> otherwise.</returns>
+        [Obsolete("-")]
         public virtual bool LoadImageFile()
-        {
-            if (ReadStreamFile(filePath, out ImageFileData))
-            {//data read
-                DataLoaded = true;
-            }
-            else
-            {
-                DataLoaded = false;
-            }
-            return DataLoaded;
-        }
+            => DataLoaded = ReadStreamFile(filePath, out artData.ImageFileData);
 
         /// <summary>
         /// Loads the image at index.
@@ -54,9 +63,7 @@ namespace Underworld
         /// <returns>The <see cref="UnityEngine.Texture2D"/>.</returns>
         /// <param name="index">Index.</param>
         public virtual ImageTexture LoadImageAt(int index)
-        {
-            return null; // new ImageTexture() Texture2D(1, 1);
-        }
+            => null; // new ImageTexture() Texture2D(1, 1);
 
         /// <summary>
         /// Loads the image at index.
@@ -64,10 +71,15 @@ namespace Underworld
         /// <returns>The <see cref="UnityEngine.Texture2D"/>.</returns>
         /// <param name="index">Index.</param>
         public virtual ImageTexture LoadImageAt(int index, bool Alpha)
-        {
-            return null;// new Texture2D(1, 1);
-        }
+            => null; // new Texture2D(1, 1);
 
+        [Pure]
+        public static Image.Format ImageFormat(bool useSingleRedChannel, bool useAlphaChannel)
+            => useSingleRedChannel
+                ? Godot.Image.Format.R8
+                : useAlphaChannel
+                    ? Godot.Image.Format.Rgba8
+                    : Godot.Image.Format.Rgb8;
 
         /// <summary>
         /// Generates the image from the specified data buffer position
@@ -88,22 +100,7 @@ namespace Underworld
             bool useSingleRedChannel,
             bool crop)
         {
-            Godot.Image.Format imgformat;
-            if (useSingleRedChannel)
-            {
-                imgformat = Godot.Image.Format.R8;
-            }
-            else
-            {
-                if (useAlphaChannel)
-                {
-                    imgformat = Godot.Image.Format.Rgba8;
-                }
-                else
-                {
-                    imgformat = Godot.Image.Format.Rgb8;
-                }
-            }
+            Image.Format imgformat = ImageFormat(useSingleRedChannel, useAlphaChannel);
 
             var img = Godot.Image.CreateEmpty(width, height, false, imgformat);
             for (int iRow = 0; iRow < height; iRow++)
@@ -111,23 +108,23 @@ namespace Underworld
                 int iCol = 0;
                 for (int j = iRow * width; j < (iRow * width) + width; j++)
                 {
-                    byte pixel = (byte)getAt(databuffer, dataOffSet + j, 8);
-                    img.SetPixel(iCol, iRow, palette.ColorAtIndex(pixel, useAlphaChannel, useSingleRedChannel));
+                    byte pixel = (byte)GetAt(databuffer, dataOffSet + j, 8);
+                    var color = palette.ColorAtIndex(pixel, useAlphaChannel, useSingleRedChannel);
+                    img.SetPixel(iCol, iRow, color);
                     iCol++;
                 }
             }
 
-            if (crop)
-            {
-                var bound = GetBoundingBox(databuffer, (int)dataOffSet, width, height);
-                return CropImage(img, bound);
-            }
-            else
+            if (!crop)
             {
                 var tex = new ImageTexture();
                 tex.SetImage(img);
                 return tex;
             }
+
+            var bound = GetBoundingBox(databuffer, (int)dataOffSet, width, height);
+            return CropImage(img, bound);
+
         }
 
 
@@ -156,7 +153,7 @@ namespace Underworld
                 int iCol = 0;
                 for (int j = iRow * width; j < (iRow * width) + width; j++)
                 {
-                    byte pixel = (byte)getAt(databuffer, dataOffSet + j, 8);
+                    byte pixel = (byte)GetAt(databuffer, dataOffSet + j, 8);
                     bmp.SetBit(iCol, iRow, pixel != 0);
                     iCol++;
                 }
@@ -214,7 +211,7 @@ namespace Underworld
             {
                 for (int col = width - 1; col >= 0 && !found; col--) //column
                 {
-                    int idx = dataoffset + (row * width + col);
+                    int idx = dataoffset + row * width + col;
                     if (!(buf[idx] == 0)) //not transparent           
                     {
                         //BoundingBox.bottom = row;
@@ -261,6 +258,7 @@ namespace Underworld
         }
 
 
+        [Pure]
         public static ImageTexture CropImage(Image src, Rect2I rect)
         {
             var img = Godot.Image.CreateEmpty(rect.Size.X, rect.Size.Y, false, src.GetFormat());

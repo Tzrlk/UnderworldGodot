@@ -30,7 +30,7 @@ namespace Underworld
         /// <returns></returns>
         public static int radius(int item_id)
         {   //bits 0..2 at + 1
-            var x = getAt(buffer, PTR(item_id) + 1, 16);
+            var x = GetAt(buffer, PTR(item_id) + 1, 16);
             return (int)(x & 7);
         }
 
@@ -42,7 +42,7 @@ namespace Underworld
         /// <returns></returns>
         public static int mass(int item_id)
         {   //bits 4-15 at + 1
-            var x = getAt(buffer, PTR(item_id) + 1, 16);
+            var x = GetAt(buffer, PTR(item_id) + 1, 16);
             return (int)(x>>4 & 0xFFF);
         }
 
@@ -94,7 +94,7 @@ namespace Underworld
         /// <returns></returns>
         public static int monetaryvalue(int item_id)
         {   //int16 at + 4
-            return (int)getAt(buffer, PTR(item_id) + 4, 16);
+            return (int)GetAt(buffer, PTR(item_id) + 4, 16);
         }
 
 
@@ -151,7 +151,7 @@ namespace Underworld
         /// <returns></returns>
         public static int unk6_5678(int item_id)
         {//bit 5678 at + 6
-            return (int)((getAt(buffer, PTR(item_id) + 6, 16) >> 5) & 0xF);  
+            return (int)((GetAt(buffer, PTR(item_id) + 6, 16) >> 5) & 0xF);  
         }
 
         public static bool canhaveowner(int item_id)

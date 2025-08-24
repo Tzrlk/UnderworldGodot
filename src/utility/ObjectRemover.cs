@@ -90,7 +90,7 @@ namespace Underworld
 
         static int GetLinkNext(long ptr)
         {
-            return (int)((Loader.getAt(UWTileMap.current_tilemap.lev_ark_block.Data, ptr, 16) >> 6) & 0x3FF);
+            return (int)((Loader.GetAt(UWTileMap.current_tilemap.lev_ark_block.Data, ptr, 16) >> 6) & 0x3FF);
         }
 
         static void RemoveObjectAndChainFromLists(uwObject toRemove, long ptrListHead)
@@ -162,10 +162,10 @@ namespace Underworld
                         {
                             //Clear the links.
                             var newLink = toRemove.next;
-                            int tmp = (int)Loader.getAt(UWTileMap.current_tilemap.lev_ark_block.Data, ptrListHead, 16);
+                            int tmp = (int)Loader.GetAt(UWTileMap.current_tilemap.lev_ark_block.Data, ptrListHead, 16);
                             tmp = tmp & 0x3F;
                             tmp = tmp | (newLink << 6);
-                            Loader.setAt(UWTileMap.current_tilemap.lev_ark_block.Data, ptrListHead, 16, tmp);
+                            Loader.SetAt(UWTileMap.current_tilemap.lev_ark_block.Data, ptrListHead, 16, tmp);
                             return true;
                         }
                         else
@@ -287,7 +287,7 @@ namespace Underworld
             {//Handle case where this starts at an arbitary data location and links directly to the object.
                 var ObjToRemove = objlist[toRemove];
                 var databuffer = ObjToRemove.DataBuffer;
-                var tmp = (int)Loader.getAt(databuffer, HeadOffset, 16);
+                var tmp = (int)Loader.GetAt(databuffer, HeadOffset, 16);
                 tmp = tmp & 0x3F;//clear the link or next.
 
                 if (ObjToRemove != null)
@@ -295,7 +295,7 @@ namespace Underworld
                     tmp = tmp | (ObjToRemove.next << 6);//insert the next as the new item at the head.
                     ObjToRemove.next = 0;
                 }
-                Loader.setAt(databuffer, HeadOffset, 16, tmp);
+                Loader.SetAt(databuffer, HeadOffset, 16, tmp);
                 return true;
             }
             //var obj = objlist[toRemove];

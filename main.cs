@@ -153,7 +153,7 @@ public partial class main : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
-		if ((uimanager.InGame) || (uimanager.AtMainMenu))
+		if (uimanager.InGame)
 		{
 			cycletime += delta;
 			if (cycletime > 0.2)
@@ -174,7 +174,7 @@ public partial class main : Node3D
 		}
 
 
-		if ((uimanager.InGame) && (!blockmouseinput))
+		if (uimanager.InGame && !blockmouseinput)
 		{
 			
 

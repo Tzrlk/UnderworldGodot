@@ -108,7 +108,7 @@ namespace Underworld
         {
             get
             {
-                return (short)(getAt(map.lev_ark_block.Data, Ptr + 2, 16) >> 6);
+                return (short)(GetAt(map.lev_ark_block.Data, Ptr + 2, 16) >> 6);
             }
             set
             {

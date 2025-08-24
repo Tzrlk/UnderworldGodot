@@ -532,7 +532,7 @@ namespace Underworld
         /// <returns></returns>
         public static int otherloot_probability(int item_id, int loot_no)
         {
-            var val = (int)getAt(buffer, CritterOffset(item_id) + 0x22 + (loot_no * 2), 16);
+            var val = (int)GetAt(buffer, CritterOffset(item_id) + 0x22 + (loot_no * 2), 16);
             return val & 0xF;
         }
 
@@ -544,7 +544,7 @@ namespace Underworld
         /// <returns></returns>
         public static int otherloot_item(int item_id, int loot_no)
         {
-            var val = (int)getAt(buffer, CritterOffset(item_id) + 0x22 + (loot_no * 2), 16);
+            var val = (int)GetAt(buffer, CritterOffset(item_id) + 0x22 + (loot_no * 2), 16);
             return (val >> 4) & 0xFFF;
         }
 
@@ -589,7 +589,7 @@ namespace Underworld
         /// <returns></returns>
         public static int experience(int item_id)
         {
-            return (int)getAt(buffer, CritterOffset(item_id) + 0x28, 16);
+            return (int)GetAt(buffer, CritterOffset(item_id) + 0x28, 16);
         }
 
         /// <summary>

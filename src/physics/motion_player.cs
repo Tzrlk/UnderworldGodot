@@ -241,13 +241,13 @@ namespace Underworld
 
             //seg008_1B09_AAA:
             playerMotionParams.heading_1E = PlayerHeadingMajor_dseg_67d6_8296;
-            setAt(UWMotionParamArray.PlayerMotionHandler_dseg_67d6_26AA, 0, 16, 0x0);
+            SetAt(UWMotionParamArray.PlayerMotionHandler_dseg_67d6_26AA, 0, 16, 0x0);
 
             if ((playerdat.MagicalMotionAbilities & 0x14) != 0)
             {
                 //seg008_1B09_ABD:
                 //player is flying or levitating
-                setAt(UWMotionParamArray.PlayerMotionHandler_dseg_67d6_26AA, 0, 16, 0x1000);
+                SetAt(UWMotionParamArray.PlayerMotionHandler_dseg_67d6_26AA, 0, 16, 0x1000);
                 playerMotionParams.unk_17 = 0x80;
             }
 

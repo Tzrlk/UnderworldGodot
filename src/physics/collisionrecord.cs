@@ -29,11 +29,11 @@ namespace Underworld
         {
             get
             {
-                return (byte)getAt(Collisions_dseg_2520, ptr, 8);
+                return (byte)GetAt(Collisions_dseg_2520, ptr, 8);
             }
             set
             {
-                setAt(Collisions_dseg_2520, ptr, 8, value);
+                SetAt(Collisions_dseg_2520, ptr, 8, value);
             }
         }
 
@@ -41,11 +41,11 @@ namespace Underworld
         {
             get
             {
-                return (byte)getAt(Collisions_dseg_2520, ptr + 1, 8);
+                return (byte)GetAt(Collisions_dseg_2520, ptr + 1, 8);
             }
             set
             {
-                setAt(Collisions_dseg_2520, ptr + 1, 8, value);
+                SetAt(Collisions_dseg_2520, ptr + 1, 8, value);
             }
         }
 
@@ -53,15 +53,15 @@ namespace Underworld
         {
             get
             {
-                return (short)((getAt(Collisions_dseg_2520, ptr + 2, 16) >> 6) & 0x3FF);
+                return (short)((GetAt(Collisions_dseg_2520, ptr + 2, 16) >> 6) & 0x3FF);
             }
             set
             {
                 value = (short)(value & 0x3FF);
-                var tmp = (int)getAt(Collisions_dseg_2520, ptr + 2, 16);
+                var tmp = (int)GetAt(Collisions_dseg_2520, ptr + 2, 16);
                 tmp = tmp & 0x3F;
                 tmp = tmp | (value << 6);
-                setAt(Collisions_dseg_2520, ptr + 2, 16, (int)tmp);
+                SetAt(Collisions_dseg_2520, ptr + 2, 16, (int)tmp);
             }
         }
 
@@ -69,15 +69,15 @@ namespace Underworld
         {
             get
             {
-                return (short)((getAt(Collisions_dseg_2520, ptr + 2, 16)) & 0x3F);
+                return (short)((GetAt(Collisions_dseg_2520, ptr + 2, 16)) & 0x3F);
             }
             set
             {
                 value = (short)(value & 0x3F);
-                var tmp = getAt(Collisions_dseg_2520, ptr + 2, 16);
+                var tmp = GetAt(Collisions_dseg_2520, ptr + 2, 16);
                 tmp = tmp & 0xFFC0;
                 tmp = (uint)((short)tmp | (short)value);
-                setAt(Collisions_dseg_2520, ptr + 2, 16, (int)tmp);
+                SetAt(Collisions_dseg_2520, ptr + 2, 16, (int)tmp);
             }
         }
 
@@ -85,11 +85,11 @@ namespace Underworld
         {
             get
             {
-                return (short)getAt(Collisions_dseg_2520, ptr + 4, 16);
+                return (short)GetAt(Collisions_dseg_2520, ptr + 4, 16);
             }
             set
             {
-                setAt(Collisions_dseg_2520, ptr + 4, 16, value);
+                SetAt(Collisions_dseg_2520, ptr + 4, 16, value);
             }
         }
 

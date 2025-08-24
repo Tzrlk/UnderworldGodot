@@ -37,7 +37,7 @@ namespace Underworld
         /// <param name="size">Size of the data in bits</param>
         public static long getValAtAddress(UWBlock buffer, long Address, int size)
         {//Gets contents of bytes the the specific integer address. int(8), int(16), int(32) per uw-formats.txt
-            return getAt(buffer.Data, Address, size);
+            return GetAt(buffer.Data, Address, size);
         }
 
 
@@ -53,7 +53,7 @@ namespace Underworld
         ///This decompresses UW2 blocks.
         public static byte[] unpackUW2(byte[] tmpBuffer, int address_pointer, ref int datalen)
         {
-            int BlockLen = (int)getAt(tmpBuffer, address_pointer, 32); //lword(base);
+            int BlockLen = (int)GetAt(tmpBuffer, address_pointer, 32); //lword(base);
             int NoOfSegs = ((BlockLen / 0x1000) + 1) * 0x1000;
             byte[] buf = new byte[Math.Max(NoOfSegs, BlockLen + 100)];
 
@@ -395,15 +395,15 @@ namespace Underworld
         public static bool LoadUWBlock(byte[] arkData, int blockNo, int targetDataLen, out UWBlock uwb)
         {
             uwb = new UWBlock();
-            int NoOfBlocks = (int)getAt(arkData, 0, 32);
+            int NoOfBlocks = (int)GetAt(arkData, 0, 32);
             switch (_RES)
             {
                 case GAME_UW2:
                     {//6 + block *4 + (noOfBlocks*type)
-                        uwb.Address = (int)getAt(arkData, 6 + (blockNo * 4), 32);
-                        uwb.CompressionFlag = (int)getAt(arkData, 6 + (blockNo * 4) + (NoOfBlocks * 4), 32);
-                        uwb.DataLen = (int)getAt(arkData, 6 + (blockNo * 4) + (NoOfBlocks * 8), 32);
-                        uwb.ReservedSpace = (int)getAt(arkData, 6 + (blockNo * 4) + (NoOfBlocks * 12), 32);
+                        uwb.Address = (int)GetAt(arkData, 6 + (blockNo * 4), 32);
+                        uwb.CompressionFlag = (int)GetAt(arkData, 6 + (blockNo * 4) + (NoOfBlocks * 4), 32);
+                        uwb.DataLen = (int)GetAt(arkData, 6 + (blockNo * 4) + (NoOfBlocks * 8), 32);
+                        uwb.ReservedSpace = (int)GetAt(arkData, 6 + (blockNo * 4) + (NoOfBlocks * 12), 32);
                         if (uwb.Address != 0)
                         {
                             if (((uwb.CompressionFlag >> 1) & 0x01) == 1)
@@ -430,7 +430,7 @@ namespace Underworld
                     }
                 default:
                     {
-                        uwb.Address = (int)getAt(arkData, (blockNo * 4) + 2, 32);
+                        uwb.Address = (int)GetAt(arkData, (blockNo * 4) + 2, 32);
                         if (uwb.Address != 0)
                         {
                             uwb.Data = new byte[targetDataLen];

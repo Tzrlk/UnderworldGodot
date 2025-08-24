@@ -28,23 +28,23 @@ namespace Underworld
         {
             get
             {
-                return (int)getAt(data, PTR, 8);
+                return (int)GetAt(data, PTR, 8);
 
             }
             set
             {
-                setAt(data, PTR, 8, value);
+                SetAt(data, PTR, 8, value);
             }
         }
         public int Y1
         {
             get
             {
-                return (int)getAt(data, PTR + 1, 8);
+                return (int)GetAt(data, PTR + 1, 8);
             }
             set
             {
-                setAt(data, PTR + 1, 8, value);
+                SetAt(data, PTR + 1, 8, value);
             }
         }
     }
@@ -86,33 +86,33 @@ namespace Underworld
         {
             get
             {
-                return (int)getAt(data056, PTR, 8);
+                return (int)GetAt(data056, PTR, 8);
             }
             set
             {
-                setAt(data056, PTR, 8, value);
+                SetAt(data056, PTR, 8, value);
             }
         }
         public int Y1
         {
             get
             {
-                return (int)getAt(data056, PTR + 1, 8);
+                return (int)GetAt(data056, PTR + 1, 8);
             }
             set
             {
-                setAt(data056, PTR + 1, 8, value);
+                SetAt(data056, PTR + 1, 8, value);
             }
         }
         public int Z2
         {
             get
             {
-                return (int)getAt(data056, PTR + 2, 8);
+                return (int)GetAt(data056, PTR + 2, 8);
             }
             set
             {
-                setAt(data056, PTR + 2, 8, value);
+                SetAt(data056, PTR + 2, 8, value);
             }
         }
 
@@ -120,11 +120,11 @@ namespace Underworld
         {
             get
             {
-                return (int)getAt(data056, PTR + 3, 8);
+                return (int)GetAt(data056, PTR + 3, 8);
             }
             set
             {
-                setAt(data056, PTR + 3, 8, value);
+                SetAt(data056, PTR + 3, 8, value);
             }
         }
 
@@ -160,11 +160,11 @@ namespace Underworld
         {
             get
             {
-                return (int)getAt(pathfind57data, PTR, 8);
+                return (int)GetAt(pathfind57data, PTR, 8);
             }
             set
             {
-                setAt(pathfind57data, PTR, 8, value);
+                SetAt(pathfind57data, PTR, 8, value);
             }
         }
 
@@ -172,11 +172,11 @@ namespace Underworld
         {
             get
             {
-                return (int)getAt(pathfind57data, PTR + 1, 8);
+                return (int)GetAt(pathfind57data, PTR + 1, 8);
             }
             set
             {
-                setAt(pathfind57data, PTR + 1, 8, value);
+                SetAt(pathfind57data, PTR + 1, 8, value);
             }
         }
 
@@ -184,13 +184,13 @@ namespace Underworld
         {
             get
             {
-                return (int)getAt(pathfind57data, PTR + 2, 8) & 0x7F;
+                return (int)GetAt(pathfind57data, PTR + 2, 8) & 0x7F;
             }
             set
             {
-                var tmp = (int)getAt(pathfind57data, PTR + 2, 8) & 0x80;
+                var tmp = (int)GetAt(pathfind57data, PTR + 2, 8) & 0x80;
                 tmp = tmp | (value & 0x7F);
-                setAt(pathfind57data, PTR + 2, 8, tmp);
+                SetAt(pathfind57data, PTR + 2, 8, tmp);
             }
         }
 
@@ -198,14 +198,14 @@ namespace Underworld
         {
             get
             {
-                return (int)(getAt(pathfind57data, PTR + 2, 8) >> 7) & 0x1;
+                return (int)(GetAt(pathfind57data, PTR + 2, 8) >> 7) & 0x1;
             }
             set
             {
-                var tmp = (int)(getAt(pathfind57data, PTR + 2, 8));
+                var tmp = (int)(GetAt(pathfind57data, PTR + 2, 8));
                 tmp = tmp & 0x7F;
                 tmp = tmp | ((value & 0x1) << 7);
-                setAt(pathfind57data, PTR + 2, 8, tmp);
+                SetAt(pathfind57data, PTR + 2, 8, tmp);
             }
         }
 
@@ -213,11 +213,11 @@ namespace Underworld
         {
             get
             {
-                return (int)getAt(pathfind57data, PTR + 3, 8);
+                return (int)GetAt(pathfind57data, PTR + 3, 8);
             }
             set
             {
-                setAt(pathfind57data, PTR + 3, 8, value);
+                SetAt(pathfind57data, PTR + 3, 8, value);
             }
         }
 
@@ -237,7 +237,7 @@ namespace Underworld
             get
             {
                 var offset = unk2_0_6_PathingIndex / 4;
-                var ax = (int)getAt(pathfind57data, PTR + 4 + offset, 8);
+                var ax = (int)GetAt(pathfind57data, PTR + 4 + offset, 8);
                 var cl = (unk2_0_6_PathingIndex % 4) << 1;
                 ax = (ax >> cl) & 0x3;
                 return ax;
@@ -249,7 +249,7 @@ namespace Underworld
             get
             {
                 var offset = unk2_0_6_PathingIndex / 8;
-                var ax = (int)getAt(pathfind57data, PTR + 0x14 + offset, 8);
+                var ax = (int)GetAt(pathfind57data, PTR + 0x14 + offset, 8);
                 var cl = (unk2_0_6_PathingIndex % 8) << 1;
                 ax = ax >> cl;
                 return ax;
@@ -258,12 +258,12 @@ namespace Underworld
 
         public void SetPossibleHeadingAtIndex4(int index, int maybeHeading)
         {
-            setAt(pathfind57data, PTR + 0x4 + index, 8, maybeHeading);
+            SetAt(pathfind57data, PTR + 0x4 + index, 8, maybeHeading);
         }
 
         public void SetPossibleHeadingAtIndex14(int index, int maybeHeading)
         {
-            setAt(pathfind57data, PTR + 0x14 + index, 8, maybeHeading);
+            SetAt(pathfind57data, PTR + 0x14 + index, 8, maybeHeading);
         }
 
     }
@@ -305,11 +305,11 @@ namespace Underworld
         {
             get
             {
-                return (int)getAt(pathfindmap49, PTR, 8);
+                return (int)GetAt(pathfindmap49, PTR, 8);
             }
             set
             {
-                setAt(pathfindmap49, PTR, 8, value);
+                SetAt(pathfindmap49, PTR, 8, value);
             }
         }
 
@@ -317,11 +317,11 @@ namespace Underworld
         {
             get
             {
-                return (int)getAt(pathfindmap49, PTR + 1, 8);
+                return (int)GetAt(pathfindmap49, PTR + 1, 8);
             }
             set
             {
-                setAt(pathfindmap49, PTR + 1, 8, value);
+                SetAt(pathfindmap49, PTR + 1, 8, value);
             }
         }
 
@@ -329,11 +329,11 @@ namespace Underworld
         {
             get
             {
-                return (int)getAt(pathfindmap49, PTR + 2, 8);
+                return (int)GetAt(pathfindmap49, PTR + 2, 8);
             }
             set
             {
-                setAt(pathfindmap49, PTR + 2, 8, value);
+                SetAt(pathfindmap49, PTR + 2, 8, value);
             }
         }
 
@@ -341,14 +341,14 @@ namespace Underworld
         {
             get
             {
-                return (int)getAt(pathfindmap49, PTR + 3, 8) & 0x1;
+                return (int)GetAt(pathfindmap49, PTR + 3, 8) & 0x1;
             }
             set
             {
-                var tmp = (int)getAt(pathfindmap49, PTR + 3, 8);
+                var tmp = (int)GetAt(pathfindmap49, PTR + 3, 8);
                 tmp = tmp & 0xFE;
                 tmp = tmp | (value & 0x1);
-                setAt(pathfindmap49, PTR + 3, 8, tmp);
+                SetAt(pathfindmap49, PTR + 3, 8, tmp);
             }
         }
 
@@ -358,14 +358,14 @@ namespace Underworld
         {
             get
             {
-                return (int)(getAt(pathfindmap49, PTR + 3, 8) >> 1) & 0x7F;
+                return (int)(GetAt(pathfindmap49, PTR + 3, 8) >> 1) & 0x7F;
             }
             set
             {
-                var tmp = (int)getAt(pathfindmap49, PTR + 3, 8);
+                var tmp = (int)GetAt(pathfindmap49, PTR + 3, 8);
                 tmp = tmp & 0x1;
                 tmp = tmp | ((value & 0x7F) << 1);
-                setAt(pathfindmap49, PTR + 3, 8, tmp);
+                SetAt(pathfindmap49, PTR + 3, 8, tmp);
             }
         }
 
@@ -374,11 +374,11 @@ namespace Underworld
         {
             get
             {
-                return (int)getAt(pathfindmap49, PTR + 4, 8);
+                return (int)GetAt(pathfindmap49, PTR + 4, 8);
             }
             set
             {
-                setAt(pathfindmap49, PTR + 4, 8, value);
+                SetAt(pathfindmap49, PTR + 4, 8, value);
             }
         }
 

@@ -548,10 +548,10 @@ namespace Underworld
                     }
 
                     //This clears either the next or link to the object and replaces it with the objects next value
-                    var data = (int)getAt(pdat, (LinkOffset), 16);
+                    var data = (int)GetAt(pdat, (LinkOffset), 16);
                     data &= 0x3f; //Clear link/next
                     data |= (next << 6); //Or in the obj.next for the object.
-                    setAt(pdat, LinkOffset, 16, data);
+                    SetAt(pdat, LinkOffset, 16, data);
                 }
                 else
                 {

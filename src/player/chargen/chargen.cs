@@ -229,9 +229,9 @@ namespace Underworld
         /// <param name="QuestionNo"></param>
         static void PrintChoices(int QuestionNo)
         {
-            var noOfChoices = getAt(chargen_dat, 8 + (QuestionNo * 18), 8);
-            int ptrToChoices = (int)getAt(chargen_dat, 4 + (QuestionNo * 18), 32);
-            int question = (int)getAt(chargen_dat, (QuestionNo * 18), 8);
+            var noOfChoices = GetAt(chargen_dat, 8 + (QuestionNo * 18), 8);
+            int ptrToChoices = (int)GetAt(chargen_dat, 4 + (QuestionNo * 18), 32);
+            int question = (int)GetAt(chargen_dat, (QuestionNo * 18), 8);
             var questiontext = GameStrings.GetString(2, question);
             Debug.Print($"The question is {questiontext}");
 
@@ -250,7 +250,7 @@ namespace Underworld
 
             for (int i = 0; i < noOfChoices; i++)
             {
-                int choice = (int)getAt(chargen_dat, ptrToChoices + (i * 2), 8);
+                int choice = (int)GetAt(chargen_dat, ptrToChoices + (i * 2), 8);
                 uimanager.CreateChargenButton(
                     index: i,
                     text: GameStrings.GetString(2, choice));
@@ -287,7 +287,7 @@ namespace Underworld
                 //update values at offsets [4,5,6,7] in chargen_dat with pointers to strings.
                 for (int i = 0; i < 8; i++)
                 {
-                    setAt(chargen_dat, 4 + (i * 18), 32, ptrChargenBody);
+                    SetAt(chargen_dat, 4 + (i * 18), 32, ptrChargenBody);
                     ptrChargenBody += 2;
                     while (chargen_dat[ptrChargenBody] != 0)
                     {
@@ -351,7 +351,7 @@ namespace Underworld
             {
                 //store the options in skills.dat as strings in chargen.
                 var stringoffset = chargen_dat[chargenPtr + 4];
-                setAt(chargen_dat, stringoffset + di * 2, 16, 0x1F + skills_dat[32 + si_record + di + 1]);
+                SetAt(chargen_dat, stringoffset + di * 2, 16, 0x1F + skills_dat[32 + si_record + di + 1]);
                 SkillChoices[di] = skills_dat[32 + si_record + di + 1];//stores the actual skill number for later matching
                 //Debug.Print(GameStrings.GetString(2, (int)getAt(chargen_dat, stringoffset + di * 2, 16)));
                 di++;

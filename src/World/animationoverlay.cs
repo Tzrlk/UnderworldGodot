@@ -28,9 +28,9 @@ namespace Underworld
                 switch (_RES)
                 {
                     case GAME_UW2: // data is at the end of the tilemap
-                        return (int)((Loader.getAt(UWTileMap.current_tilemap.lev_ark_block.Data, PTR, 16) >> 6) & 0x3ff);
+                        return (int)((Loader.GetAt(UWTileMap.current_tilemap.lev_ark_block.Data, PTR, 16) >> 6) & 0x3ff);
                     default://but UW1 stores the data in it's own block
-                        return (int)((Loader.getAt(UWTileMap.current_tilemap.ovl_ark_block.Data, PTR, 16) >> 6) & 0x3ff);
+                        return (int)((Loader.GetAt(UWTileMap.current_tilemap.ovl_ark_block.Data, PTR, 16) >> 6) & 0x3ff);
                 }
             }
             set
@@ -40,19 +40,19 @@ namespace Underworld
                 {
                     case GAME_UW2: // data is at the end of the tilemap
                         {
-                            var currentVal = (int)Loader.getAt(UWTileMap.current_tilemap.lev_ark_block.Data, PTR, 16);
+                            var currentVal = (int)Loader.GetAt(UWTileMap.current_tilemap.lev_ark_block.Data, PTR, 16);
                             currentVal &= 0x3F; //mask out the link to 0.
                             newvalue = currentVal | newvalue;
-                            Loader.setAt(UWTileMap.current_tilemap.lev_ark_block.Data, PTR, 16, newvalue);
+                            Loader.SetAt(UWTileMap.current_tilemap.lev_ark_block.Data, PTR, 16, newvalue);
                             break;
                         }
 
                     default://but UW1 stores the data in it's own block
                         {
-                            var currentVal = (int)Loader.getAt(UWTileMap.current_tilemap.ovl_ark_block.Data, PTR, 16);
+                            var currentVal = (int)Loader.GetAt(UWTileMap.current_tilemap.ovl_ark_block.Data, PTR, 16);
                             currentVal &= 0x3F; //mask out the link to 0.
                             newvalue = currentVal | newvalue;
-                            Loader.setAt(UWTileMap.current_tilemap.ovl_ark_block.Data, PTR, 16, newvalue);
+                            Loader.SetAt(UWTileMap.current_tilemap.ovl_ark_block.Data, PTR, 16, newvalue);
                             break;
                         }
                 }
@@ -88,9 +88,9 @@ namespace Underworld
                 switch (_RES)
                 {
                     case GAME_UW2: // data is at the end of the tilemap
-                        return (int)Loader.getAt(UWTileMap.current_tilemap.lev_ark_block.Data, PTR + 2, 16);
+                        return (int)Loader.GetAt(UWTileMap.current_tilemap.lev_ark_block.Data, PTR + 2, 16);
                     default://but UW1 stores the data in it's own block
-                        return (int)Loader.getAt(UWTileMap.current_tilemap.ovl_ark_block.Data, PTR + 2, 16);
+                        return (int)Loader.GetAt(UWTileMap.current_tilemap.ovl_ark_block.Data, PTR + 2, 16);
                 }
             }
             set
@@ -98,9 +98,9 @@ namespace Underworld
                 switch (_RES)
                 {
                     case GAME_UW2: // data is at the end of the tilemap
-                        Loader.setAt(UWTileMap.current_tilemap.lev_ark_block.Data, PTR + 2, 16, value); break;
+                        Loader.SetAt(UWTileMap.current_tilemap.lev_ark_block.Data, PTR + 2, 16, value); break;
                     default://but UW1 stores the data in it's own block
-                        Loader.setAt(UWTileMap.current_tilemap.ovl_ark_block.Data, PTR + 2, 16, value); break;
+                        Loader.SetAt(UWTileMap.current_tilemap.ovl_ark_block.Data, PTR + 2, 16, value); break;
                 }
             }
         }

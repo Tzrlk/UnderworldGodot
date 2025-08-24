@@ -41,8 +41,8 @@ namespace Underworld
                 
                 var cmd = new CutSceneCommand();
                 cmd.offset = addr_ptr;
-                cmd.frame = (int)Loader.getAt(data, addr_ptr, 16);
-                cmd.functionNo = (int)Loader.getAt(data, addr_ptr + 2, 16);
+                cmd.frame = (int)Loader.GetAt(data, addr_ptr, 16);
+                cmd.functionNo = (int)Loader.GetAt(data, addr_ptr + 2, 16);
                 //int argCount =  // CutSceneCommand.GetArgumentCount(cmd.functionNo);
                 cmd.functionParams = new List<int>();
                 addr_ptr += 4;
@@ -50,7 +50,7 @@ namespace Underworld
                 {
                     if(addr_ptr<data.Length)
                     {
-                        cmd.functionParams.Add((int)Loader.getAt(data, addr_ptr, 16));
+                        cmd.functionParams.Add((int)Loader.GetAt(data, addr_ptr, 16));
                     }                    
                     addr_ptr += 2;
                 }                   

@@ -39,7 +39,7 @@ namespace Underworld
                 Loader.ReadStreamFile(System.IO.Path.Combine(BasePath, "DATA", "GRAVE.DAT"), out byte[] graves);
                 if (obj.link >= 512)
                 {
-                    return (short)Loader.getAt(graves, obj.link - 512, 8) - 1;
+                    return (short)Loader.GetAt(graves, obj.link - 512, 8) - 1;
                 }
             }
             return 0;

@@ -77,7 +77,7 @@ namespace Underworld
                                 texturesFLoaded = true;
                             }
                         }
-                        long textureOffset = getAt(texturebufferT, ((index) * 4) + 4, 32);
+                        long textureOffset = GetAt(texturebufferT, ((index) * 4) + 4, 32);
                         return Image(
                             databuffer: texturebufferT, 
                             dataOffSet: textureOffset, 
@@ -106,7 +106,7 @@ namespace Underworld
                                     texturesWLoaded = true;
                                 }
                             }
-                            long textureOffset = getAt(texturebufferW, (index * 4) + 4, 32);
+                            long textureOffset = GetAt(texturebufferW, (index * 4) + 4, 32);
                             return Image(
                                 databuffer: texturebufferW, 
                                 dataOffSet: textureOffset, 
@@ -129,7 +129,7 @@ namespace Underworld
                                     texturesFLoaded = true;
                                 }
                             }
-                            long textureOffset = getAt(texturebufferF, ((index - TextureSplit) * 4) + 4, 32);
+                            long textureOffset = GetAt(texturebufferF, ((index - TextureSplit) * 4) + 4, 32);
                             return Image(
                                 databuffer: texturebufferF, 
                                 dataOffSet: textureOffset, 

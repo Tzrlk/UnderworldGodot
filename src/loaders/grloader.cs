@@ -1,6 +1,10 @@
 using Godot;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
+using Underworld.Loaders;
 
 namespace Underworld;
 
@@ -10,6 +14,8 @@ namespace Underworld;
 /// </summary>
 public class GRLoader : ArtLoader
 {
+
+    [Obsolete("Stateful")]
     public bool UseRedChannel = false;
 
     public const int ThreeDWIN_GR = 0;
@@ -84,17 +90,31 @@ public class GRLoader : ArtLoader
         "GHED.GR",
     ];
 
+    [Obsolete("Stateful")]
     readonly string AuxPalPath = "ALLPALS.DAT";
+    
+    [Obsolete("Stateful")]
     readonly bool useOverrideAuxPalIndex = false;
+    
+    [Obsolete("Stateful")]
     readonly int OverrideAuxPalIndex = 0;
 
+    [Obsolete("Stateful")]
     public int FileToLoad;
+    
+    [Obsolete("Stateful")]
     private bool ImageFileDataLoaded;
+    
+    [Obsolete("Stateful")]
     public int NoOfImages;
 
+    [Obsolete("Stateful")]
     public Shader textureshader;
+    
+    [Obsolete("Stateful")]
     public ImageTexture[] ImageCache = new ImageTexture[1];
 
+    [Obsolete("Stateful")]
     public ShaderMaterial[] materials = new ShaderMaterial[1];
 
     // public GRLoader(int File, int PalToUse)
@@ -107,6 +127,7 @@ public class GRLoader : ArtLoader
     //     LoadImageFile();
     // }
 
+    [Obsolete("Stateful")]
     public GRLoader(int File, GRShaderMode shaderMode)
     {
         textureshader = GetShader(shaderMode);
@@ -114,18 +135,21 @@ public class GRLoader : ArtLoader
         useOverrideAuxPalIndex = false;
         OverrideAuxPalIndex = 0;
         FileToLoad = File;
-        PaletteNo = 0;
+        artData.PaletteNo = 0;
         LoadImageFile();
     }
 
+    [Obsolete("Stateful")]
     public ShaderMaterial GetMaterial(int textureno)
         => materials[textureno] ??= GetMaterial(LoadImageAt(textureno, true), textureshader);
 
+    [Obsolete("Stateful")]
     public override bool LoadImageFile()
     {
         var fileToLoad = Path.Combine(BasePath, "DATA", pathGR[FileToLoad]);
-        NoOfImages = LoadImageFile(fileToLoad, out ImageFileData);
-        if (NoOfImages < 1) {
+        NoOfImages = LoadImageFile(fileToLoad, out artData.ImageFileData);
+        if (NoOfImages < 1)
+        {
             GD.PushError("Unable to load GR file from ", fileToLoad);
             return false;
         }
@@ -137,6 +161,7 @@ public class GRLoader : ArtLoader
 
     }
 
+    [Obsolete("Stateful")]
     public override ImageTexture LoadImageAt(int index, bool UseAlphaChannel = true)
     {
         if (!ImageFileDataLoaded && !LoadImageFile())
@@ -149,11 +174,14 @@ public class GRLoader : ArtLoader
             AuxPalPath,
             OverrideAuxPalIndex,
             useOverrideAuxPalIndex,
-            UseAlphaChannel,
-            UseRedChannel,
-            UseCropping);
+            new ImageConfig(
+                AlphaChannel: UseAlphaChannel,
+                RedChannel: UseRedChannel,
+                Crop: UseCropping
+            ));
     }
 
+    [Obsolete("Stateful")]
     public void ExportImages(string exportpath)
         => Enumerable.Range(0, NoOfImages).AsParallel().ForAll(
             (i) => LoadImageAt(i).GetImage()
@@ -177,6 +205,7 @@ public class GRLoader : ArtLoader
         UIShader = 4,  //For ui elements that need palette cycling
     };
 
+    [Pure]
     private static Shader GetShader(GRShaderMode shaderMode) => shaderMode switch
     {
         GRShaderMode.TextureShader or GRShaderMode.SpriteShader
@@ -195,6 +224,7 @@ public class GRLoader : ArtLoader
     /// <param name="texture">Texture with alpha-channel.</param>
     /// <param name="textureShader">The particular shader to use.</param>
     /// <returns></returns>
+    [Pure]
     public static ShaderMaterial GetMaterial(ImageTexture texture, Shader textureShader)
     {
         var newmaterial = new ShaderMaterial { Shader = textureShader };
@@ -212,38 +242,42 @@ public class GRLoader : ArtLoader
     /// <param name="path">Path to the .GR file to load.</param>
     /// <param name="data">The byte data obtained from the file.</param>
     /// <returns>The number of images in the file.</returns>
+    [Obsolete("Sullied")]
     public static int LoadImageFile(string path, out byte[] data)
         => ReadStreamFile(path, out data)
-            ? (int)getAt(data, 1, 16)
+            ? (int)GetAt(data, 1, 16)
             : -1;
+            
+    public const uint NIBBLE_HIGH = 0x0F;
+    public const uint NIBBLE_LOW = 0xf;
 
     /// <summary>
     /// Copies the nibbles.
     /// </summary>
-    /// <param name="InputData">Input data.</param>
-    /// <param name="OutputData">Output data.</param>
-    /// <param name="NoOfNibbles">No of nibbles.</param>
-    /// <param name="add_ptr">Add ptr.</param>
+    /// <param name="inputData">Input data.</param>
+    /// <param name="outputData">Output data.</param>
+    /// <param name="noOfNibbles">No of nibbles.</param>
+    /// <param name="addrPtr">Add ptr.</param>
     /// This code from underworld adventures
-    public static void CopyNibbles(byte[] InputData, ref byte[] OutputData, int NoOfNibbles, long add_ptr)
+    public static void CopyNibbles(byte[] inputData, ref byte[] outputData, int noOfNibbles, long addrPtr)
     {
         //Split the data up into it's nibbles.
         int i = 0;
-        NoOfNibbles *= 2;
-        while (NoOfNibbles > 1)
+        noOfNibbles *= 2;
+        while (noOfNibbles > 1)
         {
-            if (add_ptr <= InputData.GetUpperBound(0))
+            if (addrPtr <= inputData.GetUpperBound(0))
             {
-                OutputData[i] = (byte)((getAt(InputData, add_ptr, 8) >> 4) & 0x0F);        //High nibble
-                OutputData[i + 1] = (byte)((getAt(InputData, add_ptr, 8)) & 0xf);  //Low nibble							
+                outputData[i] = (byte)((GetAt(inputData, addrPtr, 8) >> 4) & NIBBLE_HIGH);
+                outputData[i + 1] = (byte)((GetAt(inputData, addrPtr, 8)) & NIBBLE_LOW);							
             }
             i += 2;
-            add_ptr++;
-            NoOfNibbles -= 2;
+            addrPtr++;
+            noOfNibbles -= 2;
         }
-        if (NoOfNibbles == 1)
+        if (noOfNibbles == 1)
         {   //Odd nibble out.
-            OutputData[i] = (byte)((getAt(InputData, add_ptr, 8) >> 4) & 0x0F);
+            outputData[i] = (byte)((GetAt(inputData, addrPtr, 8) >> 4) & NIBBLE_HIGH);
         }
     }
 
@@ -255,33 +289,34 @@ public class GRLoader : ArtLoader
     /// <param name="datalen">Datalen.</param>
     /// <param name="imageWidth">Image width.</param>
     /// <param name="imageHeight">Image height.</param>
-    /// <param name="BitSize">Bit size.</param>
+    /// <param name="bitSize">Bit size.</param>
     /// This code from underworld adventures
-    public static byte[] DecodeRLEBitmap(byte[] imageData, int datalen, int imageWidth, int imageHeight, int BitSize, int[] auxpal)
-    //, palette *auxpal, int index, int BitSize, char OutFileName[255])
+    // palette *auxpal, int index, int BitSize, char OutFileName[255])
+    public static GraphicsFileImage DecodeRLEBitmap(GraphicsFileImage image, int bitSize, int[] auxpal)
     {
-        byte[] outputImg = new byte[imageWidth * imageHeight];
+        byte[] outputImg = new byte[image.Width * image.Height];
         RecordState state = 0;
         int curr_pxl = 0;
         int count = 0;
+        int newCount;
         int repeatcount = 0;
         byte nibble;
 
         int add_ptr = 0;
 
-        while ((curr_pxl < imageWidth * imageHeight) || (add_ptr <= datalen))
+        while (curr_pxl < outputImg.Length || add_ptr <= image.Length)
         {
             switch (state)
             {
                 case RecordState.RepeatStart:
-                    count = GetCount(imageData, ref add_ptr, BitSize);
+                    count = GetCount(image.Data, ref add_ptr, bitSize);
                     switch (count)
                     {
                         case 1:
                             state = RecordState.Run;
                             break;
                         case 2:
-                            repeatcount = GetCount(imageData, ref add_ptr, BitSize) - 1;
+                            repeatcount = GetCount(image.Data, ref add_ptr, bitSize) - 1;
                             state = RecordState.RepeatStart;
                             break;
                         default:
@@ -291,10 +326,11 @@ public class GRLoader : ArtLoader
                     break;
 
                 case RecordState.Repeat:
-                    if (imageWidth * imageHeight - curr_pxl < count)
-                        count = imageWidth * imageHeight - curr_pxl;
+                    newCount = outputImg.Length - curr_pxl;
+                    if (newCount < count)
+                        count = newCount;
                     //for count times copy the palette data to the image at the output pointer
-                    nibble = GetNibble(imageData, ref add_ptr);
+                    nibble = image.Data[add_ptr++];
                     for (int i = 0; i < count; i++)
                         outputImg[curr_pxl++] = (byte)auxpal[nibble];
                     if (repeatcount != 0)
@@ -307,20 +343,21 @@ public class GRLoader : ArtLoader
                     break;
 
                 case RecordState.Run:
-                    count = GetCount(imageData, ref add_ptr, BitSize);
-                    if (imageWidth * imageHeight - curr_pxl < count)
-                        count = imageWidth * imageHeight - curr_pxl;
+                    count = GetCount(image.Data, ref add_ptr, bitSize);
+                    newCount = outputImg.Length - curr_pxl;
+                    if (newCount < count)
+                        count = newCount;
                     for (int i = 0; i < count; i++)
                     {
                         //get nibble for the palette;
-                        nibble = GetNibble(imageData, ref add_ptr);
+                        nibble = image.Data[add_ptr++];
                         outputImg[curr_pxl++] = (byte)auxpal[nibble];
                     }
                     state = RecordState.RepeatStart;
                     break;
             }
         }
-        return outputImg;
+        return image with { Data = outputImg };
     }
 
     /// <summary>
@@ -330,110 +367,136 @@ public class GRLoader : ArtLoader
     /// <param name="addr_ptr">Address ptr.</param>
     /// <param name="size">Size.</param>
     /// This code from underworld adventures
+    [Obsolete("Impure")]
     public static int GetCount(byte[] nibbles, ref int addr_ptr, int size)
     {
+        (var count, addr_ptr) = GetCount(nibbles, addr_ptr, size);
+        return count;
+    }
 
-        int n1 = GetNibble(nibbles, ref addr_ptr);
+    [Pure]
+    public static (int, int) GetCount(byte[] nibbles, int addr_ptr, int size)
+    {
+
+        int n1 = nibbles[addr_ptr++]; // + 1
         int count = n1;
         if (count != 0)
-            return count;
+            return (count, addr_ptr); // + 1
 
-        n1 = GetNibble(nibbles, ref addr_ptr);
-        int n2 = GetNibble(nibbles, ref addr_ptr);
+        n1 = nibbles[addr_ptr++]; // + 2
+        int n2 = nibbles[addr_ptr++]; // +3
         count = (n1 << size) | n2;
         if (count != 0)
-            return count;
+            return (count, addr_ptr); // +3
 
-        n1 = GetNibble(nibbles, ref addr_ptr);
-        n2 = GetNibble(nibbles, ref addr_ptr);
-        int n3 = GetNibble(nibbles, ref addr_ptr);
-        return (((n1 << size) | n2) << size) | n3;
+        n1 = nibbles[addr_ptr++]; // + 4
+        n2 = nibbles[addr_ptr++]; // + 5
+        int n3 = nibbles[addr_ptr++]; // + 6
+        count = (((n1 << size) | n2) << size) | n3;
+        return (count, addr_ptr); // + 6
 
     }
 
-    /// <summary>
-    /// Gets the nibble, incrementing to the next.
-    /// </summary>
-    /// <returns>The nibble.</returns>
-    /// <param name="nibbles">Nibbles.</param>
-    /// <param name="addr_ptr">Address ptr.</param>
-    /// This code from underworld adventures
-    public static byte GetNibble(byte[] nibbles, ref int addr_ptr)
-        => nibbles[addr_ptr++];
+    [Pure]
+    public static long ImageOffset(byte[] fileData, int index)
+        => GetAt(fileData, (index * 4) + 3, 32);
+
+    [Pure]
+    public static uint GetImageType(byte[] fileData, long imageOffset)
+        => GetAt(fileData, imageOffset, 8);
+
+    [Pure]
+    public static int BitMapWidth(byte[] fileData, long imageOffset)
+        => (int)GetAt(fileData, imageOffset + 1, 8);
+
+    [Pure]
+    public static int BitMapHeight(byte[] fileData, long imageOffset)
+        => (int)GetAt(fileData, imageOffset + 2, 8);
+
+    [Pure]
+    public static int GetAuxPalIndex(byte[] fileData, long imageOffset)
+        => (int)GetAt(fileData, imageOffset + 3, 8);
+
+    [Pure]
+    public static int GetDataLength(byte[] fileData, long imageOffset)
+        => (int)GetAt(fileData, imageOffset + 4, 16);
+
+    public readonly record struct ImageConfig(
+        bool AlphaChannel = true,
+        bool RedChannel = false,
+        bool Crop = false
+    );
         
     public static ImageTexture LoadImageAt(
-        int FileToLoad,
-        byte[] ImageFileData,
+        int fileToLoad,
+        byte[] imageFileData,
         int index,
-        int PaletteNo,
-        string AuxPalPath,
-        int OverrideAuxPalIndex,
+        int paletteNo,
+        string auxPalFile,
+        int overrideAuxPalIndex,
         bool useOverrideAuxPalIndex,
-        bool UseAlphaChannel = true,
-        bool UseRedChannel = false,
-        bool UseCropping = false)
+        ImageConfig config)
     {
 
         // Make sure the image being loaded is within range.
-        long imageOffset = getAt(ImageFileData, (index * 4) + 3, 32);
-        if (imageOffset >= ImageFileData.GetUpperBound(0)) //Image out of range
+        long imageOffset = ImageOffset(imageFileData, index);
+        if (imageOffset >= imageFileData.GetUpperBound(0)) //Image out of range
             return null;
 
         // Get our starting Palette
-        var palette = PaletteLoader.Palettes[PaletteNo];
+        var palette = PaletteLoader.Palettes[paletteNo];
 
         //Check to see if the file is panels.gr
-        var fileName = pathGR[FileToLoad];
+        var fileName = pathGR[fileToLoad];
         if (fileName.ToUpper().EndsWith("PANELS.GR"))
             return Image(
-                databuffer: ImageFileData,
+                databuffer: imageFileData,
                 dataOffSet: imageOffset,
                 width: _RES == GAME_UW2 ? 79 : 83,
                 height: _RES == GAME_UW2 ? 112 : 114,
                 palette: palette,
-                useAlphaChannel: UseAlphaChannel,
-                useSingleRedChannel: UseRedChannel,
-                crop: UseCropping);
+                useAlphaChannel: config.AlphaChannel,
+                useSingleRedChannel: config.RedChannel,
+                crop: config.Crop);
 
         // Determine our size and type.
-        int BitMapWidth = (int)getAt(ImageFileData, imageOffset + 1, 8);
-        int BitMapHeight = (int)getAt(ImageFileData, imageOffset + 2, 8);
-        uint fileType = getAt(ImageFileData, imageOffset, 8);
+        GraphicsFileImageType imageType = GetImageType(imageFileData, imageOffset);
+        int bitMapWidth = BitMapWidth(imageFileData, imageOffset);
+        int bitMapHeight = BitMapHeight(imageFileData, imageOffset);
 
-        // 8 bit uncompressed
-        if (fileType == 0x4)
+        if (imageType == GraphicsFileImageType.RAW_4BIT)
             return Image(
-                databuffer: ImageFileData,
+                databuffer: imageFileData,
                 dataOffSet: imageOffset + 5,
-                width: BitMapWidth,
-                height: BitMapHeight,
+                width: bitMapWidth,
+                height: bitMapHeight,
                 palette: palette,
-                useAlphaChannel: UseAlphaChannel,
-                useSingleRedChannel: UseRedChannel,
-                crop: UseCropping);
+                useAlphaChannel: config.AlphaChannel,
+                useSingleRedChannel: config.RedChannel,
+                crop: config.Crop);
 
         // If it's not one of the other file types we recognise, stop and report.
-        if (fileType != 0x8 && fileType != 0xA)
+        if (imageType != IMAGE_4BIT_RUNLENGTH && imageType != IMAGE_4BIT_UNCOMPRESSED)
         {
-            GD.PushError($"Can't understand fileType:{fileType} in {fileName}");
+            GD.PushError($"Can't understand fileType:{imageType} in {fileName}");
             return null;
         }
 
         // Retrieve the raw data.
-        int datalen = (int)getAt(ImageFileData, imageOffset + 4, 16);
-        byte[] imgNibbles = new byte[Mathf.Max(BitMapWidth * BitMapHeight * 2, (datalen + 5) * 2)];
-        CopyNibbles(ImageFileData, ref imgNibbles, datalen, imageOffset + 6);
+        int datalen = GetDataLength(imageFileData, imageOffset);
+        byte[] imgNibbles = new byte[Mathf.Max(bitMapWidth * bitMapHeight * 2, (datalen + 5) * 2)];
+        CopyNibbles(imageFileData, ref imgNibbles, datalen, imageOffset + 6);
 
         // Determine which palette we should start with.
         int auxPalIndex = useOverrideAuxPalIndex
-            ? OverrideAuxPalIndex
-            : (int)getAt(ImageFileData, imageOffset + 3, 8);
-        string auxPalPath = Path.Combine(BasePath, "DATA", AuxPalPath);
+            ? overrideAuxPalIndex
+            : GetAuxPalIndex(imageFileData, imageOffset);
+        string auxPalPath = Path.Combine(BasePath, "DATA", auxPalFile);
 
-        if (fileType == 0x8) // 4 bit run-length
+        if (imageType == IMAGE_4BIT_RUNLENGTH) // 4 bit run-length
         {
             int[] aux = PaletteLoader.LoadAuxilaryPalIndices(auxPalPath, auxPalIndex);
-            imgNibbles = DecodeRLEBitmap(imgNibbles, datalen, BitMapWidth, BitMapHeight, 4, aux);
+            imgNibbles = DecodeRLEBitmap(new GraphicsFileImage(imgNibbles, datalen, bitMapWidth, bitMapHeight), 4, aux).Data;
         }
         else // 0xA 4 bit uncompressed
         {
@@ -443,12 +506,12 @@ public class GRLoader : ArtLoader
         return Image(
             databuffer: imgNibbles,
             dataOffSet: 0,
-            width: BitMapWidth,
-            height: BitMapHeight,
+            width: bitMapWidth,
+            height: bitMapHeight,
             palette: palette,
-            useAlphaChannel: UseAlphaChannel,
-            useSingleRedChannel: UseRedChannel,
-            crop: UseCropping);
+            useAlphaChannel: config.AlphaChannel,
+            useSingleRedChannel: config.RedChannel,
+            crop: config.Crop);
 
     }
 

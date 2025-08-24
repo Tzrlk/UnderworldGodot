@@ -147,11 +147,11 @@ namespace Underworld
         if (!ReadStreamFile(toLoad, out byte[] textureFile))
         { return null; }
 
-        NoOfTextures = getAt(textureFile, 0, 8);
-        int textureOffset = (int)getAt(textureFile, (index * 4) + 6, 32);
+        NoOfTextures = GetAt(textureFile, 0, 8);
+        int textureOffset = (int)GetAt(textureFile, (index * 4) + 6, 32);
         if (textureOffset != 0)
         {
-            int compressionFlag = (int)getAt(textureFile, ((index * 4) + 6) + (NoOfTextures * 4), 32);
+            int compressionFlag = (int)GetAt(textureFile, ((index * 4) + 6) + (NoOfTextures * 4), 32);
             int isCompressed = (compressionFlag >> 1) & 0x01;
             if (isCompressed == 1)
             {

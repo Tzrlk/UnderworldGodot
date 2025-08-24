@@ -253,17 +253,17 @@ namespace Underworld
                 {
                     //Set values in motion arrays (defined in previous section. ). This protects fire resistant creatures from being damaged by lava.
                     //seg007_17A2_222B
-                    var tmp = Loader.getAt(SpecialMotionHandler, 2, 16);
+                    var tmp = Loader.GetAt(SpecialMotionHandler, 2, 16);
                     tmp = tmp & 0xFFDF;
-                    Loader.setAt(SpecialMotionHandler, 2, 16, (int)tmp);
+                    Loader.SetAt(SpecialMotionHandler, 2, 16, (int)tmp);
 
-                    tmp = Loader.getAt(SpecialMotionHandler, 6, 16);
+                    tmp = Loader.GetAt(SpecialMotionHandler, 6, 16);
                     tmp = tmp & 0xFFDF;
-                    Loader.setAt(SpecialMotionHandler, 6, 16, (int)tmp);
+                    Loader.SetAt(SpecialMotionHandler, 6, 16, (int)tmp);
 
-                    tmp = Loader.getAt(SpecialMotionHandler, 0, 16);
+                    tmp = Loader.GetAt(SpecialMotionHandler, 0, 16);
                     tmp = tmp | 0x20;
-                    Loader.setAt(SpecialMotionHandler, 0, 16, (int)tmp);
+                    Loader.SetAt(SpecialMotionHandler, 0, 16, (int)tmp);
 
                 }
 
@@ -318,17 +318,17 @@ namespace Underworld
                 if ((commonObjDat.scaleresistances(critter.item_id) & 8) != 0)
                 {
                     //Restore original bits in Special Motion Handler. These were preivously changed for fire resistant critters.
-                    var tmp = Loader.getAt(SpecialMotionHandler, 2, 16);
+                    var tmp = Loader.GetAt(SpecialMotionHandler, 2, 16);
                     tmp = tmp | 0x20;
-                    Loader.setAt(SpecialMotionHandler, 2, 16, (int)tmp);
+                    Loader.SetAt(SpecialMotionHandler, 2, 16, (int)tmp);
 
-                    tmp = Loader.getAt(SpecialMotionHandler, 6, 16);
+                    tmp = Loader.GetAt(SpecialMotionHandler, 6, 16);
                     tmp = tmp = tmp | 0x20;
-                    Loader.setAt(SpecialMotionHandler, 6, 16, (int)tmp);
+                    Loader.SetAt(SpecialMotionHandler, 6, 16, (int)tmp);
 
-                    tmp = Loader.getAt(SpecialMotionHandler, 0, 16);
+                    tmp = Loader.GetAt(SpecialMotionHandler, 0, 16);
                     tmp = tmp & 0xFFDF;
-                    Loader.setAt(SpecialMotionHandler, 0, 16, (int)tmp);
+                    Loader.SetAt(SpecialMotionHandler, 0, 16, (int)tmp);
                 }
                 //seg007_17A2_2392:
                 //To update globals after motion has taken place

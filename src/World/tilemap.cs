@@ -172,11 +172,11 @@ namespace Underworld
         {
             get
             {
-                return (int)getAt(lev_ark_block.Data, 0x7C04, 16);
+                return (int)GetAt(lev_ark_block.Data, 0x7C04, 16);
             }
             set
             {
-                setAt(lev_ark_block.Data, 0x7C04, 16, value);
+                SetAt(lev_ark_block.Data, 0x7C04, 16, value);
             }
         }
 
@@ -187,11 +187,11 @@ namespace Underworld
         {
             get
             {
-                return (int)getAt(lev_ark_block.Data, 0x74fc + (StaticFreeListPtr * 2), 16);
+                return (int)GetAt(lev_ark_block.Data, 0x74fc + (StaticFreeListPtr * 2), 16);
             }
             set
             {
-                setAt(lev_ark_block.Data, 0x74fc + (StaticFreeListPtr * 2), 16, value);
+                SetAt(lev_ark_block.Data, 0x74fc + (StaticFreeListPtr * 2), 16, value);
             }
         }
 
@@ -202,11 +202,11 @@ namespace Underworld
         {
             get
             {
-                return (int)getAt(lev_ark_block.Data, 0x7C02, 16);
+                return (int)GetAt(lev_ark_block.Data, 0x7C02, 16);
             }
             set
             {
-                setAt(lev_ark_block.Data, 0x7C02, 16, value);
+                SetAt(lev_ark_block.Data, 0x7C02, 16, value);
             }
         }
 
@@ -215,11 +215,11 @@ namespace Underworld
         {
             get
             {
-                return (int)getAt(lev_ark_block.Data, 0x7C00, 16);
+                return (int)GetAt(lev_ark_block.Data, 0x7C00, 16);
             }
             set
             {
-                setAt(lev_ark_block.Data, 0x7C00, 16, value);
+                SetAt(lev_ark_block.Data, 0x7C00, 16, value);
             }
         }
         
@@ -230,7 +230,7 @@ namespace Underworld
         /// <returns></returns>
         public int GetActiveMobileAtIndex(int slotindex)
         {
-            return (int)getAt(lev_ark_block.Data, 0x7afc + slotindex, 8);
+            return (int)GetAt(lev_ark_block.Data, 0x7afc + slotindex, 8);
         }
 
 
@@ -241,7 +241,7 @@ namespace Underworld
         /// <param name="objectindex"></param>
         public void SetActiveMobileAtIndex(int slotindex, int objectindex)
         {
-            setAt(lev_ark_block.Data, 0x7afc + slotindex, 8, objectindex);
+            SetAt(lev_ark_block.Data, 0x7afc + slotindex, 8, objectindex);
         }
 
         /// <summary>
@@ -251,11 +251,11 @@ namespace Underworld
         {
             get
             {
-                return (int)getAt(lev_ark_block.Data, 0x7300 + (MobileFreeListPtr * 2), 16);
+                return (int)GetAt(lev_ark_block.Data, 0x7300 + (MobileFreeListPtr * 2), 16);
             }
             set
             {
-                setAt(lev_ark_block.Data, 0x7300 + (MobileFreeListPtr * 2), 16, value);
+                SetAt(lev_ark_block.Data, 0x7300 + (MobileFreeListPtr * 2), 16, value);
             }
         }
 

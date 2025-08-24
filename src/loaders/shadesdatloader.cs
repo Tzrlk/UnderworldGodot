@@ -358,10 +358,10 @@ namespace Underworld
                         {
                             shadesdata[i] = new shade(
                                 _index: i,
-                                _Shading: (int)(Int16)getAt(buffer, 0 + (i * 12), 16),
-                                _StartingLightLevel: (int)getAt(buffer, 2 + (i * 12), 16),
-                                _StartOfShadingDistance: (int)(Int16)getAt(buffer, 4 + (i * 12), 16),
-                                _ViewingDistance: (int)getAt(buffer, 6 + (i * 12), 16)
+                                _Shading: (int)(Int16)GetAt(buffer, 0 + (i * 12), 16),
+                                _StartingLightLevel: (int)GetAt(buffer, 2 + (i * 12), 16),
+                                _StartOfShadingDistance: (int)(Int16)GetAt(buffer, 4 + (i * 12), 16),
+                                _ViewingDistance: (int)GetAt(buffer, 6 + (i * 12), 16)
                             );
                         }
                         catch

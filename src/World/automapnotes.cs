@@ -22,11 +22,11 @@ namespace Underworld
         {
             if (_RES==GAME_UW2)
             {
-                return (int)getAt(buffer, 6 + (blockno * 4), 32);
+                return (int)GetAt(buffer, 6 + (blockno * 4), 32);
             }
             else
             {
-                return (int)getAt(buffer, (blockno * 4) + 2, 32);
+                return (int)GetAt(buffer, (blockno * 4) + 2, 32);
             }
         }
         public automapnote(int LevelNo, int gameNo)
@@ -90,8 +90,8 @@ namespace Underworld
                             charptr++;
                             nextchar= (char)block.Data[addptr+charptr];
                         }
-                        var _posX = (int)getAt(block.Data,addptr+0x32,16);
-                        var _posY = (int)getAt(block.Data,addptr+0x34,16);
+                        var _posX = (int)GetAt(block.Data,addptr+0x32,16);
+                        var _posY = (int)GetAt(block.Data,addptr+0x34,16);
                         notes.Add (new mapnotetext(fullstring,_posX,_posY));
                     }
                     addptr+=54;
