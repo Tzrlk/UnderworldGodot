@@ -112,12 +112,12 @@ namespace Underworld
                     }
                     break;
             }
-            int band = uwsettings.instance.shaderbandsize;
+            int band = GameConfig.instance.shaderbandsize;
             for (int i = 0; i < 8; i++)
             {
                 if (i > 3)
                 {
-                    uwsettings.instance.shaderbandsize = 1;
+                    GameConfig.instance.shaderbandsize = 1;
                 }
                 if ((i==6) && (_RES!=GAME_UW2))
                 {
@@ -130,7 +130,7 @@ namespace Underworld
                     Palettes[i].cycledUIPalette = CreateUnshadedPaletteCycles(Palettes[i]); //set up a simple palette cycle for fullbright ui sprites
                 }                
             }
-            uwsettings.instance.shaderbandsize = band;            
+            GameConfig.instance.shaderbandsize = band;            
 
             //Init palette shader params
             RenderingServer.GlobalShaderParameterAdd(

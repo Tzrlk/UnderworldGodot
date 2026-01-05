@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 namespace Underworld;
 
-public class uwsettings
+public class GameConfig
 {
 
 	private static readonly JsonSerializerOptions JsonOpts = new()
@@ -19,10 +19,10 @@ public class uwsettings
 	private static readonly string FilePath
 		= ProjectSettings.GlobalizePath("user://settings.json");
 
-    public static uwsettings instance;
+    public static GameConfig instance;
 
     // This initialises our instance as soon as the class is loaded.
-    static uwsettings() => LoadSettings();
+    static GameConfig() => LoadSettings();
 
     public static void LoadSettings()
     {
@@ -31,7 +31,7 @@ public class uwsettings
         {
             Debug.Print($"Loading settings from {FilePath}");
             using var stream = File.OpenRead(FilePath);
-            instance = JsonSerializer.Deserialize<uwsettings>(stream, JsonOpts);
+            instance = JsonSerializer.Deserialize<GameConfig>(stream, JsonOpts);
         }
         else
         {
@@ -42,26 +42,6 @@ public class uwsettings
         if (main.gamecam != null)
         {
             main.gamecam.Fov = Math.Max(50, instance.FOV);
-        }
-
-        switch (instance.gametoload.ToUpper())
-        {
-            case "UW2":
-            case "2":
-                UWClass._RES = UWClass.GAME_UW2;
-                UWClass.BasePath = instance.pathuw1;
-                break;
-            case "UW1":
-            case "1":
-                UWClass._RES = UWClass.GAME_UW1;
-                UWClass.BasePath = instance.pathuw2;
-                break;
-            case "UWDEMO":
-            case "0":
-                UWClass._RES = UWClass.GAME_UWDEMO;
-                break;
-            default:
-                throw new InvalidOperationException("Invalid Game Selected");
         }
 
     }
@@ -80,5 +60,20 @@ public class uwsettings
         using var stream = File.OpenWrite(FilePath);
         JsonSerializer.Serialize(stream, this, JsonOpts);
     }
+
+    public static Game GameSelected =>
+	    instance.gametoload.ToUpper() switch {
+		    "UW0" => Game.Uw0,
+		    "UW1" => Game.Uw1,
+		    "UW2" => Game.Uw2,
+		    var game => throw new ApplicationException($"Unrecognised game selection: {game}")
+	    };
+
+    public static string GamePath
+	    => GameSelected switch {
+		    Game.Uw0 or Game.Uw1 => instance.pathuw1,
+		    Game.Uw2 => instance.pathuw2,
+		    var game => throw new ApplicationException($"Unrecognised game selection: {game}")
+	    };
 
 }

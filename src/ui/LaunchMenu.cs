@@ -32,7 +32,7 @@ public partial class LaunchMenu : Control {
 	private readonly Stack<Input.MouseModeEnum> _mouseModeHistory = new();
 
 	// Only need one reference to the current settings.
-	private readonly uwsettings _uwSettings = uwsettings.instance;
+	private readonly GameConfig _uwSettings = GameConfig.instance;
 
 	public override void _Ready()
 	{

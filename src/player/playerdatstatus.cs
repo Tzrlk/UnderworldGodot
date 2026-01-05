@@ -98,7 +98,7 @@ namespace Underworld
 
                set
                {
-                    //if (pdat==null){ uwsettings.instance.lightlevel = value;}
+                    //if (pdat==null){ GameConfig.instance.lightlevel = value;}
                     if (_RES == GAME_UW2)
                     {
                          var tmp = GetAt(0x65);
