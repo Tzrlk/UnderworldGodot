@@ -110,7 +110,7 @@ namespace Underworld
             }
 
             //Clear cached UW2 SCD data.
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 scd.scd_data = null;
             }
@@ -170,7 +170,7 @@ namespace Underworld
         public static void InitEmptyPlayer(string new_charname = "Gronk")
         {
             var InventoryPtr = 0x138;
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 InventoryPtr = 0x3E3;
             }
@@ -219,7 +219,7 @@ namespace Underworld
 
 
             //Game specific
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 ClockValue = 0x465000;
                 SetXClock(0, 0xF);//this gets overwritten later?

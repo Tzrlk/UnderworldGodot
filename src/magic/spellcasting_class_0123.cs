@@ -9,7 +9,7 @@ namespace Underworld
             {
                 Debug.Print("Leviate/Fly cast. Stop jumping"); //what happens here if all active effects are running???
             }
-            if (((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (majorclass == 2) && ((minorclass & 0x3F) == 5))
+            if ((GameConfig.GameSelected == Game.Uw2) && (majorclass == 2) && ((minorclass & 0x3F) == 5))
             {
                 //iron flesh.
                 if (playerdat.GetXClock(3)==4)
@@ -67,7 +67,7 @@ namespace Underworld
                 case 0x10:
                     {
                         //Valour spell. This spell is unique to UW2.
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             playerdat.ValourBonus = 10 + playerdat.Casting/5;
                         }                        
@@ -76,7 +76,7 @@ namespace Underworld
                 case 0xB:
                     {
                         //Poison weapon, unique to UW2
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             playerdat.PoisonedWeapon = true;
                         }

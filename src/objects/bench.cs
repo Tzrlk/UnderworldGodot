@@ -75,7 +75,7 @@ namespace Underworld
 
         public override int ModelColour(int meshNo)
         {
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 return 32;
             }

@@ -13,7 +13,7 @@ namespace Underworld
         {
             get
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     return 0;
                 }
@@ -29,7 +29,7 @@ namespace Underworld
         {
             get
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     return 1;
                 }
@@ -45,7 +45,7 @@ namespace Underworld
         {
             get
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     return 7;
                 }
@@ -60,7 +60,7 @@ namespace Underworld
         {
             get
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     return 2;
                 }
@@ -76,7 +76,7 @@ namespace Underworld
         {
             get
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     return 3;
                 }
@@ -91,7 +91,7 @@ namespace Underworld
         {
             get
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     return 4;
                 }
@@ -106,7 +106,7 @@ namespace Underworld
         {
             get
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     return 5;
                 }
@@ -121,7 +121,7 @@ namespace Underworld
         {
             get
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     return 6;
                 }
@@ -136,7 +136,7 @@ namespace Underworld
         {
             get
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     return 6;//appears to use same animation as magic attack in UW2. Only 2 npc types in the game actually do magic attacks!
                 }
@@ -154,7 +154,7 @@ namespace Underworld
         {
             get
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     return 3;
                 }
@@ -395,7 +395,7 @@ namespace Underworld
                             {
                                 //apply attack
                                 Debug.Print("NPC makes attack");
-                                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                                if (GameConfig.GameSelected == Game.Uw2)
                                 {
                                     combat.NPCExecuteAttack(
                                         attacker: critter,
@@ -2082,7 +2082,7 @@ namespace Underworld
         {
             if (doorobject.classindex != 7)
             {
-                if (((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (playerdat.dungeon_level == 0xA))
+                if ((GameConfig.GameSelected == Game.Uw2) && (playerdat.dungeon_level == 0xA))
                 {
                     return;//stops goblins from opening doors in the prison tower.
                 }
@@ -2163,7 +2163,7 @@ namespace Underworld
                     }
                 }
                 //seg007_17A2_1C2://TODO include UW1 logic
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     if (critter.npc_animation == ANIMATION_IDLE)
                     {//Seg007_17A2_1CD:
@@ -2322,7 +2322,7 @@ namespace Underworld
                 }
                 if (frameadvance)
                 {
-                    if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                    if (GameConfig.GameSelected == Game.Uw2)
                     {
                         var frame = critter.AnimationFrame;
                         frame++;
@@ -2442,9 +2442,9 @@ namespace Underworld
                         (critter.npc_animation != ANIMATION_RANGEDATTACK)
                         &&
                             (
-                                ((byte)GameConfig.GameSelected == (byte)Game.Uw2 && critter.npc_animation != 3)
+                                (GameConfig.GameSelected == Game.Uw2 && critter.npc_animation != 3)
                                 ||
-                                ((byte)GameConfig.GameSelected != (byte)Game.Uw2 && critter.npc_animation != 1)
+                                (GameConfig.GameSelected == Game.Uw2 && critter.npc_animation != 1)
                             )
                         )
                     {
@@ -2786,7 +2786,7 @@ namespace Underworld
                     var heading = Pathfind.GetVectorHeading(currentGTargXVector, currentGTargYVector);
                     critter.UnkBit_0X13_Bit0to6 = 0;
                     critter.Projectile_Speed = 6;
-                    if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                    if (GameConfig.GameSelected == Game.Uw2)
                     {
                         UpdateAnimation(critter, ANIMATION_IDLE, false);
                     }
@@ -2915,7 +2915,7 @@ namespace Underworld
                         rngSI -= critterObjectDat.attackprobability(critter.item_id, attackNoVar8);//reduce probability threshold for next check.
                         attackNoVar8++;
                     }
-                    if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                    if (GameConfig.GameSelected == Game.Uw2)
                     {
                         critter.npc_animation = (short)(attackNoVar8 + 3);
                     }
@@ -2954,7 +2954,7 @@ namespace Underworld
                 return false;
             }
 
-            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 //check for members of a mage faction casting spells in tybals lair while the Orb is not destroyed.
                 if (playerdat.dungeon_level == 7)
@@ -2988,7 +2988,7 @@ namespace Underworld
                 return false;
             }
 
-            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 //check for members of a mage faction casting spells in tybals lair while the Orb is not destroyed.
                 if (playerdat.dungeon_level == 7)

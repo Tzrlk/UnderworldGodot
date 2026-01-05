@@ -37,7 +37,7 @@ namespace Underworld
                 objList: UWTileMap.current_tilemap.LevelObjects);
             if ((water == null) || (obj.quality == 0))
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     uimanager.AddToMessageScroll(GameStrings.GetString(1, 147));//The fountain is dry. \n
                 }

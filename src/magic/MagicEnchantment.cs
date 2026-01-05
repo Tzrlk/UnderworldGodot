@@ -22,7 +22,7 @@ namespace Underworld
 
         public static bool IsPotion(uwObject obj, bool UW2Only = true)
         {
-            if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 return (obj.item_id>=224 && obj.item_id<=231);
             }

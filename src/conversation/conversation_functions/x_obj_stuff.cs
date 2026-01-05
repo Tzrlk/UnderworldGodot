@@ -39,7 +39,7 @@ namespace Underworld
                     }
                     if (link!=-1)
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             Set(at(stackptr-4),obj.link);
                         }
@@ -80,7 +80,7 @@ namespace Underworld
                     }
                     if (link!=-1)
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             obj.link = link;
                         }

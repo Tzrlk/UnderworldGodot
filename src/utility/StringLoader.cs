@@ -290,9 +290,9 @@ namespace Underworld
             EntryCounts = new Hashtable();
 
             //Set some default string numbers that are different from the default in uw2
-            switch ((byte)GameConfig.GameSelected)
+            switch (GameConfig.GameSelected)
             {
-                case (byte)Game.Uw2:
+                case Game.Uw2:
 
                     str_it_looks_to_be_that_of_ = 26;
                     str_they_look_to_be_those_of_ = 27;

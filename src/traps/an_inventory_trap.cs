@@ -14,7 +14,7 @@ namespace Underworld
             var match = objectsearch.FindMatchInFullObjectList(majorclass, minorclass, classindex, playerdat.InventoryObjects);
             if (match != null)
             {
-                if ((trapObj.xpos != 0) && ((byte)GameConfig.GameSelected == (byte)Game.Uw2))
+                if ((trapObj.xpos != 0) && (GameConfig.GameSelected == Game.Uw2))
                 {
                     //check if object is in the proper slot for it's type in UW2. Probably checking fraznium gloves/crown
                     if (! IsObjectValidForItsSlot(match))
@@ -119,7 +119,7 @@ namespace Underworld
                         if (
                             (match.majorclass == 0) && (match.minorclass == 3) && (match.classindex >= 0xB)
                            ||
-                           ((byte)GameConfig.GameSelected != (byte)Game.Uw2) && (match.majorclass == 0) && (match.minorclass == 3) && (match.classindex == 7)
+                           (GameConfig.GameSelected == Game.Uw2) && (match.majorclass == 0) && (match.minorclass == 3) && (match.classindex == 7)
                             )
                         {
                             return true;
@@ -146,7 +146,7 @@ namespace Underworld
                         if (
                             (match.majorclass == 0) && (match.minorclass == 3) && (match.classindex >= 0xB)
                            ||
-                           ((byte)GameConfig.GameSelected != (byte)Game.Uw2) && (match.majorclass == 0) && (match.minorclass == 3) && (match.classindex == 7)
+                           (GameConfig.GameSelected == Game.Uw2) && (match.majorclass == 0) && (match.minorclass == 3) && (match.classindex == 7)
                             )
                         {
                             return true;

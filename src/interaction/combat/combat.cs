@@ -238,7 +238,7 @@ namespace Underworld
             CurrentWeaponRadius = commonObjDat.radius(currentWeaponItemID);
             var weaponskill = playerdat.GetSkillValue(currentMeleeWeaponSkillNo);
 
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 if (currentWeaponItemID == 10)
                 {
@@ -275,9 +275,9 @@ namespace Underworld
                         Debug.Print($"Weapon has enchantment {enchant.NameEnchantment(currentweapon, playerdat.InventoryObjects, 3)} {enchant.SpellMajorClass} {enchant.SpellMinorClass}");
                         if (enchant.SpellMajorClass == 12)
                         {//accuracy or damage bonuses
-                            switch ((byte)GameConfig.GameSelected)
+                            switch (GameConfig.GameSelected)
                             {
-                                case (byte)Game.Uw2:
+                                case Game.Uw2:
                                     {
                                         if (enchant.SpellMinorClass <= 7)
                                         {

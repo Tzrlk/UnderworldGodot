@@ -111,9 +111,9 @@ namespace Underworld
 
         public override ImageTexture LoadImageAt(int index, bool UseAlphaChannel)
         {
-            switch ((byte)GameConfig.GameSelected)
+            switch (GameConfig.GameSelected)
             {
-                case (byte)Game.Uw2:
+                case Game.Uw2:
                     {
                         return extractUW2Bitmap(Path.Combine(GameConfig.GamePath, "DATA", "BYT.ARK"), index, UseAlphaChannel);      //    "DATA" + sep + "BYT.ARK", index, Alpha);
                     }

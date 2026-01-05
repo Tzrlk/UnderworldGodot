@@ -5,9 +5,9 @@ namespace Underworld
         public static void Activate(uwObject trapObj, uwObject[] objList)
         {
             int StringNo;
-            switch ((byte)GameConfig.GameSelected)
+            switch (GameConfig.GameSelected)
             {
-                case (byte)Game.Uw2:
+                case Game.Uw2:
                     StringNo = 32 * trapObj.quality + trapObj.owner;//I hope.
                     break;
                 default:

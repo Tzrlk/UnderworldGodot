@@ -25,7 +25,7 @@ namespace Underworld
                     }
                 case 3://basilisk oil and bullfrog
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             Hallucination();
                         }

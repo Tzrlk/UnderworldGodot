@@ -49,7 +49,7 @@ namespace Underworld
             get
             {
                 var div = 6; 
-                if ((byte)GameConfig.GameSelected==(byte)Game.Uw2){div=8;}
+                if (GameConfig.GameSelected == Game.Uw2){div=8;}
                 
                 var result = 1 + (SpellIndex / div);
                 if (result > 8)
@@ -90,9 +90,9 @@ namespace Underworld
         }
         static RunicMagic()
         {
-            switch ((byte)GameConfig.GameSelected)
+            switch (GameConfig.GameSelected)
             {
-                case (byte)Game.Uw2:
+                case Game.Uw2:
                     SpellList = new RunicMagic[69];
                     SpellList[0] = new(0, 8, 1, 8599);
                     SpellList[1] = new(1, 3, 1, 1480);
@@ -290,7 +290,7 @@ namespace Underworld
         /// <returns></returns>
         public bool TestIfPlayerCanCastSpell()
         {
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 if (worlds.GetWorldNo(playerdat.dungeon_level) == 0)
                 {//check if spell is allowed in britannia
@@ -303,7 +303,7 @@ namespace Underworld
             }
             if (((playerdat.play_level + 1) / 2) < SpellLevel)
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     uimanager.AddToMessageScroll(GameStrings.GetString(1, 225)); //you are not experienced enough
                 }

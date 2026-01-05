@@ -23,7 +23,7 @@ namespace Underworld
         {
             get
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     return 0x3E3;
                 }
@@ -43,9 +43,9 @@ namespace Underworld
             if (ReadStreamFile(path, out encoded))
             {
                 int xOrValue = (int)encoded[0];
-                switch ((byte)GameConfig.GameSelected)
+                switch (GameConfig.GameSelected)
                 {
-                    case (byte)Game.Uw2:
+                    case Game.Uw2:
                         {
                             //uw2 encoding                                            
                             pdat = EncryptDecryptUW2(encoded, (byte)xOrValue);

@@ -19,7 +19,7 @@ namespace Underworld
                         }
                     default:
                         {
-                            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                            if (GameConfig.GameSelected == Game.Uw2)
                             {
                                 if (ObjectUsed.item_id == 461)
                                 {//a wisp, which is a static object in UW2

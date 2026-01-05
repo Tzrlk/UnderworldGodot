@@ -125,7 +125,7 @@ namespace Underworld
             if (buffer == null)
             {
                 var exename = "UW.EXE";
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     exename = "UW2.EXE";
                 }
@@ -820,9 +820,9 @@ namespace Underworld
 
         static int MapColour(int index)
         {
-            switch ((byte)GameConfig.GameSelected)
+            switch (GameConfig.GameSelected)
             {
-                case (byte)Game.Uw2:
+                case Game.Uw2:
                     {
                         switch (index)
                         {

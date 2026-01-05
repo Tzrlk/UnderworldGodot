@@ -49,7 +49,7 @@ namespace Underworld
                 GreyScaleIndexPalette.blue[i] = 0;// (byte)i;
                 GreyScaleIndexPalette.green[i] = 0;// (byte)i;                
             }
-            switch ((byte)GameConfig.GameSelected)
+            switch (GameConfig.GameSelected)
             {
                 default:
                     {
@@ -119,7 +119,7 @@ namespace Underworld
                 {
                     GameConfig.instance.shaderbandsize = 1;
                 }
-                if ((i==6) && ((byte)GameConfig.GameSelected!=(byte)Game.Uw2))
+                if ((i==6) && (GameConfig.GameSelected == Game.Uw2))
                 {
                     Palettes[i].cycledGamePalette = CreateShadedPaletteCycles(Palettes[i]);
                     Palettes[i].cycledUIPalette = MainMenuPaletteCycle(Palettes[i]);//main menu flames effect                    
@@ -234,9 +234,9 @@ namespace Underworld
             {
                 for (int c = 0; c <= 27; c++)
                 {//Create palette cycles
-                    switch ((byte)GameConfig.GameSelected)
+                    switch (GameConfig.GameSelected)
                     {
-                        case (byte)Game.Uw2:
+                        case Game.Uw2:
                             Palette.cyclePalette(tmpPalette, 224, 16);
                             Palette.cyclePaletteReverse(tmpPalette, 3, 6);
                             break;
@@ -302,9 +302,9 @@ namespace Underworld
             {
                 for (int c = 0; c <= 27; c++)
                 {//Create palette cycles
-                    switch ((byte)GameConfig.GameSelected)
+                    switch (GameConfig.GameSelected)
                     {
-                        case (byte)Game.Uw2:
+                        case Game.Uw2:
                             Palette.cyclePalette(tmpPalette, 224, 16);
                             Palette.cyclePaletteReverse(tmpPalette, 3, 6);
                             break;

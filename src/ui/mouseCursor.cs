@@ -19,7 +19,7 @@ namespace Underworld
 		{
 			get
 			{
-				if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+				if (GameConfig.GameSelected == Game.Uw2)
 				{
 					return UW2CursorPosition;
 				}
@@ -38,7 +38,7 @@ namespace Underworld
 		{
 			get
 			{
-				if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+				if (GameConfig.GameSelected == Game.Uw2)
 				{
 					return UW2SubCursorPosition;
 				}

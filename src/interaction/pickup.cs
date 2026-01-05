@@ -103,7 +103,7 @@ namespace Underworld
                         if (ObjectAfterCollison.IsStatic)
                         {
                             //Debug.Print("dropped object. Do check for pressure triggers here");
-                            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                            if (GameConfig.GameSelected == Game.Uw2)
                             {
                                 trigger.RunPressureEnterExitTriggersInTile(
                                     triggeringObject: ObjectAfterCollison,
@@ -166,7 +166,7 @@ namespace Underworld
 
         public static void DropSpecialCases(int item_id)
         {
-            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 switch (item_id)
                 {
@@ -198,7 +198,7 @@ namespace Underworld
 
         static bool CanBePickedUpOverrides(int item_id)
         {
-            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 if (item_id == 458)
                 {
@@ -365,7 +365,7 @@ namespace Underworld
             obj.next = 0; //ensure end of chain. 
             obj.tileX = 99; obj.tileY = 99;
             //pressure release trigger
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 trigger.RunPressureEnterExitTriggersInTile(
                     triggeringObject: obj,
@@ -390,7 +390,7 @@ namespace Underworld
         /// <param name="obj"></param>
         private static void PickupSpecialCases(uwObject obj)
         {
-            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 switch (obj.item_id)
                 {

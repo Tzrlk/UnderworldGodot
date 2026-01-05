@@ -118,12 +118,12 @@ namespace Underworld
             //    xfer = new XFerLoader();
             //}
             //Load the assoc file
-            switch ((byte)GameConfig.GameSelected)
+            switch (GameConfig.GameSelected)
             {
-                case (byte)Game.Uw2:
+                case Game.Uw2:
                     ReadUW2AssocFile(CritterToLoad);
                     return;
-                case (byte)Game.Uw0:
+                case Game.Uw0:
                     ReadUw1AssocFile(CritterToLoad, Path.Combine(GameConfig.GamePath, "CRIT", "DASSOC.ANM"));
                     return;
                 default:
@@ -373,7 +373,7 @@ namespace Underworld
 
         public static string GetAnimName (int animation, int angle)
         {
-            if((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+            if(GameConfig.GameSelected == Game.Uw2)
             {
                 return GetUW2AnimName(animation,angle);
             }

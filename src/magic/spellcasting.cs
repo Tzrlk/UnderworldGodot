@@ -21,7 +21,7 @@ namespace Underworld
         {
             bool PlayerCast = caster == playerdat.playerObject;
             Debug.Print($"{caster.a_name} is casting {majorclass},{minorclass}");
-            if ((byte)GameConfig.GameSelected==(byte)Game.Uw1)
+            if (GameConfig.GameSelected == Game.Uw1)
             {
                 if (playerdat.dungeon_level==9)
                 {
@@ -124,7 +124,7 @@ namespace Underworld
                         uimanager.instance.mousecursor.SetCursorToCursor();
                         break;
                     case 0xB: 
-                        if ((byte)GameConfig.GameSelected!=(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {//special cases in UW1
                         CastClassB_SpellsOnCallBack(
                             minorclass: currentSpell.SpellMinorClass, 

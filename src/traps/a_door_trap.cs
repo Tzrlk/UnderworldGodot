@@ -68,7 +68,7 @@ namespace Underworld
                 }
             }
 
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 //unlike UW1, UW2 has additional actions in the door trap when it's owner value is not 0. These will copy and link a lock that is located further up the chain.
 

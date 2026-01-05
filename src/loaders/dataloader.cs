@@ -396,9 +396,9 @@ namespace Underworld
         {
             uwb = new UWBlock();
             int NoOfBlocks = (int)getAt(arkData, 0, 32);
-            switch ((byte)GameConfig.GameSelected)
+            switch (GameConfig.GameSelected)
             {
-                case (byte)Game.Uw2:
+                case Game.Uw2:
                     {//6 + block *4 + (noOfBlocks*type)
                         uwb.Address = (int)getAt(arkData, 6 + (blockNo * 4), 32);
                         uwb.CompressionFlag = (int)getAt(arkData, 6 + (blockNo * 4) + (NoOfBlocks * 4), 32);

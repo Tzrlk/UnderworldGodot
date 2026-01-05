@@ -6,9 +6,9 @@ namespace Underworld
         {
             //2 versions needed. uw1 does not check for selected items, uw2 does and has extra strings
 
-            switch ((byte)GameConfig.GameSelected)
+            switch (GameConfig.GameSelected)
             {
-                case (byte)Game.Uw2:
+                case Game.Uw2:
                     yield return do_demandUW2(talker);
                     break;
                 default:

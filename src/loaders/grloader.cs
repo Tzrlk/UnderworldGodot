@@ -293,7 +293,7 @@ namespace Underworld
                     {
                         BitMapWidth = 83;  //getValAtAddress(textureFile, textureOffset + 1, 8);
                         BitMapHeight = 114; // getValAtAddress(textureFile, textureOffset + 2, 8);
-                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             BitMapWidth = 79;
                             BitMapHeight = 112;

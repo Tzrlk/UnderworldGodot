@@ -133,7 +133,7 @@ namespace Underworld
                     }
                 case 1:
                     {
-                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             switch (obj.classindex)
                             {
@@ -145,7 +145,7 @@ namespace Underworld
                     }
                 case 3: //readables (up to index 8)
                     {
-                        if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             switch (obj.classindex)
                             {
@@ -376,9 +376,9 @@ namespace Underworld
                 commonObjDat.canhaveowner(obj.item_id)
                 &&
                 (
-                    ((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (obj.race <= 30)
+                    (GameConfig.GameSelected == Game.Uw2) && (obj.race <= 30)
                     ||
-                    ((byte)GameConfig.GameSelected != (byte)Game.Uw2) && (obj.race <= 27)
+                    (GameConfig.GameSelected == Game.Uw2) && (obj.race <= 27)
                 )
             )
             {

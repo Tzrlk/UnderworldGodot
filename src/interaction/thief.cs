@@ -73,7 +73,7 @@ namespace Underworld
                         return false;
                     }
                 }
-                if ((byte)GameConfig.GameSelected!=(byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     if (StolenItemOwner==0xD)
                     {

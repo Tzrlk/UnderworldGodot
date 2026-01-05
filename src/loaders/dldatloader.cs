@@ -6,7 +6,7 @@ namespace Underworld
 
         public static int GetAmbientLight(int levelno)
         {
-            if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 return ambientlights[levelno];
             }

@@ -1603,7 +1603,7 @@ namespace Underworld
         {
             get
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     return (majorclass == 6) && ((minorclass == 2) || (minorclass == 3));
                 }
@@ -1618,7 +1618,7 @@ namespace Underworld
         {
             get
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     return (majorclass == 6) && (minorclass < 2);
                 }

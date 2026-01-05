@@ -20,7 +20,7 @@ namespace Underworld
 
         static int GetBlockAddress(int blockno, byte[] buffer)
         {
-            if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 return (int)getAt(buffer, 6 + (blockno * 4), 32);
             }

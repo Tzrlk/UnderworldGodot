@@ -105,7 +105,7 @@ namespace Underworld
                     if (
                         (obj.item_id == 160)
                         ||
-                        (((byte)GameConfig.GameSelected != (byte)Game.Uw2) && (obj.item_id == 161))
+                        ((GameConfig.GameSelected == Game.Uw2) && (obj.item_id == 161))
                         )
                     {
                         quality = 0x3F;
@@ -139,11 +139,11 @@ namespace Underworld
             var itemCategory = obj.item_id >> 4;
 
             var quality = obj.quality;
-            if (((obj.item_id == 160) || (obj.item_id == 161)) && ((byte)GameConfig.GameSelected != (byte)Game.Uw2))
+            if (((obj.item_id == 160) || (obj.item_id == 161)) && (GameConfig.GameSelected == Game.Uw2))
             {
                 quality = 63;
             }
-            if (((obj.item_id == 160)) && ((byte)GameConfig.GameSelected == (byte)Game.Uw2))
+            if (((obj.item_id == 160)) && (GameConfig.GameSelected == Game.Uw2))
             {
                 quality = 63;
             }

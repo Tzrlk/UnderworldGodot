@@ -54,7 +54,7 @@ public partial class LaunchMenu : Control {
 				break;
 			default:
 				// Non-blocking at this point. Just notify and do no more.
-				GD.PushError("Invalid game path selection: ", (byte)GameConfig.GameSelected);
+				GD.PushError("Invalid game path selection: ", GameConfig.GameSelected);
 				return;
 		}
 
@@ -139,7 +139,7 @@ public partial class LaunchMenu : Control {
 				break;
 			default:
 				// Non-blocking at this point. Just notify and do no more.
-				GD.PushError("Invalid game selection: ", (byte)GameConfig.GameSelected);
+				GD.PushError("Invalid game selection: ", GameConfig.GameSelected);
 				break;
 		}
 

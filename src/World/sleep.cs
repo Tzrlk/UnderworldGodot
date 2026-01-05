@@ -21,7 +21,7 @@ namespace Underworld
             {
                 if (((playerdat.TileState & 0x1B) == 0) && (playerdat.ZVelocity == 0))
                 {
-                    if (((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (playerdat.CurrentWorld == 8) && (playerdat.DreamingInVoid))
+                    if ((GameConfig.GameSelected == Game.Uw2) && (playerdat.CurrentWorld == 8) && (playerdat.DreamingInVoid))
                     {//player has tried to sleep while sleeping in a void vision. end the void vision.
                         AwakenFromTheVoid();
                         return;
@@ -74,7 +74,7 @@ namespace Underworld
 
             playerdat.AdvanceTime(si_hourstosleep * 0xE10);
 
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 if ((playerdat.GetQuest(50) == 1) && (playerdat.GetQuest(54) != 0))//keep is crashing and has not yet crashed.
                 {
@@ -102,7 +102,7 @@ namespace Underworld
             {
                 //drunk-ass Avatar.
                 SleepOnDamagingSurface();
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2 && playerdat.IsFightingInPit)
+                if (GameConfig.GameSelected == Game.Uw2 && playerdat.IsFightingInPit)
                 {//Avatar fell asleep drunk during a duel!
                     damage.DamagePlayer(
                         basedamage: 0xFF,
@@ -266,7 +266,7 @@ namespace Underworld
         static bool Dreams(int sleepfactor)
         {
 
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 return DreamsUW2(sleepfactor);
             }

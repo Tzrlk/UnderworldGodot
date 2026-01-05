@@ -18,10 +18,10 @@ namespace Underworld
 
         public WeaponsLoader(int AuxPal)
         {
-            switch ((byte)GameConfig.GameSelected)
+            switch (GameConfig.GameSelected)
             {
-                case (byte)Game.Uw1:
-                case (byte)Game.Uw2:
+                case Game.Uw1:
+                case Game.Uw2:
                     ReadAnimData(AuxPal); break;
             }
         }
@@ -40,7 +40,7 @@ namespace Underworld
             string datfile = Path.Combine(GameConfig.GamePath, "DATA", "WEAPONS.DAT");
             string cmfile = Path.Combine(GameConfig.GamePath, "DATA", "WEAPONS.CM");
             string grfile = Path.Combine(GameConfig.GamePath, "DATA", "WEAPONS.GR");
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 datfile = Path.Combine(GameConfig.GamePath, "DATA", "WEAP.DAT");
                 cmfile = Path.Combine(GameConfig.GamePath, "DATA", "WEAP.CM");
@@ -49,7 +49,7 @@ namespace Underworld
             int offset = 0;
             int MaxHeight = 112;
             int MaxWidth = 172;
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 MaxHeight = 128;
                 MaxWidth = 208;
@@ -57,7 +57,7 @@ namespace Underworld
             int add_ptr = 0;
             ReadStreamFile(datfile, out byte[] AnimData);
             ReadStreamFile(grfile, out byte[] textureFile);
-            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 int GroupSize = 28;
 
@@ -83,7 +83,7 @@ namespace Underworld
             }
 
             int NoOfTextures = textureFile[2] << 8 | textureFile[1];
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 NoOfTextures = 230;
             }
@@ -119,7 +119,7 @@ namespace Underworld
                 int ColCounter = 0; int RowCounter = 0;
                 int cornerX;// = AnimX[i];
                 int cornerY;// = AnimY[i];
-                if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     cornerX = AnimX[i];
                     cornerY = AnimY[i];
@@ -138,7 +138,7 @@ namespace Underworld
                     }
                 }
 
-                if (((byte)GameConfig.GameSelected == (byte)Game.Uw1) || (((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (UW2_X[i] != -1)))//Only create if UW1 image or a valid uw2 one
+                if ((GameConfig.GameSelected == Game.Uw1) || ((GameConfig.GameSelected == Game.Uw2) && (UW2_X[i] != -1)))//Only create if UW1 image or a valid uw2 one
                 {
                     bool ImgStarted = false;
                     for (int y = 0; y < MaxHeight; y++)

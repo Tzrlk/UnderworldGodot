@@ -101,9 +101,9 @@ namespace Underworld
         /// <returns></returns>
         public static int GetWorldNo(int dungeonlevel)
         {            
-            switch((byte)GameConfig.GameSelected)
+            switch(GameConfig.GameSelected)
             {
-                case (byte)Game.Uw2:
+                case Game.Uw2:
                     return (dungeonlevel - 1)/8;
                 default:
                     return dungeonlevel;

@@ -1575,7 +1575,7 @@ namespace Underworld
                         {//is this uw2 only?
                          //seg030_2BB7_12AE:
                             animo.SpawnAnimoInTile(6, projectile.xpos, projectile.ypos, projectile.zpos, projectile.tileX, projectile.tileY);
-                            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                            if (GameConfig.GameSelected == Game.Uw2)
                             {
                                 OilOnMud(projectile);
                                 var1_destroyobject = true;

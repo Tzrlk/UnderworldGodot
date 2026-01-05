@@ -43,7 +43,7 @@ namespace Underworld
         {
             get
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     return instance.CutsSmallUW2;
                 }
@@ -59,7 +59,7 @@ namespace Underworld
         {
             get
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     return instance.Cuts3DWinUW2;
                 }

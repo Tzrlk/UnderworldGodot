@@ -104,7 +104,7 @@ namespace Underworld
 
             PathFindingData49.pathfindmap49 = new byte[0x5000];
             var LikelyPathFindRange_var22 = 5;
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 if (worlds.GetWorldNo(playerdat.dungeon_level) == 0)
                 {

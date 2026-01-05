@@ -18,7 +18,7 @@ namespace Underworld
             }
             PlayerInDeathMode = true;
 
-            if((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if(GameConfig.GameSelected == Game.Uw2)
             {
                 //If in Britannia.
                 //Check if was killed by a castle inhabitant.get sent to jail. otherwise die.

@@ -47,7 +47,7 @@ namespace Underworld
             grPower = new GRLoader(GRLoader.POWER_GR, GRLoader.GRShaderMode.UIShader);
             grInv = new GRLoader(GRLoader.INV_GR, GRLoader.GRShaderMode.UIShader);
             csCuts = new Dictionary<string, CutsLoader>();
-            if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 grGempt = new GRLoader(GRLoader.GEMPT_GR, GRLoader.GRShaderMode.UIShader);
                 grGempt.PaletteNo = 3;

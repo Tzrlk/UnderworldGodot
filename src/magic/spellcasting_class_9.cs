@@ -20,14 +20,14 @@ namespace Underworld
             }
             if (CastOnEquip)
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     uimanager.AddToMessageScroll(GameStrings.GetString(1, 362));
                 }
             }
             else
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     uimanager.FlashColour(0x30, uimanager.Cuts3DWin, 0.1f);
                 }

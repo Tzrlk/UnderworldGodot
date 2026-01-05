@@ -20,7 +20,7 @@ namespace Underworld
 
         public static void InitCompass()
         {
-            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 for (int i = 0; i<=instance.CompassBgUW1.GetUpperBound(0);i++)
                 {
@@ -47,7 +47,7 @@ namespace Underworld
         public static void UpdateCompass()
         {
             var heading = (playerdat.heading_major>>4);//get full heading into a range of 0-f
-            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 for (int i = 0; i <= instance.CompassBgUW1.GetUpperBound(0); i++)
                 {
@@ -77,7 +77,7 @@ namespace Underworld
             {
                 scroll.Clear();
                 AddToMessageScroll("\n");
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     StatusMessageUW2();
                 }

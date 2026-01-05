@@ -288,7 +288,7 @@ namespace Underworld
                         {
                             case 9:
                                 {
-                                    if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
+                                    if (GameConfig.GameSelected == Game.Uw2)
                                     {
                                         glowing_rock.CreateGlowingRock(grObjects, obj, parent, name);
                                         return false;
@@ -391,7 +391,7 @@ namespace Underworld
                             obj.instance = buttonrotary.CreateInstance(parent, obj, name);
                             return false;
                         }
-                        if (((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (obj.classindex == 3))
+                        if ((GameConfig.GameSelected == Game.Uw2) && (obj.classindex == 3))
                         {  //or item id 163
                             obj.instance = painting.CreateInstance(parent, obj, name);
                             return false;
@@ -411,17 +411,17 @@ namespace Underworld
                             obj.instance = writing.CreateInstance(parent, obj, name);
                             return false;
                         }
-                        if (((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (obj.classindex == 7))
+                        if ((GameConfig.GameSelected == Game.Uw2) && (obj.classindex == 7))
                         {  //or item id 359
                             obj.instance = bed.CreateInstance(parent, obj, name);
                             return false;
                         }
-                        if (((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (obj.classindex == 8))
+                        if ((GameConfig.GameSelected == Game.Uw2) && (obj.classindex == 8))
                         {  //or item id 360
                             obj.instance = largeblackrockgem.CreateInstance(parent, obj, name);
                             return false;
                         }
-                        if (((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (obj.classindex == 9))
+                        if ((GameConfig.GameSelected == Game.Uw2) && (obj.classindex == 9))
                         {  //or item id 361
                             obj.instance = shelf.CreateInstance(parent, obj, name);
                             return false;
@@ -474,7 +474,7 @@ namespace Underworld
                             case 0xE://flam rune
                             case 0xF://tym rune
                                 {
-                                    if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                                    if (GameConfig.GameSelected == Game.Uw2)
                                     {
                                         return runetrap.CreateRuneTrap(obj, parent);
                                     }
@@ -498,7 +498,7 @@ namespace Underworld
                         switch (obj.classindex)
                         {
                             case 0://move trigger 6-3-0
-                                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                                if (GameConfig.GameSelected == Game.Uw2)
                                 {
                                     return trigger.CreateMoveTrigger(obj, parent);
                                 }

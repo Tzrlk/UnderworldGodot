@@ -324,7 +324,7 @@ namespace Underworld
         {
             get
             {
-                switch ((byte)GameConfig.GameSelected)
+                switch (GameConfig.GameSelected)
                 {
                     default:
                         if (tileType >= 2)
@@ -339,7 +339,7 @@ namespace Underworld
             }
             set
             {
-                switch ((byte)GameConfig.GameSelected)
+                switch (GameConfig.GameSelected)
                 {
                     default:
                         //do nothing read only.
@@ -359,12 +359,12 @@ namespace Underworld
             get
             {
                 //Set the terrain type for the tile when the texture changes
-                switch ((byte)GameConfig.GameSelected)
+                switch (GameConfig.GameSelected)
                 {
-                    case (byte)Game.Uw0:
-                    case (byte)Game.Uw1:
+                    case Game.Uw0:
+                    case Game.Uw1:
                         return TerrainDatLoader.Terrain[46 + map.texture_map[floorTexture + 48]];
-                    case (byte)Game.Uw2:
+                    case Game.Uw2:
                         return TerrainDatLoader.Terrain[map.texture_map[floorTexture]];
                     default:
                         return 0;
@@ -430,9 +430,9 @@ namespace Underworld
         static string TextureName(int index, bool floor = true)
         {
             int offset = 0;
-            if (((byte)GameConfig.GameSelected != (byte)Game.Uw2) && (floor)) { offset = 48; }
+            if ((GameConfig.GameSelected == Game.Uw2) && (floor)) { offset = 48; }
             var textureNo = UWTileMap.current_tilemap.texture_map[index + offset];
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 if (floor)
                 {
@@ -553,7 +553,7 @@ namespace Underworld
                             tileToChange.floorHeight = 0xF;
                         }
 
-                        if ((newFloorTexture < 0xF) && ((byte)GameConfig.GameSelected == (byte)Game.Uw2) || ((newFloorTexture < 0xB) && ((byte)GameConfig.GameSelected != (byte)Game.Uw2)))
+                        if ((newFloorTexture < 0xF) && (GameConfig.GameSelected == Game.Uw2) || ((newFloorTexture < 0xB) && (GameConfig.GameSelected == Game.Uw2)))
                         {
                             tileToChange.floorTexture = (short)newFloorTexture;
                             //TODO some terrain changes happen here too.

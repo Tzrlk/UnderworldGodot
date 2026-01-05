@@ -17,13 +17,13 @@ namespace Underworld
         {
             //Load up my tile maps
             //First read in my lev_ark file
-            switch ((byte)GameConfig.GameSelected)
+            switch (GameConfig.GameSelected)
             {
-                case (byte)Game.Uw0:
+                case Game.Uw0:
                     Lev_Ark_File = Path.Combine(folder, "LEVEL13.ST");
                     break;
-                case (byte)Game.Uw2:
-                case (byte)Game.Uw1:
+                case Game.Uw2:
+                case Game.Uw1:
                 default:
                     Lev_Ark_File = Path.Combine(GameConfig.GamePath, folder, "LEV.ARK");  //  Lev_Ark_File_Selected; //"DATA\\lev.ark";//Eventually this will be a save game.
                     break;
@@ -45,7 +45,7 @@ namespace Underworld
         public static UWBlock LoadLevArkBlock(int LevelBlockNo)
         {
             UWBlock lev_ark_block;
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw0)
+            if (GameConfig.GameSelected == Game.Uw0)
             {//In UWDemo there is no block structure. Just copy the data directly from file.
                 lev_ark_block = new UWBlock
                 {
@@ -57,7 +57,7 @@ namespace Underworld
             {
                 int targetLen = 0x7c08;                
                 //Load the tile and object blocks
-                if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     targetLen = 0x8000; //extra space needed for the animation overlay data.
                 }
@@ -72,17 +72,17 @@ namespace Underworld
         public static UWBlock LoadTexArkBlock(int LevelBlockNo)
         {
             //Load the texture maps
-            switch ((byte)GameConfig.GameSelected)
+            switch (GameConfig.GameSelected)
             {
-                case (byte)Game.Uw0:
+                case Game.Uw0:
                     var tex_ark_block = new UWBlock();
                     ReadStreamFile(Path.Combine(GameConfig.GamePath, "DATA", "LEVEL13.TXM"), out tex_ark_block.Data);
                     tex_ark_block.DataLen = tex_ark_block.Data.GetUpperBound(0);
                     return tex_ark_block;
-                case (byte)Game.Uw2:
+                case Game.Uw2:
                     DataLoader.LoadUWBlock(lev_ark_file_data, LevelBlockNo + 80, -1, out tex_ark_block);
                     return tex_ark_block;
-                case (byte)Game.Uw1:
+                case Game.Uw1:
                 default:
                     DataLoader.LoadUWBlock(lev_ark_file_data, LevelBlockNo + 18, 0x7a, out tex_ark_block);
                     return tex_ark_block;
@@ -92,18 +92,18 @@ namespace Underworld
         public static UWBlock LoadOverlayBlock(int LevelBlockNo)
         {
             //Load the texture maps
-            switch ((byte)GameConfig.GameSelected)
+            switch (GameConfig.GameSelected)
             {
-                case (byte)Game.Uw0:
+                case Game.Uw0:
                     var ovl_ark_block =  new UWBlock();
                     ReadStreamFile(Path.Combine(GameConfig.GamePath, "DATA", "LEVEL13.ANX"), out ovl_ark_block.Data);
                     ovl_ark_block.DataLen = ovl_ark_block.Data.GetUpperBound(0);
                     return ovl_ark_block;
-                case (byte)Game.Uw2:
+                case Game.Uw2:
                     //DataLoader.LoadUWBlock(lev_ark_file_data, LevelBlockNo , -1, out ovl_ark_block);//overlay data in uw2 is immediately after the tilemap
                     //ovl_ark_block = null; // UW2 does not have a seperate overlay block
                     return null;
-                case (byte)Game.Uw1:
+                case Game.Uw1:
                 default:
                     DataLoader.LoadUWBlock(lev_ark_file_data, LevelBlockNo + 9, 64*6, out ovl_ark_block);
                    return ovl_ark_block;

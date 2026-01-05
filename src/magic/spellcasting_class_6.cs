@@ -22,7 +22,7 @@ namespace Underworld
             int tileRadius = 0;
             int distanceFromCaster = 0;
             int rngProbablity = 0;
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 switch (minorclass & 0x3F)
                 {

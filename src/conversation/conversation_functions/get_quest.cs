@@ -13,7 +13,7 @@ namespace Underworld
         static int GetQuest(int questno)
         {
             if (questno<0){return 0;}
-            if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
                 {                       
                     if (questno < 144)//regular quest variables
                     {

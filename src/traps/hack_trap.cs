@@ -39,7 +39,7 @@ namespace Underworld
                     }
                 case 4: //uw1 alternate do_trap_platform behaviour
                     {
-                        if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_do_trap_platform.Activate(
                                 trapObj: trapObj,
@@ -60,7 +60,7 @@ namespace Underworld
                     }
                 case 10://change class item
                     {
-                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_classitem.Activate(
                                 trapObj: trapObj,
@@ -74,7 +74,7 @@ namespace Underworld
                     }
                 case 11://fraznium forcefields
                     {
-                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_forcefield.Activate(
                                 trapObj: trapObj,
@@ -88,7 +88,7 @@ namespace Underworld
                     }
                 case 12://tile oscillator
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_oscillator.Activate(
                                 trapObj: trapObj,
@@ -102,7 +102,7 @@ namespace Underworld
                     }
                 case 14://texture cycle
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_texturecycle.Activate(
                                 trapObj: trapObj,
@@ -114,7 +114,7 @@ namespace Underworld
                     }
                 case 17: //Floor collapse
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_floorcollapse.Activate(
                                 trapObj: trapObj,
@@ -128,7 +128,7 @@ namespace Underworld
                     }
                 case 18://button triggering talorus
                 {
-                    if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                    if (GameConfig.GameSelected == Game.Uw2)
                     {
                         a_hack_trap_usebutton.Activate(
                             trapObj: trapObj, 
@@ -140,7 +140,7 @@ namespace Underworld
                 }
                 case 19://platforms reset in scintillus academy 7
                 {
-                    if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                    if (GameConfig.GameSelected == Game.Uw2)
                     {
                         a_hack_trap_platformreset.Activate(
                             trapObj: trapObj, 
@@ -152,7 +152,7 @@ namespace Underworld
                 }
                 case 20://rising platforms in scintillus academy 3
                 {
-                    if((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                    if(GameConfig.GameSelected == Game.Uw2)
                     {
                         a_hack_trap_terraformplatforms.Activate(
                             trapObj: trapObj, 
@@ -165,7 +165,7 @@ namespace Underworld
                 }
                 case 21://Change object zpos
                         {//used in the tombs?
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             //TODO
                             a_hack_trap_resetzpos.Activate(trapObj: trapObj, 1);
@@ -175,7 +175,7 @@ namespace Underworld
                     }
                 case 22://Change object zpos
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_resetzpos.Activate(trapObj: trapObj, mode: 0);
                             return true;
@@ -184,7 +184,7 @@ namespace Underworld
                     }
                 case 23://alternate index for change owner trap
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_owner.Activate(trapObj: trapObj);
                             return true;
@@ -193,7 +193,7 @@ namespace Underworld
                     }
                 case 24://bullfrog in UW1 and graffiti change in UW2
                     {
-                        if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_do_trap_bullfrog.Activate(
                                 trapObj: trapObj,
@@ -212,7 +212,7 @@ namespace Underworld
                     }
                 case 25://Bly Skup Chamber
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_blyskup.Activate();
                             return true;
@@ -221,7 +221,7 @@ namespace Underworld
                     }
                 case 26://Toggle forcefield
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_toggleforcefield.Activate(
                                 triggerX: triggerX, triggerY: triggerY);
@@ -231,7 +231,7 @@ namespace Underworld
                     }
                 case 27://change quality trap
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_quality.Activate(trapObj);
                             return true;
@@ -240,7 +240,7 @@ namespace Underworld
                     }
                 case 28://change owner trap
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_owner.Activate(trapObj);
                             return true;
@@ -249,7 +249,7 @@ namespace Underworld
                     }
                 case 29://button flickering
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_switchflicker.Activate(
                                 triggerX: triggerX, 
@@ -260,7 +260,7 @@ namespace Underworld
                     }
                 case 30://cowardice in the pits of carnage
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             return a_hack_trap_coward.Activate(character);
                         }
@@ -268,7 +268,7 @@ namespace Underworld
                     }
                 case 32://qbert in UW2
                     {
-                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_qbert.Activate(
                                 trapObj: trapObj,
@@ -279,7 +279,7 @@ namespace Underworld
                     }
                 case 33: // bottle recycler in UW2
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_recycler.Activate(
                                     trapObj: trapObj,
@@ -293,7 +293,7 @@ namespace Underworld
                     }
                 case 34://britannia goes dry in UW2
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_godry.Activate(
                                 trapObj: trapObj, 
@@ -305,7 +305,7 @@ namespace Underworld
                     }
                 case 35://recharges light sphere in UW2
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_rechargelightsphere.Activate(triggerX, triggerY);
                             return true;
@@ -314,7 +314,7 @@ namespace Underworld
                     }
                 case 36://castle schedule
                     {
-                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {  
                             a_hack_trap_castleschedule.Activate();
                             return true;
@@ -323,7 +323,7 @@ namespace Underworld
                     }
                 case 38:
                     {//transform red potions to poison
-                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_transformpotion.Activate(
                                 triggerX: triggerX,
@@ -334,7 +334,7 @@ namespace Underworld
                     }
                 case 39:
                     {//changes visibility of object
-                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_visibility.Activate(
                                 trapObj: trapObj
@@ -346,7 +346,7 @@ namespace Underworld
                     }
                 case 40: //vending machine uw2 (variant), emerald puzzle in UW1
                     {
-                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_vending.Activate(
                                 trapObj: trapObj,
@@ -363,7 +363,7 @@ namespace Underworld
                     }
                 case 41://vending machine uw2 (variant)
                     {
-                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_vending.Activate(
                                 trapObj: trapObj,
@@ -374,7 +374,7 @@ namespace Underworld
                     }
                 case 42://vending machine uw2 (variant), UW1 talking door
                     {
-                        if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_do_trap_conversation.Activate();//a talking door!
                             return true;
@@ -389,7 +389,7 @@ namespace Underworld
                     }
                 case 43: // change goal and target
                     {
-                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_changegoaltarget.Activate(trapObj: trapObj, character: character);
                             return true;
@@ -399,7 +399,7 @@ namespace Underworld
 
                 case 54://world gem rotation
                     {
-                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_gemrotate.Activate();
                             return true;
@@ -408,7 +408,7 @@ namespace Underworld
                     }
                 case 55:// world gem transportation
                     {
-                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_gemteleport.Activate();
                             return true;
@@ -417,7 +417,7 @@ namespace Underworld
                     }
                 case 62://some sort of goal change for npcs. possibly does nothing in practice do to trap setup
                     {
-                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
                             a_hack_trap_changegoal.Activate(trapObj, character);
                             return true;

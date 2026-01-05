@@ -101,7 +101,7 @@ namespace Underworld
         {
             get
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     return instance.GameOptionButtonsUW2;
                 }
@@ -116,7 +116,7 @@ namespace Underworld
         {
             get
             {
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     return instance.GameOptionsBackgroundUW2;
                 }
@@ -129,7 +129,7 @@ namespace Underworld
 
         public static void InitGameOptions()
         {
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
 
                 Rect2I[] croppingareas = new Rect2I[11];
@@ -272,7 +272,7 @@ namespace Underworld
 
         static ImageTexture GetOptionButtonImage(int index)
         {
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 return UW2OptionButtons[index];
             }
@@ -384,7 +384,7 @@ namespace Underworld
 
         public static void ReturnToGameFromOptions()
         {
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 EnableDisable(instance.PanelInventory, true);
                 PanelMode = 0;
@@ -407,7 +407,7 @@ namespace Underworld
 
         private static void ReturnToTopOptionsMenu()
         {
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 EnableDisable(instance.PanelInventory, false);
                 EnableDisable(instance.PanelRuneBag, false);

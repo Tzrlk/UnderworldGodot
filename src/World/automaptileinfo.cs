@@ -93,9 +93,9 @@ namespace Underworld
         {
             get
             {
-                switch ((byte)GameConfig.GameSelected)
+                switch (GameConfig.GameSelected)
                 {
-                    case (byte)Game.Uw2:
+                    case Game.Uw2:
                         return DisplayType == DisplayTypeBridgeUW2;
                     default:
                         return DisplayType == DisplayTypeBridge1UW1 || DisplayType == DisplayTypeBridge2UW1;
@@ -107,9 +107,9 @@ namespace Underworld
         {
             get
             {
-                switch ((byte)GameConfig.GameSelected)
+                switch (GameConfig.GameSelected)
                 {
-                    case (byte)Game.Uw2:
+                    case Game.Uw2:
                         return DisplayType == DisplayTypeWaterUW2;
                     default:
                         return DisplayType == DisplayTypeWaterUW1;
@@ -129,9 +129,9 @@ namespace Underworld
         {
             get
             {
-                switch ((byte)GameConfig.GameSelected)
+                switch (GameConfig.GameSelected)
                 {
-                    case (byte)Game.Uw2:
+                    case Game.Uw2:
                         return DisplayType == DisplayTypeStairUW2;
                     default:
                         return DisplayType == DisplayTypeStairUW1;
@@ -173,9 +173,9 @@ namespace Underworld
         {
             get
             {
-                switch ((byte)GameConfig.GameSelected)
+                switch (GameConfig.GameSelected)
                 {
-                    case (byte)Game.Uw2:
+                    case Game.Uw2:
                         return DisplayType == DisplayTypeDoorUW2;
                     default:
                         return DisplayType == DisplayTypeDoorUW1;
@@ -213,9 +213,9 @@ namespace Underworld
         {
             if (t.hasBridge)
             {
-                switch ((byte)GameConfig.GameSelected)
+                switch (GameConfig.GameSelected)
                 {
-                    case (byte)Game.Uw2:
+                    case Game.Uw2:
                         return DisplayTypeBridgeUW2;
                     default:
                         return DisplayTypeBridge1UW1;
@@ -224,9 +224,9 @@ namespace Underworld
             }
             else if (t.isWater)
             {
-                switch ((byte)GameConfig.GameSelected)
+                switch (GameConfig.GameSelected)
                 {
-                    case (byte)Game.Uw2:
+                    case Game.Uw2:
                         return DisplayTypeWaterUW2;
                     default:
                         return DisplayTypeWaterUW1;
@@ -243,10 +243,10 @@ namespace Underworld
             }
             else if (t.HasDoor)
             {
-                switch ((byte)GameConfig.GameSelected)
+                switch (GameConfig.GameSelected)
                 {
 
-                    case (byte)Game.Uw2:
+                    case Game.Uw2:
                         return DisplayTypeDoorUW2;
                     default:
                         return DisplayTypeDoorUW1;
@@ -254,9 +254,9 @@ namespace Underworld
             }
             else if (t.isStair)
             {
-                switch ((byte)GameConfig.GameSelected)
+                switch (GameConfig.GameSelected)
                 {
-                    case (byte)Game.Uw2:
+                    case Game.Uw2:
                         return DisplayTypeStairUW2;
                     default:
                         return DisplayTypeStairUW1;

@@ -22,7 +22,7 @@ namespace Underworld
                 ObjectCreator.Consume(obj, !WorldObject);
 
                 //flash screen
-                if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+                if (GameConfig.GameSelected == Game.Uw2)
                 {
                     uimanager.FlashColour(0x30, uimanager.Cuts3DWin,0.2f);
                 }

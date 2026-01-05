@@ -51,20 +51,20 @@ namespace Underworld
         /// If the index is greater than 209 I return a floor texture.
         private ImageTexture LoadImageAt(int index, Palette palToUse)
         {
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw0)
+            if (GameConfig.GameSelected == Game.Uw0)
             {//Point the UW1 texture files to the demo files
                 TextureSplit = 48;
                 pathTexW_UW1 = pathTexW_UW0;
                 pathTexF_UW1 = pathTexF_UW0;
             }
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 FloorDim = 64;
             }
 
-            switch ((byte)GameConfig.GameSelected)
+            switch (GameConfig.GameSelected)
             {
-                case (byte)Game.Uw2:
+                case Game.Uw2:
                     {
                         if (texturesFLoaded == false)
                         {
@@ -89,8 +89,8 @@ namespace Underworld
                     }
 
 
-                case (byte)Game.Uw0:
-                case (byte)Game.Uw1:
+                case Game.Uw0:
+                case Game.Uw1:
                 default:
                     {
                         if (index < TextureSplit)

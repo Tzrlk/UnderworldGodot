@@ -58,13 +58,13 @@ namespace Underworld
             get
             {
                 int offset = 0x65;
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2) { offset = 0x66; }
+                if (GameConfig.GameSelected == Game.Uw2) { offset = 0x66; }
                 return (GetAt(offset) >> 5) & 0x7;
             }
             set
             {
                 int offset = 0x65;
-                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2) { offset = 0x66; }
+                if (GameConfig.GameSelected == Game.Uw2) { offset = 0x66; }
                 byte existingValue = GetAt(offset);
                 existingValue = (byte)(existingValue & 0x1F); //mask out charclass
                 value = value << 5;
@@ -195,9 +195,9 @@ namespace Underworld
 
         public static void SetLevelLore(int levelno, int newLore)
         {
-            switch ((byte)GameConfig.GameSelected)
+            switch (GameConfig.GameSelected)
             {
-                case (byte)Game.Uw2:
+                case Game.Uw2:
                     SetAt(0x311 + levelno, (byte)newLore);
                     return;
                 default:

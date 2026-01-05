@@ -796,9 +796,9 @@ namespace Underworld
         public static int FloorTexture_MapIndex(TileInfo t)
         {
             int floorTexture;
-            switch ((byte)GameConfig.GameSelected)
+            switch (GameConfig.GameSelected)
             {
-                case (byte)Game.Uw2:
+                case Game.Uw2:
                     floorTexture = t.floorTexture; //t.map.texture_map[t.floorTexture];
                     break;
                 default:

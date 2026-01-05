@@ -35,7 +35,7 @@ namespace Underworld
             {
                 FullScreen = true;
             }
-            if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 if (CutsceneNo == 2)
                 {

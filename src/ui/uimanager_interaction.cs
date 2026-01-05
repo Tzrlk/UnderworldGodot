@@ -49,7 +49,7 @@ namespace Underworld
         private void InitInteraction()
         {
 
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {//load interaction button art for uw2. the images need to be cropped out of a master image.
 
                 UW2InteractionBtnsOff = new ImageTexture[6];
@@ -77,9 +77,9 @@ namespace Underworld
             }
 
 
-            switch ((byte)GameConfig.GameSelected)
+            switch (GameConfig.GameSelected)
             {
-                case (byte)Game.Uw2:
+                case Game.Uw2:
                     for (int i = 0; i <= InteractionButtonsUW2.GetUpperBound(0); i++)
                     {
                         if (i != (int)InteractionMode)
@@ -167,7 +167,7 @@ namespace Underworld
         public static void InteractionModeToggle(InteractionModes index)
         {
             PreviousInteractionMode = InteractionMode;
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
                 for (int i = 0; i <= instance.InteractionButtonsUW2.GetUpperBound(0); i++)
                 {
@@ -203,7 +203,7 @@ namespace Underworld
             {
                 case InteractionModes.ModeOptions:
                     {
-                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+                        if (GameConfig.GameSelected == Game.Uw2)
                         {
 
                         }
@@ -244,7 +244,7 @@ namespace Underworld
 
         public static void InteractionModeShowHide(bool state)
         {
-            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
+            if (GameConfig.GameSelected == Game.Uw2)
             {
 
                 for (int i = 0; i <= instance.InteractionButtonsUW2.GetUpperBound(0); i++)
