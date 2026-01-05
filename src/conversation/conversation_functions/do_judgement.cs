@@ -2,8 +2,7 @@ using System.Collections;
 
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
 
         /// <summary>
         /// Assesses the value of the offered trade.

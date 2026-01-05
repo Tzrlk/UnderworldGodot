@@ -1,15 +1,14 @@
 using System.Collections;
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         public static IEnumerator do_demand(uwObject talker)
         {
             //2 versions needed. uw1 does not check for selected items, uw2 does and has extra strings
 
-            switch (_RES)
+            switch ((byte)GameConfig.GameSelected)
             {
-                case GAME_UW2:
+                case (byte)Game.Uw2:
                     yield return do_demandUW2(talker);
                     break;
                 default:

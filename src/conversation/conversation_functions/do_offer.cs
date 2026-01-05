@@ -1,8 +1,7 @@
 using System.Collections;
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         public static IEnumerator do_offer()
         {
             //Get strings ids from the stack

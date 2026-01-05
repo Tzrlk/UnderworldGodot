@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         //The op codes for the vm.
         public const byte cnv_NOP = 0;
         public const byte cnv_OPADD = 1;

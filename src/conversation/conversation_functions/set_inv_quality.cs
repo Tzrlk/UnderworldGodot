@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         public static void set_inv_quality()
         {
             var index = GetConvoStackValueAtPtr(stackptr - 2);

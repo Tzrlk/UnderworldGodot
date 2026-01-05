@@ -4,8 +4,7 @@ using Peaky.Coroutines;
 namespace Underworld
 {
 
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         public static bool usingBablF;
         public static int[] bablf_array = new int[5];
 

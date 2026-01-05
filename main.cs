@@ -903,7 +903,7 @@ public partial class main : Node3D
 							{
 								//cutsplayer.PlayCutscene(0);//test  
 								//trigger.RunTimerTriggers();
-								if (UWClass._RES == UWClass.GAME_UW2)
+								if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
 								{
 									scd.ProcessSCDArk(1);
 								}

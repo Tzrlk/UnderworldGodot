@@ -3,8 +3,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class SpellCasting : UWClass
-    {
+    public partial class SpellCasting {
         /// <summary>
         /// Special extra spells
         /// </summary>
@@ -26,7 +25,7 @@ namespace Underworld
                     }
                 case 3://basilisk oil and bullfrog
                     {
-                        if (_RES==GAME_UW2)
+                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                         {
                             Hallucination();
                         }

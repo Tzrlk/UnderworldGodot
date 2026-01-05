@@ -5,8 +5,7 @@ namespace Underworld
     /// <summary>
     /// Object enchantment and spells. For spells cast by objects (exclude runic magic)
     /// </summary>
-    public class MagicEnchantment : UWClass
-    {
+    public class MagicEnchantment {
 
         public uwObject LinkedSpellObject;
         public int SpellMajorClass;
@@ -23,7 +22,7 @@ namespace Underworld
 
         public static bool IsPotion(uwObject obj, bool UW2Only = true)
         {
-            if (_RES==GAME_UW2)
+            if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
             {
                 return (obj.item_id>=224 && obj.item_id<=231);
             }

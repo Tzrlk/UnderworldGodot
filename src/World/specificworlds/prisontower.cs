@@ -3,8 +3,7 @@ namespace Underworld
     /// <summary>
     /// Specific code for the prison tower
     /// </summary>
-    public class prisontower:UWClass
-    {
+    public class prisontower {
 
         public static void PrisonTowerQuest60()
         {

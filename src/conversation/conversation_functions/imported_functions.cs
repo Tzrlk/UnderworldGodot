@@ -6,8 +6,7 @@ namespace Underworld
     /// <summary>
     /// Implementation note. When getting arguments for functions. Half the offset value compared to the stack offsets in the disassembly
     /// </summary>
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         public static IEnumerator run_imported_function(ConversationImports func, uwObject talker)
         {
             result_register = 0;

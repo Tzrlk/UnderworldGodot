@@ -3,8 +3,7 @@ using Peaky.Coroutines;
 
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         /// <summary>
         /// The NPC is talking
         /// </summary>

@@ -2,8 +2,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class scd : UWClass
-    {
+    public partial class scd {
         /// <summary>
         /// Changes the goal and goal target for set of NPCs.
         /// </summary>

@@ -2,8 +2,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class scd : UWClass
-    {
+    public partial class scd {
         public static void FindAndCloseDoors(byte[] currentblock, int eventOffset)
         {
             FindAndClose(currentblock[eventOffset+6]);

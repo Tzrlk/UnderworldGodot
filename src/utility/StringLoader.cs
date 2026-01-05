@@ -8,8 +8,7 @@ namespace Underworld
     /// <summary>
     /// Class for holding game strings and returning formatted strings and text
     /// </summary>
-    public class GameStrings : UWClass
-    {
+    public class GameStrings {
         //These are common strings that are different in UW1 and UW2
         public static int str_it_looks_to_be_that_of_ = 22;
         public static int str_they_look_to_be_those_of_ = 23;
@@ -277,7 +276,7 @@ namespace Underworld
 
         static GameStrings()
         {
-            LoadStringsPak(Path.Combine(BasePath, "DATA", "STRINGS.PAK"));
+            LoadStringsPak(Path.Combine(GameConfig.GamePath, "DATA", "STRINGS.PAK"));
         }
 
         /// <summary>
@@ -291,9 +290,9 @@ namespace Underworld
             EntryCounts = new Hashtable();
 
             //Set some default string numbers that are different from the default in uw2
-            switch (_RES)
+            switch ((byte)GameConfig.GameSelected)
             {
-                case GAME_UW2:
+                case (byte)Game.Uw2:
 
                     str_it_looks_to_be_that_of_ = 26;
                     str_they_look_to_be_those_of_ = 27;

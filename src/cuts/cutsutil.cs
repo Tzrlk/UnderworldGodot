@@ -3,8 +3,7 @@ using System.Collections.Generic;
 namespace Underworld
 {
 
-	public partial class cutsplayer : UWClass
-	{
+	public partial class cutsplayer {
         /// <summary>
         /// Calculates the correct file name to use with cutsno
         /// </summary>

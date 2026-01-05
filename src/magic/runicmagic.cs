@@ -7,8 +7,7 @@ namespace Underworld
     /// Runic magic spell lookup tables and logic. 
     /// For spells cast directly by the player.
     /// </summary>
-    public class RunicMagic : UWClass
-    {
+    public class RunicMagic {
         public static RunicMagic[] SpellList;
 
         public int SpellIndex;
@@ -50,7 +49,7 @@ namespace Underworld
             get
             {
                 var div = 6; 
-                if (_RES==GAME_UW2){div=8;}
+                if ((byte)GameConfig.GameSelected==(byte)Game.Uw2){div=8;}
                 
                 var result = 1 + (SpellIndex / div);
                 if (result > 8)
@@ -91,9 +90,9 @@ namespace Underworld
         }
         static RunicMagic()
         {
-            switch (_RES)
+            switch ((byte)GameConfig.GameSelected)
             {
-                case GAME_UW2:
+                case (byte)Game.Uw2:
                     SpellList = new RunicMagic[69];
                     SpellList[0] = new(0, 8, 1, 8599);
                     SpellList[1] = new(1, 3, 1, 1480);
@@ -291,7 +290,7 @@ namespace Underworld
         /// <returns></returns>
         public bool TestIfPlayerCanCastSpell()
         {
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 if (worlds.GetWorldNo(playerdat.dungeon_level) == 0)
                 {//check if spell is allowed in britannia
@@ -304,7 +303,7 @@ namespace Underworld
             }
             if (((playerdat.play_level + 1) / 2) < SpellLevel)
             {
-                if (_RES == GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     uimanager.AddToMessageScroll(GameStrings.GetString(1, 225)); //you are not experienced enough
                 }

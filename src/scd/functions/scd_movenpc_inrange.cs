@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class scd : UWClass
-    {
+    public partial class scd {
         /// <summary>
         /// Moves npc into the first valid spot in a range of tiles. Used when spawning Blog in the confrontation with Dorstag
         /// </summary>

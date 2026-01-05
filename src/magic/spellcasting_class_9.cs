@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class SpellCasting : UWClass
-    {
+    public partial class SpellCasting {
         /// <summary>
         /// Applies curse object damage
         /// Assumes it can only affect the player character.
@@ -21,14 +20,14 @@ namespace Underworld
             }
             if (CastOnEquip)
             {
-                if (_RES == GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     uimanager.AddToMessageScroll(GameStrings.GetString(1, 362));
                 }
             }
             else
             {
-                if (_RES == GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     uimanager.FlashColour(0x30, uimanager.Cuts3DWin, 0.1f);
                 }

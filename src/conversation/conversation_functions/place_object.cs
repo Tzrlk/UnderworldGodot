@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         public static void place_object(uwObject talker)
         {
             var index = at(at(stackptr - 3));

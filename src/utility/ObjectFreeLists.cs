@@ -3,8 +3,7 @@ namespace Underworld
     /// <summary>
     /// Class for managing the object free lists
     /// </summary>
-    public class ObjectFreeLists : UWClass
-    {
+    public class ObjectFreeLists {
         public enum ObjectListType
         {
             StaticList = 0,

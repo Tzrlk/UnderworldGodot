@@ -2,8 +2,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class scd : UWClass
-    {
+    public partial class scd {
 
         /// <summary>
         /// Changes tiles that match a texture to use a new texture and optionally raise the tile tile. Likely usage is to allow collapsing ice floors to refreeze

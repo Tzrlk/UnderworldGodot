@@ -9,7 +9,7 @@ namespace Underworld
         protected static byte[] buffer;
         static objectDat() 
         {
-             ReadStreamFile(Path.Combine(BasePath,"DATA","OBJECTS.DAT"), out buffer);
+             ReadStreamFile(Path.Combine(GameConfig.GamePath,"DATA","OBJECTS.DAT"), out buffer);
         }
     } //end class
 

@@ -2,8 +2,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public class special_effects: UWClass
-    {
+    public class special_effects {
         /// <summary>
         /// 2 = sound effect (specified by param)
         /// 4 = screenshake  (intensity specified by param)

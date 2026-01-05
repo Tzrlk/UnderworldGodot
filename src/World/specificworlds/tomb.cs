@@ -6,8 +6,7 @@ namespace Underworld
     /// <summary>
     /// Specific code for the tomb
     /// </summary>
-    public class tomb : UWClass
-    {
+    public class tomb {
         /// <summary>
         /// Handles killing of all undead in Loths tomb. TODO: this needs to be called when changing levels when quest 7 is set
         /// </summary>

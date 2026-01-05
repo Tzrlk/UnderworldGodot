@@ -28,7 +28,7 @@ namespace Underworld
         {
             //load buffer. then init tiles with their offsets
             int blockno;
-            if (gameNo == GAME_UW2) //this is weird. I had to pass gameno as a parm or otherwise this if-else would not work??
+            if (gameNo == (byte)Game.Uw2) //this is weird. I had to pass gameno as a parm or otherwise this if-else would not work??
             {
                 Debug.Print("UW2");
                 blockno = 160 + LevelNo;
@@ -70,7 +70,7 @@ namespace Underworld
         /// <returns></returns>
         public static bool CanMap(int dungeon)
         {
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 if (worlds.GetWorldNo(dungeon) == 8)
                 {

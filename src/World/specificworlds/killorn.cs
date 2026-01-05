@@ -4,8 +4,7 @@ namespace Underworld
     /// <summary>
     /// Specific code for the killorn
     /// </summary>
-    public class killorn:UWClass
-    {
+    public class killorn {
 
         public static void KilornIsCrashing(bool isEnteringLevel)
         {

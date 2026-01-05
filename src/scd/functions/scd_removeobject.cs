@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class scd : UWClass
-    {
+    public partial class scd {
         /// <summary>
         /// Removes object(s) specified by the filter from the map.
         /// </summary>

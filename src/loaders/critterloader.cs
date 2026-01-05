@@ -36,13 +36,13 @@ namespace Underworld
                 //load in both page files.
                 if (pass == 0)
                 {//CR{CRITTER file ID in octal}PAGE.N{Page}
-                    var toLoad = Path.Combine(BasePath, "CRIT", "CR" + critterIDO + "PAGE.N0" + pass);
+                    var toLoad = Path.Combine(GameConfig.GamePath, "CRIT", "CR" + critterIDO + "PAGE.N0" + pass);
                     ReadStreamFile(toLoad, out FilePage0);
                     spriteIndex = ReadPageFileUW1(FilePage0, critter_id, pass, spriteIndex, AuxPalNo);
                 }
                 else
                 {
-                    var toLoad = Path.Combine(BasePath, "CRIT", "CR" + critterIDO + "PAGE.N0" + pass);
+                    var toLoad = Path.Combine(GameConfig.GamePath, "CRIT", "CR" + critterIDO + "PAGE.N0" + pass);
                     ReadStreamFile(toLoad, out FilePage1);
                     bool LoadMod = Directory.Exists(toLoad);
                     ReadPageFileUW1(FilePage1, critter_id, pass, spriteIndex, AuxPalNo);
@@ -69,7 +69,7 @@ namespace Underworld
                 if ((int)getAt(PGMP, critter_id * 8 + i, 8) != 255)//Checks if a critter exists at this index in the page file.
                 {
                     string ExtractPageNoO = DecimalToOct(ExtractPageNo.ToString());
-                    string fileCrit = Path.Combine(BasePath, "CRIT", "CR" + critterIDO + "." + ExtractPageNoO);  // BasePath + sep + "CRIT" + sep + "CR" + critterIDO + "." + ExtractPageNoO;
+                    string fileCrit = Path.Combine(GameConfig.GamePath, "CRIT", "CR" + critterIDO + "." + ExtractPageNoO);  // BasePath + sep + "CRIT" + sep + "CR" + critterIDO + "." + ExtractPageNoO;
                     spriteIndex = ReadUW2PageFileData(palno, fileCrit, spriteIndex, paletteToUse);
                     ExtractPageNo++;
                 }
@@ -118,16 +118,16 @@ namespace Underworld
             //    xfer = new XFerLoader();
             //}
             //Load the assoc file
-            switch (_RES)
+            switch ((byte)GameConfig.GameSelected)
             {
-                case GAME_UW2:
+                case (byte)Game.Uw2:
                     ReadUW2AssocFile(CritterToLoad);
                     return;
-                case GAME_UWDEMO:
-                    ReadUw1AssocFile(CritterToLoad, Path.Combine(BasePath, "CRIT", "DASSOC.ANM"));
+                case (byte)Game.Uw0:
+                    ReadUw1AssocFile(CritterToLoad, Path.Combine(GameConfig.GamePath, "CRIT", "DASSOC.ANM"));
                     return;
                 default:
-                    ReadUw1AssocFile(CritterToLoad, Path.Combine(BasePath, "CRIT", "ASSOC.ANM"));
+                    ReadUw1AssocFile(CritterToLoad, Path.Combine(GameConfig.GamePath, "CRIT", "ASSOC.ANM"));
                     return;
             }
         }
@@ -154,9 +154,9 @@ namespace Underworld
             //Load the assoc file
             long AssocAddressPtr = 0;
             if (
-                            (ReadStreamFile(Path.Combine(BasePath, "CRIT", "AS.AN"), out byte[] assoc))
-                            && (ReadStreamFile(Path.Combine(BasePath, "CRIT", "PG.MP"), out byte[] pgmp))
-                            && (ReadStreamFile(Path.Combine(BasePath, "CRIT", "CR.AN"), out byte[] cran))
+                            (ReadStreamFile(Path.Combine(GameConfig.GamePath, "CRIT", "AS.AN"), out byte[] assoc))
+                            && (ReadStreamFile(Path.Combine(GameConfig.GamePath, "CRIT", "PG.MP"), out byte[] pgmp))
+                            && (ReadStreamFile(Path.Combine(GameConfig.GamePath, "CRIT", "CR.AN"), out byte[] cran))
                     )
             {
                 for (int ass = 0; ass <= 63; ass++)
@@ -373,7 +373,7 @@ namespace Underworld
 
         public static string GetAnimName (int animation, int angle)
         {
-            if(_RES==GAME_UW2)
+            if((byte)GameConfig.GameSelected==(byte)Game.Uw2)
             {
                 return GetUW2AnimName(animation,angle);
             }

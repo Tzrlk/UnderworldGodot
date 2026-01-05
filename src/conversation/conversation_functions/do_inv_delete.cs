@@ -2,8 +2,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {   
+    public partial class ConversationVM {   
         public static void do_inv_delete(uwObject talker)
         {
             var arg0 = at(at(stackptr-1));

@@ -115,7 +115,7 @@ namespace Underworld
             }
             else
             {
-                if (_RES == GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     d.texture = a_tilemap.texture_map[64 + (obj.item_id & 0x7)];
                 }
@@ -234,7 +234,7 @@ namespace Underworld
                     doorInstance.doorNode.Rotate(Vector3.Up, GetRadiansForIndex(obj, 0, obj.doordir));
                 }
             }
-            if ((obj.link != 0) && (_RES == GAME_UW2))
+            if ((obj.link != 0) && ((byte)GameConfig.GameSelected == (byte)Game.Uw2))
             {
                 // trigger.CloseTrigger(obj.uwobject, obj.uwobject.link, UWTileMap.current_tilemap.LevelObjects);
                 trigger.TriggerObjectLink(
@@ -334,7 +334,7 @@ namespace Underworld
 
         public static bool LookAt(uwObject doorobject)
         {
-            if (_RES != GAME_UW2)
+            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
             {
                 if ((doorobject.owner & 0x1) == 1)
                 {
@@ -870,7 +870,7 @@ namespace Underworld
         {
             if (isPortcullis(this.uwobject))
             {
-                if (_RES == GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return 83;
                 }

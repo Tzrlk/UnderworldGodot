@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         public static void length()
         {
             var stringaddress =  GetConvoStackValueAtPtr(stackptr - 1);           

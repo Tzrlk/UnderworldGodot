@@ -2,8 +2,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class scd:UWClass
-    {
+    public partial class scd {
         public static int ChangeQuest(byte[] currentblock, int eventOffset)
         {
             Debug.Print ("Change Quest in SCD");

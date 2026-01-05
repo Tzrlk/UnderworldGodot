@@ -5,8 +5,7 @@ namespace Underworld
     /// <summary>
     /// Run SCD.ARK Function Calls
     /// </summary>
-    public partial class scd : UWClass
-    {
+    public partial class scd {
         public static int RunSCDFunction(byte[] currentblock, int eventOffset)
         {            
             Debug.Print($"Running SCD function {currentblock[eventOffset + 4]} at {eventOffset}");

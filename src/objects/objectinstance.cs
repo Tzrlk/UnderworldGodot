@@ -4,8 +4,7 @@ namespace Underworld
     /// <summary>
     /// Blank class for managing instances of objects.
     /// </summary>
-    public abstract class objectInstance : UWClass
-    {
+    public abstract class objectInstance {
         /// <summary>
         /// Reference to the uwobject that this is an instance of.
         /// </summary>

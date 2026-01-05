@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class scd : UWClass
-    {
+    public partial class scd {
         /// <summary>
         /// A bit of a mouthfull but this checks an NPC's xy home againsts the params and if matching will update a quest variable. Used with the Troll in the prison tower
         /// </summary>

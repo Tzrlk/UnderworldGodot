@@ -38,7 +38,7 @@ namespace Underworld
 			instance.scroll.OutputControl = new RichTextLabel[] { MessageScroll };
 
 			instance.convo = new();
-			if (UWClass._RES == UWClass.GAME_UW2)
+			if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
 			{
 				instance.convo.Lines = new MessageScrollLine[12];
 				instance.convo.Rows = 12;
@@ -63,9 +63,9 @@ namespace Underworld
 		{
 			get
 			{
-				switch (UWClass._RES)
+				switch ((byte)GameConfig.GameSelected)
 				{
-					case UWClass.GAME_UW2:
+					case (byte)Game.Uw2:
 						return instance.messageScrollUW2;
 					default:
 						return instance.messageScrollUW1;

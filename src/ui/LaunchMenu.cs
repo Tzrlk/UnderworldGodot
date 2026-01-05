@@ -43,18 +43,18 @@ public partial class LaunchMenu : Control {
 		PathUW2.Text = _uwSettings.pathuw2;
 
 		// Set the initial focus selection.
-		switch (UWClass._RES)
+		switch (GameConfig.GameSelected)
 		{
-			case UWClass.GAME_UWDEMO:
-			case UWClass.GAME_UW1:
+			case Game.Uw0:
+			case Game.Uw1:
 				SelectUW1.GrabFocus();
 				break;
-			case UWClass.GAME_UW2:
+			case Game.Uw2:
 				SelectUW2.GrabFocus();
 				break;
 			default:
 				// Non-blocking at this point. Just notify and do no more.
-				GD.PushError("Invalid game path selection: ", UWClass._RES);
+				GD.PushError("Invalid game path selection: ", (byte)GameConfig.GameSelected);
 				return;
 		}
 
@@ -83,18 +83,18 @@ public partial class LaunchMenu : Control {
 		Debug.Print($"OnPathInput: {@event}");
 
 		// Select which path we're going to edit.
-		UWClass._RES = (byte)selection;
-		switch (UWClass._RES)
+		GameConfig.GameSelected = (Game)selection;
+		switch (GameConfig.GameSelected)
 		{
-			case UWClass.GAME_UWDEMO:
-			case UWClass.GAME_UW1:
+			case Game.Uw0:
+			case Game.Uw1:
 				GameFilesSelector.CurrentPath = PathUW1.Text;
 				GameFilesSelector.CurrentDir = PathUW1.Text;
 				GameFilesSelector.Filters = [
 					"uw.exe;Stygian Abyss",
 				];
 				break;
-			case UWClass.GAME_UW2:
+			case Game.Uw2:
 				GameFilesSelector.CurrentPath = PathUW2.Text;
 				GameFilesSelector.CurrentDir = PathUW2.Text;
 				GameFilesSelector.Filters = [
@@ -124,22 +124,22 @@ public partial class LaunchMenu : Control {
 		// Save the selected directory back, and clear the selection for
 		// no good reason in particular.
 		var selectedDir = System.IO.Path.GetDirectoryName(path);
-		switch (UWClass._RES)
+		switch (GameConfig.GameSelected)
 		{
-			case UWClass.GAME_UWDEMO:
-			case UWClass.GAME_UW1:
+			case Game.Uw0:
+			case Game.Uw1:
 				PathUW1.Text = selectedDir;
 				_uwSettings.pathuw1 = selectedDir;
 				_uwSettings.Save();
 				break;
-			case UWClass.GAME_UW2:
+			case Game.Uw2:
 				PathUW2.Text = selectedDir;
 				_uwSettings.pathuw2 = selectedDir;
 				_uwSettings.Save();
 				break;
 			default:
 				// Non-blocking at this point. Just notify and do no more.
-				GD.PushError("Invalid game selection: ", UWClass._RES);
+				GD.PushError("Invalid game selection: ", (byte)GameConfig.GameSelected);
 				break;
 		}
 
@@ -165,23 +165,7 @@ public partial class LaunchMenu : Control {
 		Debug.Print($"OnPathInput: {@event}");
 
 		// Update settings and the current state.
-		UWClass._RES = (byte)selection;
-		switch (UWClass._RES)
-		{
-			case UWClass.GAME_UWDEMO:
-			case UWClass.GAME_UW1:
-				UWClass.BasePath = _uwSettings.pathuw1;
-				_uwSettings.gametoload = "UW1";
-				break;
-			case UWClass.GAME_UW2:
-				UWClass.BasePath = _uwSettings.pathuw2;
-				_uwSettings.gametoload = "UW2";
-				break;
-			default:
-				// Non-blocking at this point. Just notify and do no more.
-				GD.PushError("Invalid game path selection: ", selection);
-				return;
-		}
+		GameConfig.GameSelected = (Game)selection;
 
 		// Save any changes to our settings.
 		_uwSettings.Save();

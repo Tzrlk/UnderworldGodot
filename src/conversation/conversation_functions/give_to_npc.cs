@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         public static void give_to_npc(uwObject talker)
         {
             var CountItems_arg1 = GetConvoStackValueAtPtr(stackptr - 2);//how many items to get

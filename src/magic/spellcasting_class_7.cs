@@ -2,12 +2,11 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class SpellCasting : UWClass
-    {
+    public partial class SpellCasting {
         //targeted spells
         public static void CastClass7_SpellsOnCallBack(int minorclass, int index, uwObject[] objList, uwObject caster, bool WorldObject = true)
         {
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 switch (minorclass)
                 {
@@ -404,7 +403,7 @@ namespace Underworld
         {
             var obj = objList[index];
 
-            if ((obj.item_id != 0x13) && (_RES==GAME_UW2))//skull check is uw2 only
+            if ((obj.item_id != 0x13) && ((byte)GameConfig.GameSelected==(byte)Game.Uw2))//skull check is uw2 only
             {
                 if (obj.majorclass == 1)
                 {
@@ -460,7 +459,7 @@ namespace Underworld
             var critter = objList[index];
             if (critter != null)
             {
-                if (_RES == GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     int castscore;
                     if (caster == playerdat.playerObject)//player has cast

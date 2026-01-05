@@ -35,7 +35,7 @@ namespace Underworld
 
         public CutsLoader(string File)
         {
-            filePath = Path.Combine(BasePath, "CUTS", File.ToUpper());
+            filePath = Path.Combine(GameConfig.GamePath, "CUTS", File.ToUpper());
             _alpha = UseAlpha(File);
             if (LoadImageFile())
             {
@@ -355,7 +355,7 @@ namespace Underworld
         /// <returns></returns>
         bool SkipImage(string file, int frame)
         {
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 switch(file.ToUpper())
                 {

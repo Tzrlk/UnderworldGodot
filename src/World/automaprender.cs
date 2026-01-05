@@ -1,8 +1,7 @@
 using Godot;
 namespace Underworld
 {
-    public class AutomapRender : UWClass
-    {
+    public class AutomapRender {
         /// <summary>
         /// No of pixels wide or tall a tile is draw at.
         /// </summary>

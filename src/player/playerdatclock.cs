@@ -14,7 +14,7 @@ namespace Underworld
         {
             get
             {
-                if (_RES == GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return GetAt32(0x36A);
                 }
@@ -25,7 +25,7 @@ namespace Underworld
             }
             set
             {
-                if (_RES==GAME_UW2)
+                if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                 {
                     SetAt32(0x36A, value);
                 }

@@ -4,8 +4,7 @@ using System.Runtime.Serialization;
 
 namespace Underworld
 {
-    public partial class trigger : UWClass
-    {
+    public partial class trigger {
         /// <summary>
         /// test and debug index for testing scheduled triggers
         /// </summary>
@@ -92,7 +91,7 @@ namespace Underworld
                                             ptrListHead: tile.Ptr + 2);
                                     }
                                     //if uw2 test for pressure triggers
-                                    if (_RES == GAME_UW2)
+                                    if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                                     {
                                         if ((triggerType & 0xF07) == 7)
                                         {
@@ -267,7 +266,7 @@ namespace Underworld
         /// </summary>
         public static void RunTimerTriggers()
         {
-            if (_RES != GAME_UW2) { return; }
+            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2) { return; }
             for (int i = 256; i <= UWTileMap.current_tilemap.LevelObjects.GetUpperBound(0); i++)
             {
                 //if (i==884)
@@ -290,7 +289,7 @@ namespace Underworld
         /// </summary>
         public static void RunNextScheduledTrigger()
         {
-            if (_RES != GAME_UW2) { return; }
+            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2) { return; }
             if ((scheduledtriggerindex < 256) || (scheduledtriggerindex >= 1024))
             {
                 scheduledtriggerindex = 256;

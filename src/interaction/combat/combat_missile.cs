@@ -6,13 +6,12 @@ namespace Underworld
     /// <summary>
     /// Class for interactions involving missile combat and projectile spell hits
     /// </summary>
-    public partial class combat : UWClass
-    {
+    public partial class combat {
         public static void MissileImpact(uwObject projectile, uwObject objectHit)
         {
             var diDamageMultipler = 1;
             Debug.Print($"Missile impact {projectile.a_name} on {objectHit.a_name}");
-            if (_RES==GAME_UW2 && projectile.item_id == 0x1E)
+            if ((byte)GameConfig.GameSelected==(byte)Game.Uw2 && projectile.item_id == 0x1E)
             {
                 //projectile is a UW2 Satellite
                 if (projectile.ProjectileSourceID == objectHit.index)

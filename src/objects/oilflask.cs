@@ -66,7 +66,7 @@ namespace Underworld
                 case 0x94:
                 case 0x95:
                     {
-                        if (_RES == GAME_UW2)
+                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                             {
                                 uimanager.AddToMessageScroll(GameStrings.GetString(1, stringno + 193));//oil on flame warning
                             }
@@ -89,7 +89,7 @@ namespace Underworld
         {
             if (targetObject.quality == 63)
             {
-                if (_RES == GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     uimanager.AddToMessageScroll(GameStrings.GetString(1, stringno + 195));//already full message
                 }
@@ -101,7 +101,7 @@ namespace Underworld
             else
             {
                 targetObject.quality = (short)Math.Min(targetObject.quality + 32, 63);
-                if (_RES == GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     uimanager.AddToMessageScroll(GameStrings.GetString(1, stringno + 194));//refresh light message
                 }

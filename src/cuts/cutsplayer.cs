@@ -9,8 +9,7 @@ namespace Underworld
     /// <summary>
     /// The main virtual machine for running the cutscenes
     /// </summary>
-    public partial class cutsplayer : UWClass
-	{       
+    public partial class cutsplayer {       
 
         static int FrameNo = 0;
         static bool FullScreen;
@@ -36,7 +35,7 @@ namespace Underworld
             {
                 FullScreen = true;
             }
-            if (_RES==GAME_UW2)
+            if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
             {
                 if (CutsceneNo == 2)
                 {
@@ -64,7 +63,7 @@ namespace Underworld
             //Read the .N00 control file
             if (Loader.ReadStreamFile(
                 System.IO.Path.Combine(
-                    BasePath, "CUTS", GetsCutsceneFileName(CutsceneNo,0)
+                    GameConfig.GamePath, "CUTS", GetsCutsceneFileName(CutsceneNo,0)
                     ), out byte[] CutsData)
                 )
             {
@@ -101,7 +100,7 @@ namespace Underworld
 
             //Art file.
             CutsLoader cuts = null;
-            var defaultFirstFile = System.IO.Path.Combine(BasePath, "CUTS", GetsCutsceneFileName(CutsceneNo,1));
+            var defaultFirstFile = System.IO.Path.Combine(GameConfig.GamePath, "CUTS", GetsCutsceneFileName(CutsceneNo,1));
             //Open the .n01 file for this cutscene first if it exists so some image data is available.
             if (System.IO.File.Exists(defaultFirstFile))
             {
@@ -184,7 +183,7 @@ namespace Underworld
                         {
                             Debug.Print($"Open {GetsCutsceneFileName(cmd.functionParams[0],cmd.functionParams[1])}");
                             cuts = new CutsLoader(System.IO.Path.Combine(
-                                BasePath, "CUTS", GetsCutsceneFileName(cmd.functionParams[0],cmd.functionParams[1])));
+                                GameConfig.GamePath, "CUTS", GetsCutsceneFileName(cmd.functionParams[0],cmd.functionParams[1])));
                             FrameNo = 0;
                             FrameWait = 0;
                             break;
@@ -198,7 +197,7 @@ namespace Underworld
                                 Debug.Print($"Play .voc audio {cmd.functionParams[2]}");
                                 var sound = vocLoader.Load(
                                     System.IO.Path.Combine(
-                                        BasePath,
+                                        GameConfig.GamePath,
                                         "SOUND",
                                         $"{cmd.functionParams[2]:0#}.VOC"));
                                 if (sound!=null)

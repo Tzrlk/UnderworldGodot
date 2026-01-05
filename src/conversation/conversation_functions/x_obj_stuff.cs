@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class ConversationVM:UWClass
-    {
+    public partial class ConversationVM {
         /// <summary>
         /// Performs arbitary operations on an object
         /// </summary>
@@ -40,7 +39,7 @@ namespace Underworld
                     }
                     if (link!=-1)
                     {
-                        if (_RES==GAME_UW2)
+                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                         {
                             Set(at(stackptr-4),obj.link);
                         }
@@ -81,7 +80,7 @@ namespace Underworld
                     }
                     if (link!=-1)
                     {
-                        if (_RES==GAME_UW2)
+                        if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                         {
                             obj.link = link;
                         }

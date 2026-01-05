@@ -746,9 +746,9 @@ namespace Underworld
         public static bool ValidObjectForSlot(int slot, uwObject obj)
         {//TODO: this should respect objects.dat settings
             //test game specific special objects
-            switch (UWClass._RES)
+            switch ((byte)GameConfig.GameSelected)
             {
-                case UWClass.GAME_UW2:
+                case (byte)Game.Uw2:
                     {
                         switch (obj.item_id)
                         {

@@ -20,7 +20,7 @@ namespace Underworld
 
         static int GetBlockAddress(int blockno, byte[] buffer)
         {
-            if (_RES==GAME_UW2)
+            if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
             {
                 return (int)getAt(buffer, 6 + (blockno * 4), 32);
             }
@@ -35,7 +35,7 @@ namespace Underworld
             int noOfPossibleBlocks; 
             int thisAddress;        
             int startblock;
-            if (gameNo == GAME_UW2)
+            if (gameNo == (byte)Game.Uw2)
             {
                 blockno = 240 + LevelNo;
                 noOfPossibleBlocks = 80;  
@@ -100,8 +100,7 @@ namespace Underworld
             }
         }    
 
-        public class mapnotetext:UWClass
-        {
+        public class mapnotetext {
             public string notetext;
             public int posX; 
             public int posY;

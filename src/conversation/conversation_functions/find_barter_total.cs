@@ -3,8 +3,7 @@ using System.Diagnostics;
 namespace Underworld
 {
 
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         /// <summary>
         /// Finds all matches and total quantity of a matching item.
         /// </summary>

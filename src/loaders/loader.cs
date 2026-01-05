@@ -7,8 +7,7 @@ namespace Underworld
     /// <summary>
     /// Base class for loading data
     /// </summary>
-    public class Loader:UWClass
-    {
+    public class Loader {
 
         public string filePath;//To the file relative to the root of the game folder
         public bool DataLoaded;

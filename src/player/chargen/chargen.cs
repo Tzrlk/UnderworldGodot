@@ -275,8 +275,8 @@ namespace Underworld
         /// </summary>
         static void InitChargenFiles()
         {
-            var path_chargen = Path.Combine(BasePath, "DATA", "CHRGEN.DAT");
-            var path_skills = Path.Combine(BasePath, "DATA", "SKILLS.DAT");
+            var path_chargen = Path.Combine(GameConfig.GamePath, "DATA", "CHRGEN.DAT");
+            var path_skills = Path.Combine(GameConfig.GamePath, "DATA", "SKILLS.DAT");
 
             if (File.Exists(path_chargen) && File.Exists(path_skills))
             {

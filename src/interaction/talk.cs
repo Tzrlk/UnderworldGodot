@@ -3,8 +3,7 @@ namespace Underworld
     /// <summary>
     /// Class for interactions involving the talk verb
     /// </summary>
-    public class talk : UWClass
-    {
+    public class talk {
         public static bool Talk(uwObject ObjectUsed, bool WorldObject = true)
         {
             if (ObjectUsed != null)
@@ -20,7 +19,7 @@ namespace Underworld
                         }
                     default:
                         {
-                            if (_RES == GAME_UW2)
+                            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                             {
                                 if (ObjectUsed.item_id == 461)
                                 {//a wisp, which is a static object in UW2

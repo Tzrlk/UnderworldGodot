@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class combat : UWClass
-    {
+    public partial class combat {
         private static void CastOnWeaponHitSpells()
         {
             if (DefendingCharacter == null)

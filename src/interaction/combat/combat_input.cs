@@ -8,8 +8,7 @@ namespace Underworld
     /// <summary>
     /// Class for combat calculations.
     /// </summary>
-    public partial class combat : UWClass
-    {
+    public partial class combat {
         /// <summary>
         /// Get how fast the charge builds up for the weapon
         /// </summary>
@@ -255,7 +254,7 @@ namespace Underworld
                             CalculatePlayerAttackScores();
 
                             ExecuteAttack(playerdat.playerObject);
-                            if (_RES == GAME_UW2)
+                            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                             {
                                 if (OnHitSpell > 0)
                                 {
@@ -299,7 +298,7 @@ namespace Underworld
             //remove ammo from inventory
             var PlayerLaunched = true;
 
-            if ((_RES == GAME_UW2) && (
+            if (((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (
                 (RangedWeaponSubclass == 8) || (RangedWeaponSubclass == 9) || (RangedWeaponSubclass == 0xA)
             ))
             {

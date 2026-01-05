@@ -7,8 +7,7 @@ namespace Underworld
     /// For call back area effect code/events that take place over a range of tiles, list of objects
     /// </summary>
     /// EG Flagging trespass, homing dart targeting, theft
-    public class CallBacks : UWClass
-    {
+    public class CallBacks {
 
         public delegate bool AreaEffectCallBack(int x, int y, uwObject obj, TileInfo tile, int srcIndex);
         public delegate bool UWObjectCallBackWithoutParams(uwObject obj);

@@ -2,14 +2,13 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class SpellCasting : UWClass
-    {
+    public partial class SpellCasting {
         static int[] UW2MagicProjectileIDs = new int[] { 7, 5, 4, 6, 0xb, 0xc };//magicarrow,lightning,fireball,acid, homing dart,snowball
         static int[] UW1MagicProjectileIDs = new int[] { 7, 5, 4, 6 };// to confirm
         public static void CastMagicProjectile(uwObject caster, int minorclass)
         {
             int spellProjectileID;
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 spellProjectileID = UW2MagicProjectileIDs[minorclass - 1];
             }

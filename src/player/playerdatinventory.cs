@@ -134,7 +134,7 @@ namespace Underworld
         public static int GetInventorySlotListHead(int slot)
         {
             int startOffset = 0xF8;
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 startOffset = 0x3A3;
             }
@@ -144,7 +144,7 @@ namespace Underworld
         public static int GetInventorySlotListHeadOffset(int slot)
         {
             int startOffset = 0xF8;
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 startOffset = 0x3A3;
             }
@@ -161,7 +161,7 @@ namespace Underworld
         {
             value = value << 6;
             int startOffset = 0xF8;
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 startOffset = 0x3A3;
             }
@@ -178,9 +178,9 @@ namespace Underworld
         {
             get
             {
-                switch (_RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UW2:
+                    case (byte)Game.Uw2:
                         return GetAt16(0x3A3) >> 6;
                     default:
                         return GetAt16(0xF8) >> 6;
@@ -188,9 +188,9 @@ namespace Underworld
             }
             set
             {
-                switch (_RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UW2:
+                    case (byte)Game.Uw2:
                         SetAt16(0x3A3, value << 6); break;
                     default:
                         SetAt16(0xF8, value << 6); break;
@@ -218,9 +218,9 @@ namespace Underworld
         {
             get
             {
-                switch (_RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UW2:
+                    case (byte)Game.Uw2:
                         return GetAt16(0x3A5) >> 6;
                     default:
                         return GetAt16(0xFA) >> 6;
@@ -248,9 +248,9 @@ namespace Underworld
         {
             get
             {
-                switch (_RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UW2:
+                    case (byte)Game.Uw2:
                         return GetAt16(0x3A7) >> 6;
                     default:
                         return GetAt16(0xFC) >> 6;
@@ -278,9 +278,9 @@ namespace Underworld
         {
             get
             {
-                switch (_RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UW2:
+                    case (byte)Game.Uw2:
                         return GetAt16(0x3A9) >> 6;
                     default:
                         return GetAt16(0xFE) >> 6;
@@ -308,9 +308,9 @@ namespace Underworld
         {
             get
             {
-                switch (_RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UW2:
+                    case (byte)Game.Uw2:
                         return GetAt16(0x3AB) >> 6;
                     default:
                         return GetAt16(0x100) >> 6;
@@ -339,9 +339,9 @@ namespace Underworld
         {
             get
             {
-                switch (_RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UW2:
+                    case (byte)Game.Uw2:
                         return GetAt16(0x3AD) >> 6;
                     default:
                         return GetAt16(0x102) >> 6;
@@ -369,9 +369,9 @@ namespace Underworld
         {
             get
             {
-                switch (_RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UW2:
+                    case (byte)Game.Uw2:
                         return GetAt16(0x3AF) >> 6;
                     default:
                         return GetAt16(0x104) >> 6;
@@ -398,9 +398,9 @@ namespace Underworld
         {
             get
             {
-                switch (_RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UW2:
+                    case (byte)Game.Uw2:
                         return GetAt16(0x3B1) >> 6;
                     default:
                         return GetAt16(0x106) >> 6;
@@ -427,9 +427,9 @@ namespace Underworld
         {
             get
             {
-                switch (_RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UW2:
+                    case (byte)Game.Uw2:
                         return GetAt16(0x3B3) >> 6;
                     default:
                         return GetAt16(0x108) >> 6;
@@ -477,9 +477,9 @@ namespace Underworld
         {
             get
             {
-                switch (_RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UW2:
+                    case (byte)Game.Uw2:
                         return GetAt16(0x3B5) >> 6;
                     default:
                         return GetAt16(0x10A) >> 6;
@@ -502,9 +502,9 @@ namespace Underworld
         {
             get
             {
-                switch (_RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UW2:
+                    case (byte)Game.Uw2:
                         return GetAt16(0x3B7) >> 6;
                     default:
                         return GetAt16(0x10C) >> 6;
@@ -525,9 +525,9 @@ namespace Underworld
 
         public static int BackPack(int slot)
         {
-            switch (_RES)
+            switch ((byte)GameConfig.GameSelected)
             {
-                case GAME_UW2:
+                case (byte)Game.Uw2:
                     return GetAt16(0x3B9 + slot * 2) >> 6;
                 default:
                     return GetAt16(0x10E + slot * 2) >> 6;

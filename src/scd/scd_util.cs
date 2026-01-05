@@ -6,8 +6,7 @@ namespace Underworld
     /// <summary>
     /// Utility functions for SCD.ARK
     /// </summary>
-    public partial class scd:UWClass
-    {
+    public partial class scd {
         public static UWBlock[] scd_data;//15 blocks of scd data
 
         /// <summary>
@@ -22,7 +21,7 @@ namespace Underworld
         /// <returns>True if file exists and read.</returns>
         static bool LoadSCDBlock(int blockno)
         {
-            var path = Path.Combine(BasePath, playerdat.currentfolder, "SCD.ARK");
+            var path = Path.Combine(GameConfig.GamePath, playerdat.currentfolder, "SCD.ARK");
             if (File.Exists(path))
             {
                 var data = File.ReadAllBytes(path);

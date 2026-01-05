@@ -2,8 +2,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public  partial class SpellCasting : UWClass
-    {
+    public  partial class SpellCasting {
 
         /// <summary>
         /// Casts spells from enchanted equipment. Not all spells will cast from here.
@@ -77,7 +76,7 @@ namespace Underworld
                     }
                 case 0xD:
                     {
-                        if (_RES!=GAME_UW2)
+                        if ((byte)GameConfig.GameSelected!=(byte)Game.Uw2)
                         {
                             switch(minorclass)
                             {

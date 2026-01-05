@@ -8,8 +8,7 @@ namespace Underworld
     /// <summary>
     /// For drawing the level map. It works somehow..
     /// </summary>
-    public class tileMapRender : UWClass
-    {
+    public class tileMapRender {
 
         public static Node3D worldnode;
         const int TILE_SOLID = 0;
@@ -797,9 +796,9 @@ namespace Underworld
         public static int FloorTexture_MapIndex(TileInfo t)
         {
             int floorTexture;
-            switch (_RES)
+            switch ((byte)GameConfig.GameSelected)
             {
-                case GAME_UW2:
+                case (byte)Game.Uw2:
                     floorTexture = t.floorTexture; //t.map.texture_map[t.floorTexture];
                     break;
                 default:

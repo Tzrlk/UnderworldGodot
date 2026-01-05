@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {   
+    public partial class ConversationVM {   
         public static void do_inv_create(uwObject talker)
         {
             var arg0 = at(at(stackptr-1));

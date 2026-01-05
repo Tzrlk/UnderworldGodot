@@ -3,8 +3,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class trigger : UWClass
-    {
+    public partial class trigger {
         static short TotalWeight = 0;
 
         /// <summary>

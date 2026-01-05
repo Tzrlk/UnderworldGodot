@@ -4,8 +4,7 @@ using Peaky.Coroutines;
 namespace Underworld
 {
 
-    public partial class ConversationVM : UWClass
-    {       
+    public partial class ConversationVM {       
         public static int MaxAnswer;
         public static IEnumerator babl_menu()
         {

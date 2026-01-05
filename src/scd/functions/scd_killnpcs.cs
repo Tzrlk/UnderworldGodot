@@ -2,8 +2,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class scd : UWClass
-    {
+    public partial class scd {
         static int KillNPCs(byte[] currentblock, int eventOffset)
         {
             Debug.Print("Kill NPCS in SCD");

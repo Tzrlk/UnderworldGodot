@@ -2,8 +2,7 @@ using System.Diagnostics;
 using Godot;
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         public static uwObject currentTalker;
         public static void StartConversation(uwObject talker)
         {
@@ -12,12 +11,12 @@ namespace Underworld
             //Try and load the conversation from the ark files.
             if (!cnvArkLoader.Loaded)
             {
-                switch (_RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UW2:
-                        cnvArkLoader.LoadCnvArkUW2(System.IO.Path.Combine(BasePath, "DATA", "CNV.ARK")); break;
+                    case (byte)Game.Uw2:
+                        cnvArkLoader.LoadCnvArkUW2(System.IO.Path.Combine(GameConfig.GamePath, "DATA", "CNV.ARK")); break;
                     default:
-                        cnvArkLoader.LoadCnvArkUW1(System.IO.Path.Combine(BasePath, "DATA", "CNV.ARK")); break;
+                        cnvArkLoader.LoadCnvArkUW1(System.IO.Path.Combine(GameConfig.GamePath, "DATA", "CNV.ARK")); break;
                 }
             }
 
@@ -66,7 +65,7 @@ namespace Underworld
         private static void SetupConversationUI(uwObject talker)
         {
 
-            if (_RES==GAME_UW2)
+            if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
             {//set up the unique ui for uw2 conversations
                 uimanager.instance.mainwindowUW2.Texture = uimanager.bitmaps.LoadImageAt(BytLoader.CONV_BYT, false);
                 for (int i=0; i<=uimanager.instance.SelectedRunes.GetUpperBound(0);i++)
@@ -104,8 +103,8 @@ namespace Underworld
             
             var head = new GRLoader(GRLoader.HEADS_GR, GRLoader.GRShaderMode.UIShader);
             //set up relevant UI
-            uimanager.EnableDisable(uimanager.instance.ConversationPanelUW1, _RES!=GAME_UW2);
-            uimanager.EnableDisable(uimanager.instance.ConversationPanelUW2, _RES == GAME_UW2);
+            uimanager.EnableDisable(uimanager.instance.ConversationPanelUW1, (byte)GameConfig.GameSelected!=(byte)Game.Uw2);
+            uimanager.EnableDisable(uimanager.instance.ConversationPanelUW2, (byte)GameConfig.GameSelected == (byte)Game.Uw2);
 
             //Player name and portrait
             if (playerdat.isFemale)
@@ -153,7 +152,7 @@ namespace Underworld
             else
             {
                 conversationNo = talker.npc_whoami;
-                if (_RES == GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     conversationNo++;
                 }
@@ -171,9 +170,9 @@ namespace Underworld
             //Assume generic head first.
 
             bool UseGenericHead = true;
-            switch (_RES)
+            switch ((byte)GameConfig.GameSelected)
             {
-                case GAME_UW2:
+                case (byte)Game.Uw2:
                     if (whoami != 0)
                     {
                         UseGenericHead = false;
@@ -196,7 +195,7 @@ namespace Underworld
             else
             {
                 var chead = new GRLoader(GRLoader.CHARHEAD_GR, GRLoader.GRShaderMode.UIShader);
-                if (_RES == GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {//some special portrait cases due to weirdness with charhead.gr
                     switch (whoami)
                     {

@@ -17,7 +17,7 @@ namespace Underworld
         static objectCombination()
         {
             byte[] buffer;
-            ReadStreamFile(System.IO.Path.Combine(BasePath, "DATA", "CMB.DAT"), out buffer);
+            ReadStreamFile(System.IO.Path.Combine(GameConfig.GamePath, "DATA", "CMB.DAT"), out buffer);
             {
                 int add_ptr = 0;
                 for (int i = 0; i < 10; i++)

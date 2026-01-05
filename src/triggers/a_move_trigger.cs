@@ -1,8 +1,7 @@
 using Godot;
 namespace Underworld
 {
-    public partial class trigger:UWClass
-    {
+    public partial class trigger {
         public static bool CreateMoveTrigger(uwObject obj, Node3D parent)
         {
             // var h = ((float)commonObjDat.height(obj.item_id)/128f)  * 0.15f;

@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class ConversationVM:UWClass
-    {
+    public partial class ConversationVM {
         /// <summary>
         /// Returns a random number
         /// </summary>

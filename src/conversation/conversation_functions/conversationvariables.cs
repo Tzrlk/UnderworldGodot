@@ -2,8 +2,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-	{
+    public partial class ConversationVM {
 
 		/// <summary>
 		/// Import the variables from bglobals and the characters.

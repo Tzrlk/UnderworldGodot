@@ -4,8 +4,7 @@ namespace Underworld
     /// Levels in Underworld are classified into "worlds". In UW1 simply each level is a world. In UW2 each block of 8 levels is it's own world
     /// This is relevant for how skill checks work
     /// </summary>
-    public class worlds:UWClass
-    {
+    public class worlds {
         public enum UW1_Dungeons
         {
             EntranceLevel = 1,
@@ -102,9 +101,9 @@ namespace Underworld
         /// <returns></returns>
         public static int GetWorldNo(int dungeonlevel)
         {            
-            switch(_RES)
+            switch((byte)GameConfig.GameSelected)
             {
-                case GAME_UW2:
+                case (byte)Game.Uw2:
                     return (dungeonlevel - 1)/8;
                 default:
                     return dungeonlevel;

@@ -1,8 +1,7 @@
 namespace Underworld
 {
 
-    public  partial class SpellCasting : UWClass
-    {
+    public  partial class SpellCasting {
         /// <summary>
         /// Healing spells
         /// </summary>

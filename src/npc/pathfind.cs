@@ -7,8 +7,7 @@ namespace Underworld
     /// <summary>
     /// Functions related to pathfinding
     /// </summary>
-    public class Pathfind : UWClass
-    {
+    public class Pathfind {
         public static int MaybeMaxTravelDistance_dseg_67d6_2272;
         public static int MaybePathIndexOrLength_dseg_67d6_225A;
 
@@ -105,7 +104,7 @@ namespace Underworld
 
             PathFindingData49.pathfindmap49 = new byte[0x5000];
             var LikelyPathFindRange_var22 = 5;
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 if (worlds.GetWorldNo(playerdat.dungeon_level) == 0)
                 {

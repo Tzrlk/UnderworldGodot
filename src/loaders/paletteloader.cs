@@ -38,9 +38,9 @@ namespace Underworld
 
         static PaletteLoader()
         {
-            var path_pals = System.IO.Path.Combine(BasePath, "DATA", "PALS.DAT");
-            var path_light = System.IO.Path.Combine(BasePath, "DATA", "LIGHT.DAT");
-            var path_mono = System.IO.Path.Combine(BasePath, "DATA", "MONO.DAT");
+            var path_pals = System.IO.Path.Combine(GameConfig.GamePath, "DATA", "PALS.DAT");
+            var path_light = System.IO.Path.Combine(GameConfig.GamePath, "DATA", "LIGHT.DAT");
+            var path_mono = System.IO.Path.Combine(GameConfig.GamePath, "DATA", "MONO.DAT");
 
             GreyScaleIndexPalette = new Palette();
             for (int i = 0; i <= GreyScaleIndexPalette.blue.GetUpperBound(0); i++)
@@ -49,7 +49,7 @@ namespace Underworld
                 GreyScaleIndexPalette.blue[i] = 0;// (byte)i;
                 GreyScaleIndexPalette.green[i] = 0;// (byte)i;                
             }
-            switch (_RES)
+            switch ((byte)GameConfig.GameSelected)
             {
                 default:
                     {
@@ -119,7 +119,7 @@ namespace Underworld
                 {
                     GameConfig.instance.shaderbandsize = 1;
                 }
-                if ((i==6) && (_RES!=GAME_UW2))
+                if ((i==6) && ((byte)GameConfig.GameSelected!=(byte)Game.Uw2))
                 {
                     Palettes[i].cycledGamePalette = CreateShadedPaletteCycles(Palettes[i]);
                     Palettes[i].cycledUIPalette = MainMenuPaletteCycle(Palettes[i]);//main menu flames effect                    
@@ -234,9 +234,9 @@ namespace Underworld
             {
                 for (int c = 0; c <= 27; c++)
                 {//Create palette cycles
-                    switch (_RES)
+                    switch ((byte)GameConfig.GameSelected)
                     {
-                        case GAME_UW2:
+                        case (byte)Game.Uw2:
                             Palette.cyclePalette(tmpPalette, 224, 16);
                             Palette.cyclePaletteReverse(tmpPalette, 3, 6);
                             break;
@@ -302,9 +302,9 @@ namespace Underworld
             {
                 for (int c = 0; c <= 27; c++)
                 {//Create palette cycles
-                    switch (_RES)
+                    switch ((byte)GameConfig.GameSelected)
                     {
-                        case GAME_UW2:
+                        case (byte)Game.Uw2:
                             Palette.cyclePalette(tmpPalette, 224, 16);
                             Palette.cyclePaletteReverse(tmpPalette, 3, 6);
                             break;

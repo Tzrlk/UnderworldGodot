@@ -2,8 +2,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         public static void take_id_from_npc(uwObject talker)
         {
             var id = GetConvoStackValueAtPtr(stackptr-1);

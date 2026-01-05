@@ -166,7 +166,7 @@ namespace Underworld
 
         public override bool LoadImageFile()
         {
-            var toLoad = Path.Combine(BasePath, "DATA", pathGR[FileToLoad]);
+            var toLoad = Path.Combine(GameConfig.GamePath, "DATA", pathGR[FileToLoad]);
             if (!ReadStreamFile(toLoad, out ImageFileData))
             {
                 Debug.Print("Unable to LoadImageFile() " + toLoad);
@@ -249,7 +249,7 @@ namespace Underworld
                         imageOffset += 6;  //Start of raw data.
                         copyNibbles(ImageFileData, ref imgNibbles, datalen, imageOffset);
                         //auxpal =PaletteLoader.LoadAuxilaryPal(Loader.BasePath+ AuxPalPath,PaletteLoader.Palettes[PaletteNo],auxPalIndex);
-                        int[] aux = PaletteLoader.LoadAuxilaryPalIndices(Path.Combine(BasePath, "DATA", AuxPalPath), auxPalIndex);
+                        int[] aux = PaletteLoader.LoadAuxilaryPalIndices(Path.Combine(GameConfig.GamePath, "DATA", AuxPalPath), auxPalIndex);
                         outputImg = DecodeRLEBitmap(imgNibbles, datalen, BitMapWidth, BitMapHeight, 4, aux);
                         ImageCache[index] = Image(
                             databuffer: outputImg, 
@@ -275,7 +275,7 @@ namespace Underworld
                         imgNibbles = new byte[Mathf.Max(BitMapWidth * BitMapHeight * 2, (5 + datalen) * 2)];
                         imageOffset += 6;  //Start of raw data.
                         copyNibbles(ImageFileData, ref imgNibbles, datalen, imageOffset);
-                        auxpal = PaletteLoader.LoadAuxilaryPal(Path.Combine(BasePath, "DATA", AuxPalPath), PaletteLoader.Palettes[PaletteNo], auxPalIndex);
+                        auxpal = PaletteLoader.LoadAuxilaryPal(Path.Combine(GameConfig.GamePath, "DATA", AuxPalPath), PaletteLoader.Palettes[PaletteNo], auxPalIndex);
                         ImageCache[index] = Image(
                             databuffer: imgNibbles, 
                             dataOffSet: 0, 
@@ -293,7 +293,7 @@ namespace Underworld
                     {
                         BitMapWidth = 83;  //getValAtAddress(textureFile, textureOffset + 1, 8);
                         BitMapHeight = 114; // getValAtAddress(textureFile, textureOffset + 2, 8);
-                        if (_RES == GAME_UW2)
+                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                         {
                             BitMapWidth = 79;
                             BitMapHeight = 112;

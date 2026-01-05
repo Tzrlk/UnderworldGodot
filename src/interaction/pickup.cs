@@ -8,8 +8,7 @@ namespace Underworld
     /// <summary>
     /// Class for interactions involving the pickup verb
     /// </summary>
-    public class pickup : UWClass
-    {
+    public class pickup {
 
         public static bool DropObjectByPlayer(uwObject srcObject, bool printMessage)
         {
@@ -104,7 +103,7 @@ namespace Underworld
                         if (ObjectAfterCollison.IsStatic)
                         {
                             //Debug.Print("dropped object. Do check for pressure triggers here");
-                            if (_RES == GAME_UW2)
+                            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                             {
                                 trigger.RunPressureEnterExitTriggersInTile(
                                     triggeringObject: ObjectAfterCollison,
@@ -167,7 +166,7 @@ namespace Underworld
 
         public static void DropSpecialCases(int item_id)
         {
-            if (_RES != GAME_UW2)
+            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
             {
                 switch (item_id)
                 {
@@ -199,7 +198,7 @@ namespace Underworld
 
         static bool CanBePickedUpOverrides(int item_id)
         {
-            if (_RES != GAME_UW2)
+            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
             {
                 if (item_id == 458)
                 {
@@ -366,7 +365,7 @@ namespace Underworld
             obj.next = 0; //ensure end of chain. 
             obj.tileX = 99; obj.tileY = 99;
             //pressure release trigger
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 trigger.RunPressureEnterExitTriggersInTile(
                     triggeringObject: obj,
@@ -391,7 +390,7 @@ namespace Underworld
         /// <param name="obj"></param>
         private static void PickupSpecialCases(uwObject obj)
         {
-            if (_RES != GAME_UW2)
+            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
             {
                 switch (obj.item_id)
                 {

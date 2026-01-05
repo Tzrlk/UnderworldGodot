@@ -2,8 +2,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         public static void find_inv(uwObject talker)
         {
             var Character_arg0 = at(at(stackptr - 1));

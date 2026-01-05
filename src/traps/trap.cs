@@ -2,8 +2,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public class trap : UWClass
-    {
+    public class trap {
         public static int ObjectThatStartedChain = 0;
 
         public static void ActivateTrap(int character, uwObject trapObj, uwObject ObjectUsed, int triggerX, int triggerY, uwObject[] objList)
@@ -73,7 +72,7 @@ namespace Underworld
                                     }
                                 case 4: // pit trap 6-0-4 in uw1, special effects in uw2
                                     {
-                                        if (_RES != GAME_UW2)
+                                        if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
                                         {//uw1 pit trap
                                             implemented = true;//to continue the chain
                                         }
@@ -175,7 +174,7 @@ namespace Underworld
                                     }
                                 case 1:
                                     {//6-1-1 experience trap
-                                        if (_RES == GAME_UW2)
+                                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                                         {
                                             implemented = true;
                                             an_experience_trap.Activate(trapObj: trapObj);
@@ -185,7 +184,7 @@ namespace Underworld
                                 case 2:
                                     {
                                         //6-1-2 jump trap
-                                        if (_RES == GAME_UW2)
+                                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                                         {
                                             implemented = true;
                                             a_jump_trap.Activate(trapObj: trapObj);
@@ -194,7 +193,7 @@ namespace Underworld
                                     }
                                 case 3:// a change_from_trap.
                                     {
-                                        if (_RES == GAME_UW2)
+                                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                                         {
                                             implemented = true;
                                             a_change_from_trap.Activate(
@@ -206,7 +205,7 @@ namespace Underworld
                                     }
                                 case 4:
                                     {//A change_to_trap. Does nothing but continues execution.
-                                        if (_RES == GAME_UW2)
+                                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                                         {
                                             implemented = true;
                                         }
@@ -214,7 +213,7 @@ namespace Underworld
                                     }
                                 case 5://oscillator (uw2)
                                     {
-                                        if (_RES == GAME_UW2)
+                                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                                         {
                                             implemented = true;
                                             an_oscillator_trap.Activate(
@@ -228,7 +227,7 @@ namespace Underworld
                                     }
                                 case 6://proximity trap (uw2)
                                     {
-                                        if (_RES == GAME_UW2)
+                                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                                         {
                                             //Debug.Print("Skipping proximity trap for testing of chains");
                                             implemented = true;
@@ -243,7 +242,7 @@ namespace Underworld
                                     }
                                 case 7://Pit trap (UW2) In UW1 Pit trap is 6,0,4 and does nothing.
                                     {
-                                        if (_RES == GAME_UW2)
+                                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                                         {
                                             implemented = true;
                                             a_pit_trap.Activate(
@@ -255,7 +254,7 @@ namespace Underworld
                                     }
                                 case 8: //Bridge trap
                                     {
-                                        if (_RES == GAME_UW2)
+                                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                                         {
                                             implemented = true;
                                             a_bridge_trap.Activate(

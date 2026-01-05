@@ -111,15 +111,15 @@ namespace Underworld
 
         public override ImageTexture LoadImageAt(int index, bool UseAlphaChannel)
         {
-            switch (_RES)
+            switch ((byte)GameConfig.GameSelected)
             {
-                case GAME_UW2:
+                case (byte)Game.Uw2:
                     {
-                        return extractUW2Bitmap(Path.Combine(BasePath, "DATA", "BYT.ARK"), index, UseAlphaChannel);      //    "DATA" + sep + "BYT.ARK", index, Alpha);
+                        return extractUW2Bitmap(Path.Combine(GameConfig.GamePath, "DATA", "BYT.ARK"), index, UseAlphaChannel);      //    "DATA" + sep + "BYT.ARK", index, Alpha);
                     }
                 default:
                     {
-                        var toLoad = Path.Combine(BasePath, "DATA", FilePaths[index]);
+                        var toLoad = Path.Combine(GameConfig.GamePath, "DATA", FilePaths[index]);
                         if (currentIndex != index)
                         {//Only load from disk if the image to bring back has changed.
                             DataLoaded = false;

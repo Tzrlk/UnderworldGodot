@@ -25,7 +25,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return instance.PowerGemUW2;
                 }
@@ -54,11 +54,11 @@ namespace Underworld
                 PowerLevelFrame = 9;
                 PowerFrameAdjust++;
             
-                if ((PowerFrameAdjust>4)&& (UWClass._RES!=UWClass.GAME_UW2))
+                if ((PowerFrameAdjust>4)&& ((byte)GameConfig.GameSelected!=(byte)Game.Uw2))
                 {
                     PowerFrameAdjust = 0;
                 } 
-                if ((PowerFrameAdjust>1)&& (UWClass._RES==UWClass.GAME_UW2))
+                if ((PowerFrameAdjust>1)&& ((byte)GameConfig.GameSelected==(byte)Game.Uw2))
                 {
                     PowerFrameAdjust = 0;
                 } 
@@ -69,7 +69,7 @@ namespace Underworld
 
         public static void SetPowerFrame(int frameno)
         {
-            if (UWClass._RES==UWClass.GAME_UW2)
+            if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
             {
                 frameno = Math.Min(10,frameno);
             }

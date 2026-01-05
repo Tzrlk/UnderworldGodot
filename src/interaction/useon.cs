@@ -3,8 +3,7 @@ namespace Underworld
     /// <summary>
     /// Class for interactions involving the use verb when holding another object
     /// </summary>
-    public class useon : UWClass
-    {
+    public class useon {
         public static useon CurrentItemBeingUsed;
         public int index = 0;
 
@@ -107,7 +106,7 @@ namespace Underworld
                     }
                 case 2:
                     {
-                        if (_RES != GAME_UW2)
+                        if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
                         {
                             switch (objInHand.classindex)
                             {
@@ -127,7 +126,7 @@ namespace Underworld
             {
                 case 0: //keys up to 0xE
                     {
-                        if (_RES == GAME_UW2)
+                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                         {
                             switch (objInHand.classindex)
                             {
@@ -154,7 +153,7 @@ namespace Underworld
                     }
                 case 1:
                     {
-                        if (_RES == GAME_UW2)
+                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                         {
                             switch (objInHand.classindex)
                             {
@@ -170,7 +169,7 @@ namespace Underworld
                         {
                             case 0x7:   //spike in uw1
                                 {
-                                    if (_RES != GAME_UW2)
+                                    if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
                                     {
                                         return spike.UseOn(objInHand, targetObject, WorldObject);
                                     }

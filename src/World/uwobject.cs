@@ -7,8 +7,7 @@ namespace Underworld
     /// <summary>
     /// To replace objectloader
     /// </summary>
-    public class uwObject : UWClass
-    {
+    public class uwObject {
         const float _ResolutionZ = 128.0f; //UW has 0-127 posible z positions for an object in tile.
         const float _ceil = 32;// tileMap.CEILING_HEIGHT;
         const float _BrushZ = 15f;
@@ -1604,7 +1603,7 @@ namespace Underworld
         {
             get
             {
-                if (_RES == GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return (majorclass == 6) && ((minorclass == 2) || (minorclass == 3));
                 }
@@ -1619,7 +1618,7 @@ namespace Underworld
         {
             get
             {
-                if (_RES == GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return (majorclass == 6) && (minorclass < 2);
                 }

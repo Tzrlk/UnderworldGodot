@@ -14,7 +14,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES==UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                 {
                     return instance.cross2;
                 }
@@ -52,7 +52,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return 6;
                 }
@@ -67,7 +67,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return instance.PlayerTradeSlotUW2;
                 }
@@ -82,7 +82,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return instance.PlayerTradeSelectedUW2;
                 }
@@ -97,7 +97,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return instance.NPCTradeSlotUW2;
                 }
@@ -112,7 +112,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return instance.NPCTradeSelectedUW2;
                 }

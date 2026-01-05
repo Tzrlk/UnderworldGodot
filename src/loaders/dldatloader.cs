@@ -6,7 +6,7 @@ namespace Underworld
 
         public static int GetAmbientLight(int levelno)
         {
-            if (_RES==GAME_UW2)
+            if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
             {
                 return ambientlights[levelno];
             }
@@ -14,7 +14,7 @@ namespace Underworld
         }
         static  DlDat()
         {
-            var path = System.IO.Path.Combine(BasePath,"DATA","DL.DAT");
+            var path = System.IO.Path.Combine(GameConfig.GamePath,"DATA","DL.DAT");
             if (System.IO.File.Exists(path))
             {
                 var dl = System.IO.File.ReadAllBytes(path);

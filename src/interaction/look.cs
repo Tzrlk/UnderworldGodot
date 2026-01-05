@@ -3,8 +3,7 @@ namespace Underworld
     /// <summary>
     /// Class for interactions involving the look verb
     /// </summary>
-    public class look : UWClass
-    {
+    public class look {
         public static int LoreCheck(uwObject obj)
         {
             if (
@@ -134,7 +133,7 @@ namespace Underworld
                     }
                 case 1:
                     {
-                        if (_RES == GAME_UW2)
+                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                         {
                             switch (obj.classindex)
                             {
@@ -146,7 +145,7 @@ namespace Underworld
                     }
                 case 3: //readables (up to index 8)
                     {
-                        if (_RES != GAME_UW2)
+                        if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
                         {
                             switch (obj.classindex)
                             {
@@ -377,9 +376,9 @@ namespace Underworld
                 commonObjDat.canhaveowner(obj.item_id)
                 &&
                 (
-                    (_RES == GAME_UW2) && (obj.race <= 30)
+                    ((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (obj.race <= 30)
                     ||
-                    (_RES != GAME_UW2) && (obj.race <= 27)
+                    ((byte)GameConfig.GameSelected != (byte)Game.Uw2) && (obj.race <= 27)
                 )
             )
             {

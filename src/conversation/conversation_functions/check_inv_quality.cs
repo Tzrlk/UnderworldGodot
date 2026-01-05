@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         static void check_inv_quality()
         {
             var index= at(at(stackptr-1));

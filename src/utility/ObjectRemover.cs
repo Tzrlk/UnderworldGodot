@@ -5,8 +5,7 @@ namespace Underworld
     /// <summary>
     /// Class for removing instances of objects from object index chains
     /// </summary>
-    public class ObjectRemover_OLD : UWClass
-    {
+    public class ObjectRemover_OLD {
         static int RemoveTrapFlags;
         static long TrapTriggerContainerListHead = 0;
 

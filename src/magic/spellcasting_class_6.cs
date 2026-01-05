@@ -5,8 +5,7 @@ namespace Underworld
     /// <summary>
     /// Area effecting spells.
     /// </summary>
-    public partial class SpellCasting : UWClass
-    {
+    public partial class SpellCasting {
         /// <summary>
         /// Used to track what tiles and no of NCPS have been hit by flamewind in UW2.
         /// </summary>
@@ -23,7 +22,7 @@ namespace Underworld
             int tileRadius = 0;
             int distanceFromCaster = 0;
             int rngProbablity = 0;
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 switch (minorclass & 0x3F)
                 {

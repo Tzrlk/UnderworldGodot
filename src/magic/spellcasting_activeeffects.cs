@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public  partial class SpellCasting : UWClass
-    {
+    public  partial class SpellCasting {
 /// <summary>
         /// Applies player active status effects
         /// </summary>

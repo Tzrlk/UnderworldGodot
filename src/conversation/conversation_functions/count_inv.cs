@@ -1,8 +1,7 @@
 namespace Underworld
 {
 
-    public partial class ConversationVM : UWClass
-    {   
+    public partial class ConversationVM {   
         public static void count_inv()
         {
             var itemindex = at(at(stackptr-1));

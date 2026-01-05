@@ -2,8 +2,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class ConversationVM:UWClass
-    {
+    public partial class ConversationVM {
         public static void x_traps()
         {
             Debug.Print($"X_traps {GetConvoStackValueAtPtr(stackptr-1)},{GetConvoStackValueAtPtr(stackptr-2)}");

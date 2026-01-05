@@ -3,8 +3,7 @@ using System.Diagnostics;
 namespace Underworld
 {
     //Common data and code for item trading.
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
 
         /// <summary>
         /// The trade evaluation that has to be met to allow the NPC to trade. 
@@ -106,7 +105,7 @@ namespace Underworld
                     if (
                         (obj.item_id == 160)
                         ||
-                        ((_RES != GAME_UW2) && (obj.item_id == 161))
+                        (((byte)GameConfig.GameSelected != (byte)Game.Uw2) && (obj.item_id == 161))
                         )
                     {
                         quality = 0x3F;
@@ -140,11 +139,11 @@ namespace Underworld
             var itemCategory = obj.item_id >> 4;
 
             var quality = obj.quality;
-            if (((obj.item_id == 160) || (obj.item_id == 161)) && (_RES != GAME_UW2))
+            if (((obj.item_id == 160) || (obj.item_id == 161)) && ((byte)GameConfig.GameSelected != (byte)Game.Uw2))
             {
                 quality = 63;
             }
-            if (((obj.item_id == 160)) && (_RES == GAME_UW2))
+            if (((obj.item_id == 160)) && ((byte)GameConfig.GameSelected == (byte)Game.Uw2))
             {
                 quality = 63;
             }

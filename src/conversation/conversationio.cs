@@ -6,8 +6,7 @@ namespace Underworld
     /// <summary>
     /// Code for Input and output relating to conversation VM.
     /// </summary>
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         public static int PlayerNumericAnswer;
         public static bool WaitingForInput;
 

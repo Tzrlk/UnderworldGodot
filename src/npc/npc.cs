@@ -172,7 +172,7 @@ namespace Underworld
                 material.SetShaderParameter("texture_albedo", (Texture)texture);
                 if (sprite!=null)
                 {
-                    if (_RES==GAME_UW2)
+                    if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                     {
                         sprite.Mesh.Set("size", FrameSize * 1.5f);
                     }
@@ -236,7 +236,7 @@ namespace Underworld
             }
             else
             {
-                if ((_RES != GAME_UW2) && (critter.npc_whoami == 248))
+                if (((byte)GameConfig.GameSelected != (byte)Game.Uw2) && (critter.npc_whoami == 248))
                 {//slasher of veils
                     var name = critter.a_name;
                     uimanager.AddToMessageScroll($"You see {name}");
@@ -255,7 +255,7 @@ namespace Underworld
         /// <param name="critter"></param>
         private static void EtheralVoidNPCDescription(uwObject critter)
         {
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 var id = critter.npc_animation + 277;
                 var name = GameStrings.GetString(1, id);

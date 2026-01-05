@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class scd : UWClass
-    {
+    public partial class scd {
         /// <summary>
         /// Changes the attitude for set of NPCs.
         /// </summary>

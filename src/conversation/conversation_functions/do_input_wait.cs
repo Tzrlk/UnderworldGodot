@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         /// <summary>
         /// Conversation function that is only used by Jerry the Rat! Does nothing of note.
         /// </summary>

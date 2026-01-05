@@ -18,11 +18,11 @@ namespace Underworld
         {
             get
             {
-                switch (_RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UWDEMO: return 1;
-                    case GAME_UW1: return 9;
-                    case GAME_UW2: return 80;
+                    case (byte)Game.Uw0: return 1;
+                    case (byte)Game.Uw1: return 9;
+                    case (byte)Game.Uw2: return 80;
                 }
                 return 1;
             }
@@ -319,12 +319,12 @@ namespace Underworld
 
             if (automap.automaps[newLevelNo] == null)
             {
-                automap.automaps[newLevelNo] = new automap(newLevelNo, (int)_RES);
+                automap.automaps[newLevelNo] = new automap(newLevelNo, (int)(byte)GameConfig.GameSelected);
             }
 
             if (automapnote.automapsnotes[newLevelNo] == null)
             {
-                automapnote.automapsnotes[newLevelNo] = new automapnote(newLevelNo, (int)_RES);
+                automapnote.automapsnotes[newLevelNo] = new automapnote(newLevelNo, (int)(byte)GameConfig.GameSelected);
             }
 
 
@@ -516,9 +516,9 @@ namespace Underworld
 
             //if (OverlayAddress!=0)
             AnimationOverlay.NoOfAnimationOverlays = 0;
-            switch (_RES)
+            switch ((byte)GameConfig.GameSelected)
             {
-                case GAME_UW1:
+                case (byte)Game.Uw1:
                     {
                         if (ovl_ark.DataLen != 0)
                         {
@@ -531,7 +531,7 @@ namespace Underworld
                         }
                         break;
                     }
-                case GAME_UW2:
+                case (byte)Game.Uw2:
                     {
                         for (int overlayIndex = 0; overlayIndex < 64; overlayIndex++)
                         {
@@ -1165,12 +1165,12 @@ namespace Underworld
         void BuildTextureMap(UWBlock tex_ark, ref short CeilingTexture, int LevelNo)
         {
             short textureMapSize;//=UW1_TEXTUREMAPSIZE;
-            switch (_RES)
+            switch ((byte)GameConfig.GameSelected)
             {
-                case GAME_UW2:
+                case (byte)Game.Uw2:
                     textureMapSize = UW2_TEXTUREMAPSIZE;
                     break;
-                case GAME_UWDEMO:
+                case (byte)Game.Uw0:
                     textureMapSize = UWDEMO_TEXTUREMAPSIZE;
                     break;
                 default:
@@ -1181,9 +1181,9 @@ namespace Underworld
             for (int i = 0; i < textureMapSize; i++)//256
             {
                 //TODO: Only use this for texture lookups.
-                switch (_RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UWDEMO:
+                    case (byte)Game.Uw0:
                         {
                             if (i < 48)//Wall textures
                             {
@@ -1209,7 +1209,7 @@ namespace Underworld
                             }
                             break;
                         }
-                    case GAME_UW1:
+                    case (byte)Game.Uw1:
                         {
                             if (i < 48)//Wall textures
                             {
@@ -1234,7 +1234,7 @@ namespace Underworld
                             }
                             break;
                         }
-                    case GAME_UW2://uw2
+                    case (byte)Game.Uw2://uw2
                         {
                             if (i < 64)
                             {
@@ -1431,7 +1431,7 @@ namespace Underworld
             }
             
             //Game specific
-            if(_RES==GAME_UW2)
+            if((byte)GameConfig.GameSelected==(byte)Game.Uw2)
             {//clear the timer triggers in UW2
                 for (int t=0;t<64;t++)
                 {

@@ -5,8 +5,7 @@ namespace Underworld
     /// <summary>
     /// Basic conversation data structure
     /// </summary>
-    public class Conversation : UWClass
-    {
+    public class Conversation {
         public int conversationNo { get; set; }
         //0000   Int16   unknown, always seems to be 0x0828, or 28 08
         //0002   Int16   unknown, always 0x0000

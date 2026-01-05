@@ -5,8 +5,7 @@ namespace Underworld
     /// <summary>
     /// Class for interactions involving the use verb
     /// </summary>
-    public class use : UWClass
-    {
+    public class use {
         /// <summary>
         /// Global flag in case the object uses fires the spell prematurely.
         /// </summary>
@@ -228,7 +227,7 @@ namespace Underworld
                     }
                 case 2:
                     {
-                        if (_RES != GAME_UW2)
+                        if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
                         {
                             switch (ObjectUsed.classindex)
                             {
@@ -288,7 +287,7 @@ namespace Underworld
                         {
                             case 0x1://Storage crystal in UW2, gold coin in uw1
                                 {
-                                    if (_RES == GAME_UW2)
+                                    if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                                     {
                                         return storage_crystal.Use(ObjectUsed, WorldObject);
                                     }
@@ -296,7 +295,7 @@ namespace Underworld
                                 }
                             case 0xF:
                                 {//picketwatch in uw2, gold nugget in uw1
-                                    if (_RES == GAME_UW2)
+                                    if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                                     {
                                         return pocketwatch.Use(ObjectUsed, WorldObject);
                                     }
@@ -319,7 +318,7 @@ namespace Underworld
             {
                 case 0: //keys up to 0xE
                     {
-                        if (_RES == GAME_UW2)
+                        if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                         {
                             switch (ObjectUsed.classindex)
                             {
@@ -346,7 +345,7 @@ namespace Underworld
                     }
                 case 1:
                     {
-                        if (_RES != GAME_UW2)
+                        if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
                         {
                             switch(ObjectUsed.classindex)
                             {
@@ -378,7 +377,7 @@ namespace Underworld
                                 return true;
                             case 2:
                                 {
-                                    if (_RES != GAME_UW2)
+                                    if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
                                     {
                                         return silverseed.use(ObjectUsed, WorldObject);//plant silver seed
                                     }
@@ -394,7 +393,7 @@ namespace Underworld
                             case 8://rock hammer
                                 return rockhammer.Use(ObjectUsed, WorldObject);
                             case 7: //spike and forcefield in uw2
-                                if (_RES != GAME_UW2)
+                                if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
                                 {
                                     return spike.Use(ObjectUsed, WorldObject);
                                 }
@@ -411,7 +410,7 @@ namespace Underworld
                     }
                 case 3: //readables (up to index 8)
                     {
-                        if (_RES != GAME_UW2)
+                        if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
                         {
                             switch (ObjectUsed.classindex)
                             {

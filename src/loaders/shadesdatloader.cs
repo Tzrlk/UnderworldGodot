@@ -346,7 +346,7 @@ namespace Underworld
 
         static shade()
         {
-            var path = System.IO.Path.Combine(BasePath, "DATA", "SHADES.DAT");
+            var path = System.IO.Path.Combine(GameConfig.GamePath, "DATA", "SHADES.DAT");
             if (System.IO.File.Exists(path))
             {
                 if (ReadStreamFile(path, out byte[] buffer))

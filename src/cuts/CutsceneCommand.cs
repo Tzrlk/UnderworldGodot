@@ -2,8 +2,7 @@ using System.Collections.Generic;
 
 namespace Underworld
 {
-    public class CutSceneCommand : UWClass
-    {
+    public class CutSceneCommand {
         public int offset;
         public int frame;
         public int functionNo;
@@ -110,7 +109,7 @@ namespace Underworld
                 case 3: return 1;//pauses for arg[0] / 2 seconds
                 case 4: return 2;//plays up to frame arg[0]
                 case 5: //unknown, set frame for static cutscene? (0 params in UW2, 1 in UW1)
-                    if (_RES == GAME_UW2)
+                    if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                     {
                         return 0;
                     }

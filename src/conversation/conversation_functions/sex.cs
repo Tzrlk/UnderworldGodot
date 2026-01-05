@@ -2,8 +2,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class ConversationVM:UWClass
-    {
+    public partial class ConversationVM {
         /// <summary>
         /// Retrieve from the stack the correct pronouns based on the player sex. The possible pronouns are stored in advanced
         /// </summary>

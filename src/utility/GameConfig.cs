@@ -61,13 +61,15 @@ public class GameConfig
         JsonSerializer.Serialize(stream, this, JsonOpts);
     }
 
-    public static Game GameSelected =>
-	    instance.gametoload.ToUpper() switch {
+    public static Game GameSelected {
+	    set => instance.gametoload = Enum.GetName(value)!.ToUpper();
+	    get => instance.gametoload.ToUpper() switch {
 		    "UW0" => Game.Uw0,
 		    "UW1" => Game.Uw1,
 		    "UW2" => Game.Uw2,
 		    var game => throw new ApplicationException($"Unrecognised game selection: {game}")
 	    };
+    }
 
     public static string GamePath
 	    => GameSelected switch {

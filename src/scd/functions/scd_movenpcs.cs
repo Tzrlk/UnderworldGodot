@@ -2,8 +2,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class scd : UWClass
-    {
+    public partial class scd {
         static int MoveNPCs(byte[] currentblock, int eventOffset)
         {
             //homex = row[5], homey = row[6]

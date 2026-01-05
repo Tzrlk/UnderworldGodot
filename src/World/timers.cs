@@ -7,8 +7,7 @@ namespace Underworld
     /// A timer trigger runs every zpos frames
     /// It takes 127 frames or so to run each timer.
     /// </summary>
-    public class timers : UWClass
-    {
+    public class timers {
         public static long FrameNo = 0;
         public static int GetTimer(int index)
         {
@@ -42,7 +41,7 @@ namespace Underworld
         }
         public static void RunTimerTriggers(int delta = 1)
         {
-            if (_RES != GAME_UW2) 
+            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2) 
             { 
                 return;
             }

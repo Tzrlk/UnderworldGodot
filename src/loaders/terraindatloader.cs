@@ -64,18 +64,18 @@ namespace Underworld
         static TerrainDatLoader()
         {
             string filename = "TERRAIN.DAT";
-            if (_RES == GAME_UWDEMO)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw0)
             {
                 filename = "DTERRAIN.DAT";
             }
             Terrain = new int[256 + 256];//wall and floor
             int add_ptr = 0;
-            if (ReadStreamFile(Path.Combine(BasePath, "DATA", filename), out byte[] terrain_dat))
+            if (ReadStreamFile(Path.Combine(GameConfig.GamePath, "DATA", filename), out byte[] terrain_dat))
             {
-                switch (_RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UW1:
-                    case GAME_UWDEMO:
+                    case (byte)Game.Uw1:
+                    case (byte)Game.Uw0:
                         for (int i = 0; i < 256; i++)
                         {
                             Terrain[i] = (int)getAt(terrain_dat, add_ptr, 16);
@@ -88,7 +88,7 @@ namespace Underworld
                             add_ptr += 2;
                         }
                         break;
-                    case GAME_UW2:
+                    case (byte)Game.Uw2:
                         {
                             for (int i = 0; i < 256; i++)
                             {
@@ -163,7 +163,7 @@ namespace Underworld
         /// <returns></returns>
         public static int GetTerrainTypeNo(TileInfo tile)
         {
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {//TOTEST
              //var floorterrain = tileMapRender.FloorTexture(tile);
                 var floorterrain = tileMapRender.FloorTexture_MapIndex(tile);

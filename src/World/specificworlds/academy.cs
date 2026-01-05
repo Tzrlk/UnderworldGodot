@@ -5,8 +5,7 @@ namespace Underworld
     /// <summary>
     /// Specific code for the Scintillus Academy
     /// </summary>
-    public class academy : UWClass
-    {
+    public class academy {
         /// <summary>
         /// Index of the academy wand object.
         /// </summary>

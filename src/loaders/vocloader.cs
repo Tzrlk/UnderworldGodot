@@ -52,7 +52,7 @@ namespace Underworld
         public static AudioSample Load(string vocfile)
         {
             var Result = new AudioSample();
-            string file = Path.Combine(BasePath, "SOUND", vocfile);
+            string file = Path.Combine(GameConfig.GamePath, "SOUND", vocfile);
 
             if (File.Exists(file))
             {

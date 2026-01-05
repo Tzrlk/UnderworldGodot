@@ -1,8 +1,7 @@
 
 namespace Underworld
 {
-    public partial class scd : UWClass
-    {
+    public partial class scd {
         public static void scd_variableoperation(byte[] currentblock, int eventOffset)
         {
             a_set_variable_trap.VariableOperationUW2((int)Loader.getAt(currentblock,eventOffset+5,16), currentblock[eventOffset+7], currentblock[eventOffset+8]);

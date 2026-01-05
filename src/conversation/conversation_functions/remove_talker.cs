@@ -2,8 +2,7 @@
 namespace Underworld
 {
 
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         public static void remove_talker(uwObject talker)
         {
             var NPC = (npc)talker.instance;

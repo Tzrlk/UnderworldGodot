@@ -24,7 +24,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return 80;
                 }
@@ -39,7 +39,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return 7;
                 }
@@ -52,7 +52,7 @@ namespace Underworld
 
         public static void InitAutomap()
         {
-            if (UWClass._RES == UWClass.GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 instance.AutomapNumberLabel.Position += new Vector2(-28, 12);
                 for (int i = 0; i <= instance.AutomapWorldGem.GetUpperBound(0); i++)
@@ -72,7 +72,7 @@ namespace Underworld
         public static void DrawAutoMap(int level, int worldno)
         {
             int blockno;
-            if (UWClass._RES == UWClass.GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 level = level % 8;
                 blockno = (worldno * 8) + level;
@@ -83,7 +83,7 @@ namespace Underworld
             }
             if (automap.automaps[blockno] == null)
             {
-                automap.automaps[blockno] = new automap(blockno, UWClass._RES);
+                automap.automaps[blockno] = new automap(blockno, (byte)GameConfig.GameSelected);
             }
             if (automap.automaps[blockno] == null)
             {
@@ -94,7 +94,7 @@ namespace Underworld
             EnableDisable(instance.AutomapPanel, true);
             //TODO update UW2 Map gem
 
-            if (UWClass._RES == UWClass.GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {                
                 int[] worldmappingSelected = new int[] { 16, 8, 9, 10, 11, 12, 13, 14, 15 }; //the order of worlds is not the same as the order of images. this maps the world number to the on version of the image
                 int[] worldmappingVisited = new int[] { 16, 0, 1, 2, 3, 4, 5, 6, 7 };
@@ -132,7 +132,7 @@ namespace Underworld
             }
             if (automapnote.automapsnotes[blockno] == null)
             {//load data if not ready.
-                automapnote.automapsnotes[blockno] = new automapnote(blockno, UWClass._RES);
+                automapnote.automapsnotes[blockno] = new automapnote(blockno, (byte)GameConfig.GameSelected);
             }
             if (automapnote.automapsnotes[blockno] != null)
             {

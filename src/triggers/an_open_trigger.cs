@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class trigger : UWClass
-    {
+    public partial class trigger {
         /// <summary>
         /// Triggers an open trigger can be linked to the srcObj directly or as a next to a lock.
         /// </summary>

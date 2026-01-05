@@ -23,7 +23,7 @@ namespace Underworld
         {
             get
             {
-                if (_RES == GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return 0x3E3;
                 }
@@ -38,14 +38,14 @@ namespace Underworld
         public static void Load(string folder)
         {
             playerUpdateCounter = 0;
-            var path = System.IO.Path.Combine(BasePath, folder, "PLAYER.DAT");
+            var path = System.IO.Path.Combine(GameConfig.GamePath, folder, "PLAYER.DAT");
             byte[] encoded;
             if (ReadStreamFile(path, out encoded))
             {
                 int xOrValue = (int)encoded[0];
-                switch (_RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UW2:
+                    case (byte)Game.Uw2:
                         {
                             //uw2 encoding                                            
                             pdat = EncryptDecryptUW2(encoded, (byte)xOrValue);

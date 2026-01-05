@@ -51,24 +51,24 @@ namespace Underworld
         /// If the index is greater than 209 I return a floor texture.
         private ImageTexture LoadImageAt(int index, Palette palToUse)
         {
-            if (_RES == GAME_UWDEMO)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw0)
             {//Point the UW1 texture files to the demo files
                 TextureSplit = 48;
                 pathTexW_UW1 = pathTexW_UW0;
                 pathTexF_UW1 = pathTexF_UW0;
             }
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 FloorDim = 64;
             }
 
-            switch (_RES)
+            switch ((byte)GameConfig.GameSelected)
             {
-                case GAME_UW2:
+                case (byte)Game.Uw2:
                     {
                         if (texturesFLoaded == false)
                         {
-                            if (!ReadStreamFile(Path.Combine(BasePath, "DATA", pathTex_UW2), out texturebufferT))
+                            if (!ReadStreamFile(Path.Combine(GameConfig.GamePath, "DATA", pathTex_UW2), out texturebufferT))
                             {
                                 return base.LoadImageAt(index);
                             }
@@ -89,15 +89,15 @@ namespace Underworld
                     }
 
 
-                case GAME_UWDEMO:
-                case GAME_UW1:
+                case (byte)Game.Uw0:
+                case (byte)Game.Uw1:
                 default:
                     {
                         if (index < TextureSplit)
                         {//Wall textures
                             if (texturesWLoaded == false)
                             {
-                                if (!ReadStreamFile(Path.Combine(BasePath, "DATA", pathTexW_UW1), out texturebufferW))
+                                if (!ReadStreamFile(Path.Combine(GameConfig.GamePath, "DATA", pathTexW_UW1), out texturebufferW))
                                 {
                                     return base.LoadImageAt(index);
                                 }
@@ -120,7 +120,7 @@ namespace Underworld
                         {//Floor textures (to match my list of textures)
                             if (texturesFLoaded == false)
                             {
-                                if (!ReadStreamFile(Path.Combine(BasePath, "DATA", pathTexF_UW1), out texturebufferF))
+                                if (!ReadStreamFile(Path.Combine(GameConfig.GamePath, "DATA", pathTexF_UW1), out texturebufferF))
                                 {
                                     return base.LoadImageAt(index);
                                 }

@@ -5,8 +5,7 @@ namespace Underworld
     /// <summary>
     /// Class for managing the logic around applying enchantments to objects.
     /// </summary>
-    public class enchanting : UWClass
-    {
+    public class enchanting {
 
 
 

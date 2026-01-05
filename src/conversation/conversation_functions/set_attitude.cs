@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
 
         /// <summary>
         /// Sets the attitude for the first found NPC that matches whoami

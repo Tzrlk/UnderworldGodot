@@ -101,7 +101,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return instance.GameOptionButtonsUW2;
                 }
@@ -116,7 +116,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return instance.GameOptionsBackgroundUW2;
                 }
@@ -129,7 +129,7 @@ namespace Underworld
 
         public static void InitGameOptions()
         {
-            if (UWClass._RES == UWClass.GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
 
                 Rect2I[] croppingareas = new Rect2I[11];
@@ -272,7 +272,7 @@ namespace Underworld
 
         static ImageTexture GetOptionButtonImage(int index)
         {
-            if (UWClass._RES == UWClass.GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 return UW2OptionButtons[index];
             }
@@ -342,7 +342,7 @@ namespace Underworld
                                 case 3:
                                 case 4://try and restore game
                                     {
-                                        var path = System.IO.Path.Combine(UWClass.BasePath, $"SAVE{extra_arg_0}", "LEV.ARK");
+                                        var path = System.IO.Path.Combine(GameConfig.GamePath, $"SAVE{extra_arg_0}", "LEV.ARK");
                                         if (System.IO.File.Exists(path))
                                         {
                                             JourneyOnwards($"SAVE{extra_arg_0}");
@@ -384,7 +384,7 @@ namespace Underworld
 
         public static void ReturnToGameFromOptions()
         {
-            if (UWClass._RES == UWClass.GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 EnableDisable(instance.PanelInventory, true);
                 PanelMode = 0;
@@ -407,7 +407,7 @@ namespace Underworld
 
         private static void ReturnToTopOptionsMenu()
         {
-            if (UWClass._RES == UWClass.GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 EnableDisable(instance.PanelInventory, false);
                 EnableDisable(instance.PanelRuneBag, false);
@@ -432,7 +432,7 @@ namespace Underworld
             instance.scroll.Clear();
             for (int i = 1; i <= 4; i++)
             {
-                var path = System.IO.Path.Combine(UWClass.BasePath, $"SAVE{i}", "DESC");
+                var path = System.IO.Path.Combine(GameConfig.GamePath, $"SAVE{i}", "DESC");
                 if (System.IO.File.Exists(path))
                 {
                     var savename = System.IO.File.ReadAllText(path);

@@ -87,7 +87,7 @@ namespace Underworld
 
                             SwimmingSkillCheck();
 
-                            if (_RES == GAME_UW2)
+                            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                             {
                                 if (GetQuest(50) == 1)
                                 {//the keep is crashing
@@ -194,7 +194,7 @@ namespace Underworld
         public static void ManaRegenChange(int regeneration)
         {
             //check mana rules for the academy test.
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 if (worlds.GetWorldNo(dungeon_level) == 5)//Academy
                 {
@@ -330,7 +330,7 @@ namespace Underworld
             RefreshLighting();//either brightest physical light or brightest magical light
 
             //Handle game specific items
-            if (_RES != GAME_UW2)
+            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
             {
                 ApplyMazeNavigation();//handles tybals maze
             }
@@ -340,7 +340,7 @@ namespace Underworld
             }
 
 
-            if ((!AutomapEnabled) && (_RES == GAME_UW2))
+            if ((!AutomapEnabled) && ((byte)GameConfig.GameSelected == (byte)Game.Uw2))
             {
                 //Do a test here to see if the player has entered a previously visible tile. If so renable automap.                
             }
@@ -555,7 +555,7 @@ namespace Underworld
                 }
             }
             //If uw2 check for dungeon light level
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 var dungeon_ambientlight = DlDat.GetAmbientLight(dungeon_level - 1);
                 var remainder = dungeon_ambientlight % 10;

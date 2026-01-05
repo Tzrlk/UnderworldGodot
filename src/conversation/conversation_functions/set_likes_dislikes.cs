@@ -2,8 +2,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class ConversationVM:UWClass
-    {
+    public partial class ConversationVM {
         /// <summary>
         /// Sets the pointer to the array of likes/dislikes for the npc
         /// </summary>

@@ -5,8 +5,7 @@ namespace Underworld
     /// <summary>
     /// Class for managing damage to objects.
     /// </summary>
-    public class damage : UWClass
-    {
+    public class damage {
         public static void DamagePlayer(int basedamage, int damagetype, int damagesource)
         {
             Debug.Print("TODO further implement this");
@@ -238,16 +237,16 @@ namespace Underworld
                         if ((objToDestroy.OneF0Class == 0) && (damagetype != 8))
                         {//weapons
                             if (
-                                (objToDestroy.item_id == 3) && (_RES == GAME_UW2)
+                                (objToDestroy.item_id == 3) && ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                                 ||
-                                (objToDestroy.item_id == 0x10) && (_RES == GAME_UW2)
+                                (objToDestroy.item_id == 0x10) && ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                                 )
                             {
                                 Debris = 0xC7;
                             }
                             else
                             {
-                                if (_RES == GAME_UW2)
+                                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                                 {
                                     Debris = 0xC5 + weaponObjectDat.skill(objToDestroy.item_id);
                                 }
@@ -270,7 +269,7 @@ namespace Underworld
                             }
                             else
                             {
-                                if ((_RES == GAME_UW2) && (objToDestroy.item_id == 0x116))
+                                if (((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (objToDestroy.item_id == 0x116))
                                 {
                                     djinnbottle.DestroyDjinnBottle(objToDestroy, WorldObject);
                                 }
@@ -312,7 +311,7 @@ namespace Underworld
 
             if (Debris <= -1)
             {
-                if (_RES == GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     Debris = GetObjectTypeDebris(objToDestroy, damagetype);
                 }
@@ -361,7 +360,7 @@ namespace Underworld
             {
                 if (objToDestroy.OneF0Class == 0x15)
                 {//wood chips
-                    if (_RES == GAME_UW2)
+                    if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                     {
                         return 0xDC;
                     }
@@ -378,13 +377,13 @@ namespace Underworld
             }
             else
             {
-                if ((objToDestroy.item_id == 3) && (_RES == GAME_UW2))
+                if ((objToDestroy.item_id == 3) && ((byte)GameConfig.GameSelected == (byte)Game.Uw2))
                 {
                     return 0xC7;//broken dagger in UW2
                 }
                 else
                 {
-                    if (_RES == GAME_UW2)
+                    if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                     {
                         return 0xC5 + weaponObjectDat.skill(objToDestroy.item_id);
                     }
@@ -399,7 +398,7 @@ namespace Underworld
 
         public static int ScaleDamage(int item_id, ref int basedamage, int damagetype)
         {
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 return ScaleDamageUW2(item_id: item_id, basedamage: ref basedamage, damagetype: damagetype);
             }

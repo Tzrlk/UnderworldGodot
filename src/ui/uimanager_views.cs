@@ -30,7 +30,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return 16f;
                 }
@@ -45,7 +45,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return 208;
                 }
@@ -60,7 +60,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return 128;
                 }
@@ -75,7 +75,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return 104;
                 }
@@ -90,7 +90,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return 64;
                 }
@@ -105,7 +105,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return 42;
                 }
@@ -118,9 +118,9 @@ namespace Underworld
 
         private void InitViews()
         {
-            switch (UWClass._RES)
+            switch ((byte)GameConfig.GameSelected)
             {
-                case UWClass.GAME_UW2:
+                case (byte)Game.Uw2:
                     mainwindowUW2.Texture = bitmaps.LoadImageAt(BytLoader.UW2ThreeDWin_BYT, true);
                     if (!Fullscreen)
                     {

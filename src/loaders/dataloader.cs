@@ -206,7 +206,7 @@ namespace Underworld
 
             //Write the data to a file.
 
-            WriteListToBytes(Output, Path.Combine(BasePath, "DATA", "recodetest.dat"));
+            WriteListToBytes(Output, Path.Combine(GameConfig.GamePath, "DATA", "recodetest.dat"));
             byte[] outchar = new byte[Output.Count];
             for (int i = 0; i < Output.Count; i++)
             {
@@ -396,9 +396,9 @@ namespace Underworld
         {
             uwb = new UWBlock();
             int NoOfBlocks = (int)getAt(arkData, 0, 32);
-            switch (_RES)
+            switch ((byte)GameConfig.GameSelected)
             {
-                case GAME_UW2:
+                case (byte)Game.Uw2:
                     {//6 + block *4 + (noOfBlocks*type)
                         uwb.Address = (int)getAt(arkData, 6 + (blockNo * 4), 32);
                         uwb.CompressionFlag = (int)getAt(arkData, 6 + (blockNo * 4) + (NoOfBlocks * 4), 32);

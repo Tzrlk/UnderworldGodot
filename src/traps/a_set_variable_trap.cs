@@ -6,9 +6,9 @@ namespace Underworld
     {
         public static void Activate(uwObject trapObj)
         {
-            switch (_RES)
+            switch ((byte)GameConfig.GameSelected)
             {
-                case GAME_UW2:
+                case (byte)Game.Uw2:
                     {
                         var Operator = trapObj.heading;  //arg4
                         var RightVariable = ((trapObj.quality & 0x3F) << 6) + (trapObj.owner & 0x3F); //arg2

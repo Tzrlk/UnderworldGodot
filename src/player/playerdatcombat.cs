@@ -13,7 +13,7 @@ namespace Underworld
         {
             get
             {
-                if (_RES==GAME_UW2)
+                if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                     {
                         return GetAt(0x61) & 0x1;
                     }
@@ -25,7 +25,7 @@ namespace Underworld
             }
             set
             {
-                if (_RES==GAME_UW2)
+                if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                     {
                         value = value & 0x1;
                         var tmp = GetAt(0x61);
@@ -73,7 +73,7 @@ namespace Underworld
         {
             get
             {
-                if(_RES==GAME_UW2)
+                if((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                 {
                     return GetAt(0x309);
                 }
@@ -84,7 +84,7 @@ namespace Underworld
             }
             set
             {
-                if(_RES==GAME_UW2)
+                if((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                 {
                     SetAt(0x309, (byte)value);
                 }
@@ -102,7 +102,7 @@ namespace Underworld
         {
             get
             {
-                if(_RES==GAME_UW2)
+                if((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                 {
                     return GetAt(0x30A);
                 }
@@ -113,7 +113,7 @@ namespace Underworld
             }
             set
             {
-                if(_RES==GAME_UW2)
+                if((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                 {
                     SetAt(0x30A, (byte)value);
                 }
@@ -131,7 +131,7 @@ namespace Underworld
         {
             get
             {
-                if(_RES==GAME_UW2)
+                if((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                 {
                     return GetAt32(0x30B);
                 }
@@ -142,7 +142,7 @@ namespace Underworld
             }
             set
             {
-                if (_RES==GAME_UW2)
+                if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                 {
                     SetAt32(0x30B,value);
                 }
@@ -160,7 +160,7 @@ namespace Underworld
         {
             get
             {
-                if(_RES==GAME_UW2)
+                if((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                 {
                     return GetAt(0x30F);
                 }
@@ -171,7 +171,7 @@ namespace Underworld
             }
             set
             {
-                if(_RES==GAME_UW2)
+                if((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                 {
                     SetAt(0x30F, (byte)value);
                 }
@@ -189,7 +189,7 @@ namespace Underworld
         {
             get
             {
-                if(_RES==GAME_UW2)
+                if((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                 {
                     return GetAt(0x310);
                 }
@@ -200,7 +200,7 @@ namespace Underworld
             }
             set
             {
-                if(_RES==GAME_UW2)
+                if((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                 {
                     SetAt(0x310, (byte)value);
                 }

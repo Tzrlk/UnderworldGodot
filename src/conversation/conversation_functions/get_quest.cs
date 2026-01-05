@@ -1,8 +1,7 @@
 using System.Diagnostics;
 namespace Underworld
 {
-    public partial class ConversationVM:UWClass
-    {
+    public partial class ConversationVM {
         public static void get_quest()
         {        
             var questno = GetConvoStackValueAtPtr(stackptr - 1); 
@@ -14,7 +13,7 @@ namespace Underworld
         static int GetQuest(int questno)
         {
             if (questno<0){return 0;}
-            if (_RES==GAME_UW2)
+            if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                 {                       
                     if (questno < 144)//regular quest variables
                     {

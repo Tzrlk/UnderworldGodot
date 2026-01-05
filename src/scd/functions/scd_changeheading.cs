@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class scd : UWClass
-    {
+    public partial class scd {
         /// <summary>
         /// Changes the heading for set of NPCs.
         /// </summary>

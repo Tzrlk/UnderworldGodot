@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class ConversationVM:UWClass
-    {
+    public partial class ConversationVM {
         public static void set_quest()
         {
             var questno = GetConvoStackValueAtPtr(stackptr - 2);   

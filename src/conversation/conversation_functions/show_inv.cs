@@ -1,7 +1,6 @@
 namespace Underworld
 {
-    public partial class ConversationVM:UWClass
-    {
+    public partial class ConversationVM {
         public static void show_inv()
         {
             var ResultIndices = at(stackptr - 1);

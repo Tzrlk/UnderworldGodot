@@ -2,8 +2,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class scd : UWClass
-    {
+    public partial class scd {
         /// <summary>
         /// Moves npc into the first random valid spot in a range of tiles. Example usage moving Nystrul to his quarters when he is waiting for the final answers
         /// </summary>

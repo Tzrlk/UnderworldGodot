@@ -7,8 +7,7 @@ namespace Underworld
     /// <summary>
     /// Class for creating instances of objects and calling updates
     /// </summary>
-    public class ObjectCreator : UWClass
-    {
+    public class ObjectCreator {
         //List of active NPCs
         //public static List<npc> npcs;
         public static bool printlabels = true;
@@ -289,7 +288,7 @@ namespace Underworld
                         {
                             case 9:
                                 {
-                                    if (_RES != GAME_UW2)
+                                    if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
                                     {
                                         glowing_rock.CreateGlowingRock(grObjects, obj, parent, name);
                                         return false;
@@ -392,7 +391,7 @@ namespace Underworld
                             obj.instance = buttonrotary.CreateInstance(parent, obj, name);
                             return false;
                         }
-                        if ((_RES == GAME_UW2) && (obj.classindex == 3))
+                        if (((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (obj.classindex == 3))
                         {  //or item id 163
                             obj.instance = painting.CreateInstance(parent, obj, name);
                             return false;
@@ -412,17 +411,17 @@ namespace Underworld
                             obj.instance = writing.CreateInstance(parent, obj, name);
                             return false;
                         }
-                        if ((_RES == GAME_UW2) && (obj.classindex == 7))
+                        if (((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (obj.classindex == 7))
                         {  //or item id 359
                             obj.instance = bed.CreateInstance(parent, obj, name);
                             return false;
                         }
-                        if ((_RES == GAME_UW2) && (obj.classindex == 8))
+                        if (((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (obj.classindex == 8))
                         {  //or item id 360
                             obj.instance = largeblackrockgem.CreateInstance(parent, obj, name);
                             return false;
                         }
-                        if ((_RES == GAME_UW2) && (obj.classindex == 9))
+                        if (((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (obj.classindex == 9))
                         {  //or item id 361
                             obj.instance = shelf.CreateInstance(parent, obj, name);
                             return false;
@@ -475,7 +474,7 @@ namespace Underworld
                             case 0xE://flam rune
                             case 0xF://tym rune
                                 {
-                                    if (_RES == GAME_UW2)
+                                    if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                                     {
                                         return runetrap.CreateRuneTrap(obj, parent);
                                     }
@@ -499,7 +498,7 @@ namespace Underworld
                         switch (obj.classindex)
                         {
                             case 0://move trigger 6-3-0
-                                if (_RES == GAME_UW2)
+                                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                                 {
                                     return trigger.CreateMoveTrigger(obj, parent);
                                 }

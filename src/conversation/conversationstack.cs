@@ -5,8 +5,7 @@ namespace Underworld
     /// <summary>
     /// Implementation of the conversation memory stack
     /// </summary>
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         /// <summary>
         /// The stack values.
         /// </summary>

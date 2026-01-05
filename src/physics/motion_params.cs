@@ -3,8 +3,7 @@ namespace Underworld
     /// <summary>
     /// A class based implementation of an array of motion params that UW uses for projectile calcs
     /// </summary>
-    public class UWMotionParamArray : UWClass
-    {
+    public class UWMotionParamArray {
         public byte[] data = new byte[0x28];
 
         public static byte[] data_3FC = new byte[40];//globals at 0x3FC
@@ -651,8 +650,7 @@ namespace Underworld
     /// <summary>
     /// Class representing data starting at DSEG:25C4
     /// </summary>
-    public class MotionCalcArray : UWClass
-    {
+    public class MotionCalcArray {
         /// <summary>
         /// Raw data
         /// </summary>

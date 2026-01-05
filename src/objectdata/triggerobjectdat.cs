@@ -30,7 +30,7 @@ namespace Underworld
         {
             get
             {
-                if (_RES==GAME_UW2)
+                if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                 {
                     return triggertypes.UNLOCK_UW2;
                 }
@@ -44,7 +44,7 @@ namespace Underworld
         {
             get
             {
-                if (_RES==GAME_UW2)
+                if ((byte)GameConfig.GameSelected==(byte)Game.Uw2)
                 {
                     return triggertypes.OPEN_UW2;
                 }

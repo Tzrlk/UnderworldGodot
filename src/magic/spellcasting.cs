@@ -3,8 +3,7 @@ using System.Diagnostics;
 namespace Underworld
 {
 
-    public  partial class SpellCasting : UWClass
-    {
+    public  partial class SpellCasting {
         /// <summary>
         /// The current spell to cast after a delay.
         /// </summary>
@@ -22,7 +21,7 @@ namespace Underworld
         {
             bool PlayerCast = caster == playerdat.playerObject;
             Debug.Print($"{caster.a_name} is casting {majorclass},{minorclass}");
-            if (_RES==GAME_UW1)
+            if ((byte)GameConfig.GameSelected==(byte)Game.Uw1)
             {
                 if (playerdat.dungeon_level==9)
                 {
@@ -125,7 +124,7 @@ namespace Underworld
                         uimanager.instance.mousecursor.SetCursorToCursor();
                         break;
                     case 0xB: 
-                        if (_RES!=GAME_UW2)
+                        if ((byte)GameConfig.GameSelected!=(byte)Game.Uw2)
                         {//special cases in UW1
                         CastClassB_SpellsOnCallBack(
                             minorclass: currentSpell.SpellMinorClass, 

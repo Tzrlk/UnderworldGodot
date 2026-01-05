@@ -217,7 +217,7 @@ namespace Underworld
 
         static commonObjDat()
         {
-            ReadStreamFile(Path.Combine(BasePath,"DATA","COMOBJ.DAT"), out buffer);
+            ReadStreamFile(Path.Combine(GameConfig.GamePath,"DATA","COMOBJ.DAT"), out buffer);
         }
     } //end class
 

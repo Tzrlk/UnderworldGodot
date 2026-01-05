@@ -2,11 +2,10 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class ConversationVM:UWClass
-    {
+    public partial class ConversationVM {
         public static void x_skills()
         {
-            if (_RES!=GAME_UW2)
+            if ((byte)GameConfig.GameSelected!=(byte)Game.Uw2)
             {
                 var NewValue = at(at(stackptr-1));
                 var SkillNo = at(at(stackptr-2));

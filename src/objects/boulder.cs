@@ -155,9 +155,9 @@ namespace Underworld
 
         public override int ModelColour(int meshNo)
         {
-            switch (_RES)
+            switch ((byte)GameConfig.GameSelected)
                 {
-                    case GAME_UW2:
+                    case (byte)Game.Uw2:
                         return 150;
                     default:
                         return 64;

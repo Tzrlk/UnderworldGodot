@@ -6,8 +6,7 @@ namespace Underworld
     /// <summary>
     /// Handles RNG calls for the game. Eventually this may replicate the original rng that is based on system time rather than .NET rng.
     /// </summary>
-    public class Rng : UWClass
-    {
+    public class Rng {
         public static uint Seed;
         const int Multiplier = 0x15A4E35;
         public static Rng r = new();

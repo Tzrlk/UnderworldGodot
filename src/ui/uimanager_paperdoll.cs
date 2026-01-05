@@ -59,7 +59,7 @@ namespace Underworld
         public void InitPaperdoll()
         {
             EnableDisable(PanelInventory,true);
-            if (UWClass._RES == UWClass.GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 //Move paperdoll
                 var offset = new Vector2(0, -12);

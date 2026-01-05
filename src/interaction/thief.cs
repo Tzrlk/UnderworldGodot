@@ -6,8 +6,7 @@ namespace Underworld
     /// <summary>
     /// Functions related to thievery and illegal actions.
     /// </summary>
-    public class thief : UWClass
-    {   
+    public class thief {   
         /// <summary>
         /// Currently owner of the stolen item
         /// </summary>
@@ -74,7 +73,7 @@ namespace Underworld
                         return false;
                     }
                 }
-                if (_RES!=GAME_UW2)
+                if ((byte)GameConfig.GameSelected!=(byte)Game.Uw2)
                 {
                     if (StolenItemOwner==0xD)
                     {

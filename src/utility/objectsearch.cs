@@ -3,8 +3,7 @@ namespace Underworld
     /// <summary>
     /// Class to find objects in tiles etc
     /// </summary>
-    public class objectsearch : UWClass
-    {
+    public class objectsearch {
 
         /// <summary>
         /// Searches the specified tile for a matching object

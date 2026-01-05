@@ -3,8 +3,7 @@ using System.Diagnostics;
 
 namespace Underworld
 {
-    public partial class ConversationVM : UWClass
-    {
+    public partial class ConversationVM {
         public static void babl_hack(uwObject talker)
         {
             var mode = at(at(stackptr - 1));

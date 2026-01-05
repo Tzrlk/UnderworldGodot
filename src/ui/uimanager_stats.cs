@@ -23,7 +23,7 @@ namespace Underworld
 
         private void InitStats()
         {
-            if (UWClass._RES == UWClass.GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 Charname.Set("theme_override_colors/font_color", Color.Color8(255, 255, 255));
                 CharClass.Set("theme_override_colors/font_color", Color.Color8(255, 255, 255));

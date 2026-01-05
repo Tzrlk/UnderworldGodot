@@ -17,9 +17,9 @@ namespace Underworld
         /// <returns>true if NPC should die, otherwise false to stay alive</returns>
         public static bool SpecialDeathCases(uwObject critter, int mode = 0)
         {
-            switch (_RES)
+            switch ((byte)GameConfig.GameSelected)
             {
-                case GAME_UW2:
+                case (byte)Game.Uw2:
                     return SpecialDeathCasesUW2(critter, mode);
                 default:
                     return SpecialDeathCasesUW1(critter, mode);
@@ -530,7 +530,7 @@ namespace Underworld
             var fluids = critterObjectDat.fluids(critter.item_id);
             if (fluids != 0)
             {
-                if (_RES == GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     fluids += 0xD9;
                 }
@@ -551,7 +551,7 @@ namespace Underworld
 
             //Drop corpse
             var corpse = critterObjectDat.corpse(critter.item_id);
-            if ((_RES == GAME_UW2) && (worlds.GetWorldNo(playerdat.dungeon_level) == 7))
+            if (((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (worlds.GetWorldNo(playerdat.dungeon_level) == 7))
             {
                 corpse = 0;//no spawn in the pits of carnage
             }

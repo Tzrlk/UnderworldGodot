@@ -25,7 +25,7 @@ namespace Underworld
         private void InitMainMenu()
         {
             
-            if (UWClass._RES == UWClass.GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 MainMenuBG.Texture = bitmaps.LoadImageAt(5);
                 //move main menu buttons
@@ -169,7 +169,7 @@ namespace Underworld
             {
                 for (int i = 1; i <= 4; i++)
                 {
-                    var path = Path.Combine(UWClass.BasePath, $"SAVE{i}", "DESC");
+                    var path = Path.Combine(GameConfig.GamePath, $"SAVE{i}", "DESC");
                     if (File.Exists(path))
                     {
                         var savename = File.ReadAllText(path);
@@ -194,7 +194,7 @@ namespace Underworld
         private IEnumerator ClearMainMenu()
         {
             ToggleMainMenuButtons(false);
-            if (UWClass._RES == UWClass.GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 LoadingLabel.Text = GameStrings.GetString(1, 273);
             }
@@ -227,9 +227,9 @@ namespace Underworld
             if (folder.ToUpper() == "DATA")
             {
                 //default start locations.                
-                switch (UWClass._RES)
+                switch ((byte)GameConfig.GameSelected)
                 {
-                    case UWClass.GAME_UW2:
+                    case (byte)Game.Uw2:
                         //main.gamecam.Position = new Vector3(-23f, 4.3f, 58.2f);
                         Teleportation.InitialisePlayerOnLevelOrPositionChange(0x13, 0x30);
                         break;

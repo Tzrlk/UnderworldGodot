@@ -1,8 +1,7 @@
 namespace Underworld
 {
 
-    public partial class combat : UWClass
-    {
+    public partial class combat {
         public static int CombatHitTileX;
         public static int CombatHitTileY;
         public enum CombatStages

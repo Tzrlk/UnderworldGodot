@@ -18,10 +18,10 @@ namespace Underworld
 
         public WeaponsLoader(int AuxPal)
         {
-            switch (_RES)
+            switch ((byte)GameConfig.GameSelected)
             {
-                case GAME_UW1:
-                case GAME_UW2:
+                case (byte)Game.Uw1:
+                case (byte)Game.Uw2:
                     ReadAnimData(AuxPal); break;
             }
         }
@@ -37,19 +37,19 @@ namespace Underworld
             int[] UW2_Y = { 66, 67, 68, -1, 70, 71, 72, 73, -1, 75, 76, 77, -1, 79, 80, 81, 82, -1, -1, -1, -1, -1, 88, 89, 90, -1, -1, 93, 94, 95, -1, 163, 164, 165, -1, 167, 168, 169, 170, -1, 172, 173, 174, -1, 176, 177, 178, 179, -1, -1, -1, -1, -1, 185, 186, 187, -1, -1, 190, 191, 192, -1, 260, 261, 262, -1, 264, 265, 266, 267, -1, 269, 270, 271, -1, 273, 274, 275, 276, -1, -1, -1, -1, -1, 282, 283, 284, -1, -1, 287, 288, 289, -1, -1, -1, -1, -1, 361, 362, 363, -1, -1, 366, -1, 368, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 454, 455, 456, -1, 458, 459, 460, 461, -1, 463, 464, 465, -1, 467, 468, 469, 470, -1, -1, -1, -1, -1, 476, 477, 478, -1, -1, -1, 482, 482, 483, 551, 552, 553, -1, 555, 556, 557, 558, -1, 560, 561, 562, -1, 564, 565, 566, 567, -1, -1, -1, -1, -1, 573, 574, 575, -1, -1, 578, 579, 580, -1, 648, 649, 650, -1, 652, 653, 654, 655, -1, 657, 658, 659, -1, 661, 662, 663, 664, -1, -1, -1, -1, -1, 670, 671, 672, -1, -1, 675, 676, 677, -1, -1, -1, -1, -1, 749, 750, 751, -1, 754, -1, 756, -1, -1 };
 
 
-            string datfile = Path.Combine(BasePath, "DATA", "WEAPONS.DAT");
-            string cmfile = Path.Combine(BasePath, "DATA", "WEAPONS.CM");
-            string grfile = Path.Combine(BasePath, "DATA", "WEAPONS.GR");
-            if (_RES == GAME_UW2)
+            string datfile = Path.Combine(GameConfig.GamePath, "DATA", "WEAPONS.DAT");
+            string cmfile = Path.Combine(GameConfig.GamePath, "DATA", "WEAPONS.CM");
+            string grfile = Path.Combine(GameConfig.GamePath, "DATA", "WEAPONS.GR");
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
-                datfile = Path.Combine(BasePath, "DATA", "WEAP.DAT");
-                cmfile = Path.Combine(BasePath, "DATA", "WEAP.CM");
-                grfile = Path.Combine(BasePath, "DATA", "WEAP.GR");
+                datfile = Path.Combine(GameConfig.GamePath, "DATA", "WEAP.DAT");
+                cmfile = Path.Combine(GameConfig.GamePath, "DATA", "WEAP.CM");
+                grfile = Path.Combine(GameConfig.GamePath, "DATA", "WEAP.GR");
             }
             int offset = 0;
             int MaxHeight = 112;
             int MaxWidth = 172;
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 MaxHeight = 128;
                 MaxWidth = 208;
@@ -57,7 +57,7 @@ namespace Underworld
             int add_ptr = 0;
             ReadStreamFile(datfile, out byte[] AnimData);
             ReadStreamFile(grfile, out byte[] textureFile);
-            if (_RES != GAME_UW2)
+            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
             {
                 int GroupSize = 28;
 
@@ -83,7 +83,7 @@ namespace Underworld
             }
 
             int NoOfTextures = textureFile[2] << 8 | textureFile[1];
-            if (_RES == GAME_UW2)
+            if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
             {
                 NoOfTextures = 230;
             }
@@ -119,7 +119,7 @@ namespace Underworld
                 int ColCounter = 0; int RowCounter = 0;
                 int cornerX;// = AnimX[i];
                 int cornerY;// = AnimY[i];
-                if (_RES != GAME_UW2)
+                if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
                 {
                     cornerX = AnimX[i];
                     cornerY = AnimY[i];
@@ -138,7 +138,7 @@ namespace Underworld
                     }
                 }
 
-                if ((_RES == GAME_UW1) || ((_RES == GAME_UW2) && (UW2_X[i] != -1)))//Only create if UW1 image or a valid uw2 one
+                if (((byte)GameConfig.GameSelected == (byte)Game.Uw1) || (((byte)GameConfig.GameSelected == (byte)Game.Uw2) && (UW2_X[i] != -1)))//Only create if UW1 image or a valid uw2 one
                 {
                     bool ImgStarted = false;
                     for (int y = 0; y < MaxHeight; y++)

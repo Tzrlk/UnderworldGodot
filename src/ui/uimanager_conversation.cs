@@ -39,7 +39,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return instance.ConversationTextUW2;
                 }
@@ -55,7 +55,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return PlayerPortraitUW2;
                 }
@@ -70,7 +70,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return NPCPortraitUW2;
                 }
@@ -85,7 +85,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return PlayerNameLabelUW2;
                 }
@@ -100,7 +100,7 @@ namespace Underworld
         {
             get
             {
-                if (UWClass._RES == UWClass.GAME_UW2)
+                if ((byte)GameConfig.GameSelected == (byte)Game.Uw2)
                 {
                     return NPCNameLabelUW2;
                 }
@@ -116,7 +116,7 @@ namespace Underworld
         {
             EnableDisable(ConversationPanelUW1,false);
             EnableDisable(ConversationPanelUW2,false);
-            if (UWClass._RES != UWClass.GAME_UW2)
+            if ((byte)GameConfig.GameSelected != (byte)Game.Uw2)
             {
                 NPCNameLableFrameUW1.Texture = grConverse.LoadImageAt(0);
                 PlayerNameLableFrameUW1.Texture = grConverse.LoadImageAt(0);

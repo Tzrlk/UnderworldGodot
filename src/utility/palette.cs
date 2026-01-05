@@ -3,8 +3,7 @@ using Godot;
 namespace Underworld
 {
 
-    public class Palette : UWClass
-    {
+    public class Palette {
 
         public static int CurrentPalette
         {
