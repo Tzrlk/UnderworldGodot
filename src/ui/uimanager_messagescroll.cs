@@ -38,7 +38,7 @@ namespace Underworld
 			instance.scroll.OutputControl = new RichTextLabel[] { MessageScroll };
 
 			instance.convo = new();
-			if (GameConfig.GameSelected == Game.Uw2)
+			if (Game.Uw2.IsSelected())
 			{
 				instance.convo.Lines = new MessageScrollLine[12];
 				instance.convo.Rows = 12;

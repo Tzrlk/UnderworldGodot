@@ -119,7 +119,7 @@ namespace Underworld
                 {
                     GameConfig.instance.shaderbandsize = 1;
                 }
-                if ((i==6) && (GameConfig.GameSelected == Game.Uw2))
+                if ((i==6) && (Game.Uw2.IsSelected()))
                 {
                     Palettes[i].cycledGamePalette = CreateShadedPaletteCycles(Palettes[i]);
                     Palettes[i].cycledUIPalette = MainMenuPaletteCycle(Palettes[i]);//main menu flames effect                    

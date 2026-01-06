@@ -66,7 +66,7 @@ namespace Underworld
             if (result)
             {
                 projectile.NextFrame_0XA_Bit0123 = (short)((projectile.NextFrame_0XA_Bit0123 + projectile.Projectile_Speed) & 0xF);
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     switch (projectile.item_id)
                     {
@@ -118,7 +118,7 @@ namespace Underworld
                 var tileVar6 = UWTileMap.current_tilemap.Tiles[projectile.tileX, projectile.tileY];//the current tile.
                 ObjectRemover_OLD.RemoveObjectFromLinkedList(tileVar6.indexObjectList, projectile.index, UWTileMap.current_tilemap.LevelObjects, tileVar6.Ptr + 2);
 
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     //seg030_2BB7_718:         
                     trigger.RunPressureEnterExitTriggersInTile(
@@ -137,7 +137,7 @@ namespace Underworld
                 //Set zpos now as pressure triggers need this info.
                 projectile.zpos = (short)(MotionParams.z_4 >> 3);
 
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     //seg030_2BB7_796:      
                     //Debug.Print("TODO Run enter trigger for projectile");
@@ -152,7 +152,7 @@ namespace Underworld
             {
                 //in same tile but check if zpos has changed for the purposes of triggering pressure triggers.
                 //seg030_2BB7_7A3:
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     //seg030_2BB7_7B7:
                     if (projectile.zpos != (MotionParams.z_4 >> 3))
@@ -360,14 +360,14 @@ namespace Underworld
                 //object has landed in water.
                 si_cull = 8;
                 animo.SpawnAnimoInTile(6, projectile.xpos, projectile.ypos, projectile.zpos, projectile.tileX, projectile.tileY);//spawn a splash
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     OilOnMud(projectile);
                 }
             }
             else
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     if (projectile.TileState_0XA_Bit456 == 2)
                     {
@@ -488,7 +488,7 @@ namespace Underworld
                 tile.indexObjectList = haltedObject.index;
                 objectInstance.RedrawFull(haltedObject);
                 ObjectHasHalted = true;
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     //Run Pressure triggers in tile for halted object
                     trigger.RunPressureEnterExitTriggersInTile(

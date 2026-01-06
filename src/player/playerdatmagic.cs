@@ -80,7 +80,7 @@ namespace Underworld
         {
             get
             {
-                if(GameConfig.GameSelected == Game.Uw2)
+                if(Game.Uw2.IsSelected())
                 {
                     return (GetAt(0x62)>>1) & 3;
                 }
@@ -91,7 +91,7 @@ namespace Underworld
             }
             set
             {  
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     var tmp = GetAt(0x62);
                     tmp = (byte)(tmp & 0xF9);

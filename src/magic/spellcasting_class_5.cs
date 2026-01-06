@@ -8,7 +8,7 @@ namespace Underworld
         public static void CastMagicProjectile(uwObject caster, int minorclass)
         {
             int spellProjectileID;
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 spellProjectileID = UW2MagicProjectileIDs[minorclass - 1];
             }

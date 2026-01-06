@@ -430,9 +430,9 @@ namespace Underworld
         static string TextureName(int index, bool floor = true)
         {
             int offset = 0;
-            if ((GameConfig.GameSelected == Game.Uw2) && (floor)) { offset = 48; }
+            if ((Game.Uw2.IsSelected()) && (floor)) { offset = 48; }
             var textureNo = UWTileMap.current_tilemap.texture_map[index + offset];
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 if (floor)
                 {
@@ -553,7 +553,7 @@ namespace Underworld
                             tileToChange.floorHeight = 0xF;
                         }
 
-                        if ((newFloorTexture < 0xF) && (GameConfig.GameSelected == Game.Uw2) || ((newFloorTexture < 0xB) && (GameConfig.GameSelected == Game.Uw2)))
+                        if ((newFloorTexture < 0xF) && (Game.Uw2.IsSelected()) || ((newFloorTexture < 0xB) && (Game.Uw2.IsSelected())))
                         {
                             tileToChange.floorTexture = (short)newFloorTexture;
                             //TODO some terrain changes happen here too.

@@ -18,7 +18,7 @@ namespace Underworld
         /// <returns></returns>
         private static void DisplayGrave(uwObject obj)
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 uimanager.DisplayCutsImage("cs401.n01", GetGraveID(obj),  uimanager.CutsSmall);
             }            
@@ -34,7 +34,7 @@ namespace Underworld
         public static int GetGraveID(uwObject obj)
         {
             //Load in the grave information
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 Loader.ReadStreamFile(System.IO.Path.Combine(GameConfig.GamePath, "DATA", "GRAVE.DAT"), out byte[] graves);
                 if (obj.link >= 512)

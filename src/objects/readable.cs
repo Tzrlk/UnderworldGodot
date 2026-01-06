@@ -19,7 +19,7 @@ namespace Underworld
             {
                 objList = playerdat.InventoryObjects;
             }
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {//TODO implement the UW2 logic.
                 var magicenchantment = MagicEnchantment.GetSpellEnchantment(ObjectUsed, objList);
                 if ((magicenchantment != null) && (!WorldObject))

@@ -567,7 +567,7 @@ namespace Underworld
 			ExportVariables(talker);
 			uimanager.EnableDisable(uimanager.instance.ConversationPanelUW1, false);
 			uimanager.EnableDisable(uimanager.instance.ConversationPanelUW2, false);
-			if (GameConfig.GameSelected == Game.Uw2)
+			if (Game.Uw2.IsSelected())
 			{//restore background and other ui elements hidden
 				uimanager.instance.mainwindowUW2.Texture = uimanager.bitmaps.LoadImageAt(BytLoader.UW2ThreeDWin_BYT, true);
 				for (int i = 0; i <= uimanager.instance.SelectedRunes.GetUpperBound(0); i++)
@@ -609,7 +609,7 @@ namespace Underworld
 			uimanager.instance.convo.Clear();
 			InConversation = false;
 
-			if (GameConfig.GameSelected == Game.Uw2)
+			if (Game.Uw2.IsSelected())
 			{
 				if (playerdat.GetQuest(143)!=0)
 				{

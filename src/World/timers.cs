@@ -41,7 +41,7 @@ namespace Underworld
         }
         public static void RunTimerTriggers(int delta = 1)
         {
-            if (GameConfig.GameSelected == Game.Uw2) 
+            if (Game.Uw2.IsSelected()) 
             { 
                 return;
             }

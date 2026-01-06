@@ -25,7 +25,7 @@ namespace Underworld
         private void InitMainMenu()
         {
             
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 MainMenuBG.Texture = bitmaps.LoadImageAt(5);
                 //move main menu buttons
@@ -194,7 +194,7 @@ namespace Underworld
         private IEnumerator ClearMainMenu()
         {
             ToggleMainMenuButtons(false);
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 LoadingLabel.Text = GameStrings.GetString(1, 273);
             }

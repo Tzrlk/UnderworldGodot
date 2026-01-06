@@ -254,7 +254,7 @@ namespace Underworld
                             CalculatePlayerAttackScores();
 
                             ExecuteAttack(playerdat.playerObject);
-                            if (GameConfig.GameSelected == Game.Uw2)
+                            if (Game.Uw2.IsSelected())
                             {
                                 if (OnHitSpell > 0)
                                 {
@@ -298,7 +298,7 @@ namespace Underworld
             //remove ammo from inventory
             var PlayerLaunched = true;
 
-            if ((GameConfig.GameSelected == Game.Uw2) && (
+            if ((Game.Uw2.IsSelected()) && (
                 (RangedWeaponSubclass == 8) || (RangedWeaponSubclass == 9) || (RangedWeaponSubclass == 0xA)
             ))
             {

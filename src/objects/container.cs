@@ -365,9 +365,9 @@ namespace Underworld
                         case 514://scrolls
                             {
                                 if (
-                                    ((objectToAdd.majorclass == 4) && (objectToAdd.minorclass == 3) && (GameConfig.GameSelected == Game.Uw2))
+                                    ((objectToAdd.majorclass == 4) && (objectToAdd.minorclass == 3) && (Game.Uw2.IsSelected()))
                                     ||
-                                    ((objectToAdd.majorclass == 4) && (objectToAdd.minorclass == 3) && (objectToAdd.classindex <= 0xA) && (GameConfig.GameSelected == Game.Uw2))
+                                    ((objectToAdd.majorclass == 4) && (objectToAdd.minorclass == 3) && (objectToAdd.classindex <= 0xA) && (Game.Uw2.IsSelected()))
                                     )
                                 {
                                     //a book/scroll

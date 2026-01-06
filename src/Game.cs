@@ -1,4 +1,7 @@
-﻿namespace Underworld;
+﻿using System;
+using System.Runtime.InteropServices;
+
+namespace Underworld;
 
 /// <summary>
 /// Represents a game that can be run using this engine.
@@ -20,5 +23,17 @@ public enum Game : byte {
 	/// Ultima Underworld 2: Labyrinth of Worlds
 	/// </summary>
 	Uw2 = 2,
+
+}
+
+public static class GameExtensions {
+
+	/// <summary>
+	/// Shortcut to checking if the given game is currently selected.
+	/// </summary>
+	/// <param name="game">The game in question.</param>
+	/// <returns>true if the game is selected in config.</returns>
+	public static bool IsSelected(this Game game)
+		=> GameConfig.GameSelected == game;
 
 }

@@ -21,7 +21,7 @@ namespace Underworld
                     }
                 case 1://Portal
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {
                             Portal();
                         }
@@ -34,7 +34,7 @@ namespace Underworld
                     }
                 case 2:
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {
                             //Debug.Print("RESTORATION");
                             Restoration();
@@ -48,7 +48,7 @@ namespace Underworld
 
                 case 3:
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {
                             Locate();
                         }
@@ -64,7 +64,7 @@ namespace Underworld
 
                 case 4:
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {//no uw2 spells here, Name Enchantment                        
                             currentSpell = new RunicMagic(11, minorclass);
                             uimanager.instance.mousecursor.SetCursorToCursor(10);
@@ -73,7 +73,7 @@ namespace Underworld
                     }
                 case 5:
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {//no uw2 spells here, Unlock/Open spell                        
                             currentSpell = new RunicMagic(11, minorclass);
                             uimanager.instance.mousecursor.SetCursorToCursor(10);
@@ -103,7 +103,7 @@ namespace Underworld
                     }
                 case 0xA://gate travel (UW1)
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {
                             GateTravelUW1();
                         }
@@ -190,7 +190,7 @@ namespace Underworld
             //set flag
             playerdat.armageddon = true;
 
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 playerdat.SilverTreeDungeon = 0; //stops player resurrection
             }
@@ -308,7 +308,7 @@ namespace Underworld
         /// <param name="objList"></param>
         public static void CastClassB_SpellsOnCallBack(int minorclass, int index, uwObject[] objList)
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 switch (minorclass)
                 {

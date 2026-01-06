@@ -355,7 +355,7 @@ namespace Underworld
         /// <returns></returns>
         bool SkipImage(string file, int frame)
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 switch(file.ToUpper())
                 {

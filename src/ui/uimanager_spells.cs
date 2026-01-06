@@ -13,7 +13,7 @@ namespace Underworld
         static int[] SpellIconOffsetsUW2 = new int[] { 0x14, -1, 0x13, 0x05, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x11, 0x80, 0x80, 0x80, 0x80 };
         static void InitSpellIcons()
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 var offset = new Vector2(-140, 28);
                 for (int i = 0; i <= instance.ActiveSpellIcons.GetUpperBound(0); i++)
@@ -98,7 +98,7 @@ namespace Underworld
                     var index = GetSpellNoIndex(major, minor);
                     var spellname = GameStrings.GetString(6, 384 + index);
                     int stabilityresult = 137;
-                    if (GameConfig.GameSelected == Game.Uw2)
+                    if (Game.Uw2.IsSelected())
                     {
                         stabilityresult = 151;
                     }

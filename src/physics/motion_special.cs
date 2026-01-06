@@ -49,7 +49,7 @@ namespace Underworld
         {
             Debug.Print("Detonate projectile");
             var maxEntries = 2;
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 maxEntries = 3;
             }

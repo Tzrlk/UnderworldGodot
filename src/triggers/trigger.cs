@@ -91,7 +91,7 @@ namespace Underworld
                                             ptrListHead: tile.Ptr + 2);
                                     }
                                     //if uw2 test for pressure triggers
-                                    if (GameConfig.GameSelected == Game.Uw2)
+                                    if (Game.Uw2.IsSelected())
                                     {
                                         if ((triggerType & 0xF07) == 7)
                                         {
@@ -266,7 +266,7 @@ namespace Underworld
         /// </summary>
         public static void RunTimerTriggers()
         {
-            if (GameConfig.GameSelected == Game.Uw2) { return; }
+            if (Game.Uw2.IsSelected()) { return; }
             for (int i = 256; i <= UWTileMap.current_tilemap.LevelObjects.GetUpperBound(0); i++)
             {
                 //if (i==884)
@@ -289,7 +289,7 @@ namespace Underworld
         /// </summary>
         public static void RunNextScheduledTrigger()
         {
-            if (GameConfig.GameSelected == Game.Uw2) { return; }
+            if (Game.Uw2.IsSelected()) { return; }
             if ((scheduledtriggerindex < 256) || (scheduledtriggerindex >= 1024))
             {
                 scheduledtriggerindex = 256;

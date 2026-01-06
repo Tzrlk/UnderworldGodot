@@ -9,7 +9,7 @@ namespace Underworld
         public static bool Use(uwObject obj, bool WorldObject)
         {            
             if (WorldObject){return false;}
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 var worldno = worlds.GetWorldNo(playerdat.dungeon_level);
                 uimanager.DrawAutoMap(playerdat.dungeon_level-1, worldno);

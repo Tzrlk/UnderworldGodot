@@ -64,7 +64,7 @@ namespace Underworld
         static TerrainDatLoader()
         {
             string filename = "TERRAIN.DAT";
-            if (GameConfig.GameSelected == Game.Uw0)
+            if (Game.Uw0.IsSelected())
             {
                 filename = "DTERRAIN.DAT";
             }
@@ -163,7 +163,7 @@ namespace Underworld
         /// <returns></returns>
         public static int GetTerrainTypeNo(TileInfo tile)
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {//TOTEST
              //var floorterrain = tileMapRender.FloorTexture(tile);
                 var floorterrain = tileMapRender.FloorTexture_MapIndex(tile);

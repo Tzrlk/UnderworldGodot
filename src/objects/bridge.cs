@@ -166,7 +166,7 @@ namespace Underworld
                     int textureindex = uwobject.flags_full;  //(uwobject.enchantment<<3) | (int)uwobject.flags;
                     if (textureindex >= 2)
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {
                             textureindex = textureindex-2; //tilemap.texture_map[textureindex-2];
                         }

@@ -14,7 +14,7 @@ namespace Underworld
         /// <returns></returns>
         public static short Activate(uwObject trapObj, uwObject[] objList)
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 //TODO: Check if same or new logic applies in UW2
 

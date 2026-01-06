@@ -106,7 +106,7 @@ namespace Underworld
                     }
                 case 2:
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {
                             switch (objInHand.classindex)
                             {
@@ -126,7 +126,7 @@ namespace Underworld
             {
                 case 0: //keys up to 0xE
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {
                             switch (objInHand.classindex)
                             {
@@ -153,7 +153,7 @@ namespace Underworld
                     }
                 case 1:
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {
                             switch (objInHand.classindex)
                             {
@@ -169,7 +169,7 @@ namespace Underworld
                         {
                             case 0x7:   //spike in uw1
                                 {
-                                    if (GameConfig.GameSelected == Game.Uw2)
+                                    if (Game.Uw2.IsSelected())
                                     {
                                         return spike.UseOn(objInHand, targetObject, WorldObject);
                                     }

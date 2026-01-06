@@ -20,7 +20,7 @@ namespace Underworld
                 Debug.Print($"Cloning {template.index} {template.a_name}");
                 if (template != null)
                 {
-                    if (GameConfig.GameSelected == Game.Uw2)
+                    if (Game.Uw2.IsSelected())
                     {
                         CreateObjectUW2(template, triggerX, triggerY, objList);
                     }

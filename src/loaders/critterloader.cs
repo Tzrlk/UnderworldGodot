@@ -373,7 +373,7 @@ namespace Underworld
 
         public static string GetAnimName (int animation, int angle)
         {
-            if(GameConfig.GameSelected == Game.Uw2)
+            if(Game.Uw2.IsSelected())
             {
                 return GetUW2AnimName(animation,angle);
             }

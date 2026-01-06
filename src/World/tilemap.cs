@@ -1431,7 +1431,7 @@ namespace Underworld
             }
             
             //Game specific
-            if(GameConfig.GameSelected == Game.Uw2)
+            if(Game.Uw2.IsSelected())
             {//clear the timer triggers in UW2
                 for (int t=0;t<64;t++)
                 {

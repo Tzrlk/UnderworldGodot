@@ -7,7 +7,7 @@ namespace Underworld
         {
             //Preamble of getting positon to spawn in.  based on facing direction of the player
             var distance = 9;
-            if ((GameConfig.GameSelected == Game.Uw2) && (minorclass == 4))
+            if ((Game.Uw2.IsSelected()) && (minorclass == 4))
             {//EXTRA DISTANCE FOR SUMMON MONSTER IN UW1
                 distance = 0xC;
             }
@@ -42,7 +42,7 @@ namespace Underworld
                     }
                 case 2:
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {
                             //Debug.Print("FLAM RUNE");
                             itemid = 414;
@@ -51,7 +51,7 @@ namespace Underworld
                     }
                 case 3:
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {
                             //Debug.Print("TYM RUNE");
                             itemid = 415;
@@ -107,7 +107,7 @@ namespace Underworld
                     }
                 case 5:
                     {//Summon demon. summons a hostile demon from a list of demons item ids
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {
                             //isNPCSpawn = true;
                             var demons = new int[] { 0x4B, 0x4B, 0x5E, 0x64, 0x68 };
@@ -123,7 +123,7 @@ namespace Underworld
                     }
                 case 6:
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {
                             //Debug.Print("Satellite");
                             itemid = 0x1E;// spawn a satellite.
@@ -139,7 +139,7 @@ namespace Underworld
             if (motion.TestIfObjectFitsInTile(itemid, 0, x0, y0, tile.floorHeight << 3, 1, 8))
             {
                 int newIndex;
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     if (minorclass >= 4)
                     {
@@ -197,7 +197,7 @@ namespace Underworld
                         }
                     case 6:
                         {
-                            if (GameConfig.GameSelected == Game.Uw2)
+                            if (Game.Uw2.IsSelected())
                             {
                                 //satellite
                                 ObjectCreator.InitMobileObject(newObject, x0 >> 3, y0 >> 3);

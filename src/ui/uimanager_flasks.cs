@@ -21,7 +21,7 @@ namespace Underworld
             HealthFlaskBG.Texture = grFlasks.LoadImageAt(75);
             ManaFlaskBG.Texture = grFlasks.LoadImageAt(75);
 
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
                 {
                 var offset = new Vector2(0, 24);
                 HealthFlaskPanel.Position += offset;

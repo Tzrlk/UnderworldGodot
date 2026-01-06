@@ -24,7 +24,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return 80;
                 }
@@ -39,7 +39,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return 7;
                 }
@@ -52,7 +52,7 @@ namespace Underworld
 
         public static void InitAutomap()
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 instance.AutomapNumberLabel.Position += new Vector2(-28, 12);
                 for (int i = 0; i <= instance.AutomapWorldGem.GetUpperBound(0); i++)
@@ -72,7 +72,7 @@ namespace Underworld
         public static void DrawAutoMap(int level, int worldno)
         {
             int blockno;
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 level = level % 8;
                 blockno = (worldno * 8) + level;
@@ -94,7 +94,7 @@ namespace Underworld
             EnableDisable(instance.AutomapPanel, true);
             //TODO update UW2 Map gem
 
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {                
                 int[] worldmappingSelected = new int[] { 16, 8, 9, 10, 11, 12, 13, 14, 15 }; //the order of worlds is not the same as the order of images. this maps the world number to the on version of the image
                 int[] worldmappingVisited = new int[] { 16, 0, 1, 2, 3, 4, 5, 6, 7 };

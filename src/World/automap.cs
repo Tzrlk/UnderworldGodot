@@ -70,7 +70,7 @@ namespace Underworld
         /// <returns></returns>
         public static bool CanMap(int dungeon)
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 if (worlds.GetWorldNo(dungeon) == 8)
                 {

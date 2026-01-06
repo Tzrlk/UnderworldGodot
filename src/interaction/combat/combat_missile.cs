@@ -11,7 +11,7 @@ namespace Underworld
         {
             var diDamageMultipler = 1;
             Debug.Print($"Missile impact {projectile.a_name} on {objectHit.a_name}");
-            if (GameConfig.GameSelected == Game.Uw2 && projectile.item_id == 0x1E)
+            if (Game.Uw2.IsSelected() && projectile.item_id == 0x1E)
             {
                 //projectile is a UW2 Satellite
                 if (projectile.ProjectileSourceID == objectHit.index)

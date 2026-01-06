@@ -7,7 +7,7 @@ namespace Underworld
     {
         public static bool Use(uwObject obj, bool WorldObject)
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 switch (obj.classindex)
                 {
@@ -92,7 +92,7 @@ namespace Underworld
 
                     int foodItemID = obj.item_id;
                     ObjectCreator.Consume(obj, UsedFromInventory);
-                    if (GameConfig.GameSelected == Game.Uw2)
+                    if (Game.Uw2.IsSelected())
                     {
                         SpawnLeftOvers(foodItemID);
                     }
@@ -118,7 +118,7 @@ namespace Underworld
             //;  tasted kind of bland. \n
             //;  tasted pretty good. \n
             //;  tasted great. \n
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 uimanager.AddToMessageScroll($"{objname}{GameStrings.GetString(1, 0xBB + taste)}");
             }
@@ -160,7 +160,7 @@ namespace Underworld
         private static void SpawnLeftOvers(int foodItemId)
         {
             var leftOvers = -1;
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 switch (foodItemId)
                 {
@@ -230,7 +230,7 @@ namespace Underworld
             }
             var foodItemID = obj.item_id;
             ObjectCreator.Consume(obj, UsedFromInventory);
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 SpawnLeftOvers(foodItemID);
             }
@@ -262,7 +262,7 @@ namespace Underworld
         {
             var tastestring = 0;
             var nutrition = 0;
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {//uw2
 
                 switch (obj.item_id)
@@ -337,7 +337,7 @@ namespace Underworld
                 }
             }
 
-            if ((GameConfig.GameSelected == Game.Uw2) && (obj.item_id == 0x114))
+            if ((Game.Uw2.IsSelected()) && (obj.item_id == 0x114))
             {
                 if (!playerdat.DreamingInVoid)
                 {
@@ -349,7 +349,7 @@ namespace Underworld
             
             ObjectCreator.Consume(obj, UsedFromInventory);
             
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 SpawnLeftOvers(foodItemID);
             }
@@ -362,7 +362,7 @@ namespace Underworld
 
             if (obj.majorclass == 2)
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     switch (obj.classindex)
                     {
@@ -411,7 +411,7 @@ namespace Underworld
             }
 
 
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {//uw2
                 switch (obj.item_id)
                 {

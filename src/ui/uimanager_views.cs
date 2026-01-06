@@ -30,7 +30,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return 16f;
                 }
@@ -45,7 +45,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return 208;
                 }
@@ -60,7 +60,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return 128;
                 }
@@ -75,7 +75,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return 104;
                 }
@@ -90,7 +90,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return 64;
                 }
@@ -105,7 +105,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return 42;
                 }

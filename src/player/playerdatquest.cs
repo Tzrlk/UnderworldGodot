@@ -12,7 +12,7 @@ namespace Underworld
         /// <returns></returns>
         public static int GetGameVariable(int variableno)
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 return GetAt(0xFA + (variableno * 2));
             }
@@ -31,7 +31,7 @@ namespace Underworld
         {
             value = value & 0xFF;//keep value within range.
             Debug.Print($"Setting gamevar {variableno} to {value}");
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 SetAt(0xFA + variableno * 2, (byte)value);
             }
@@ -48,7 +48,7 @@ namespace Underworld
         /// <returns></returns>
         public static int GetQuest(int questno)
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 if (questno <= 127)
                 {//Quests are every 4 bytes. The first 4 bits are the four quests in that block of 4 bytes.
@@ -90,7 +90,7 @@ namespace Underworld
         public static void SetQuest(int questno, int newValue)
         {
             Debug.Print($"Setting Quest {questno} to {newValue}");
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 if (questno <= 127)
                 {//Quests are every 4 bytes. The first 4 bits are the four quests in that block of 4 bytes.
@@ -218,7 +218,7 @@ namespace Underworld
         /// <returns></returns>
         public static int GetMoonstone(int moonstone)
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 return GetAt(0x5F) & 0xF;
             }
@@ -230,7 +230,7 @@ namespace Underworld
 
         public static void SetMoonstone(int moonstone, int value)
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 var tmp = GetAt(0x5F);
                 tmp = (byte)(tmp & 0xF0);
@@ -272,7 +272,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return (GetAt16(0x63) >> 6) & 7;
                 }
@@ -280,7 +280,7 @@ namespace Underworld
             }
             set
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     var tmp = GetAt16(0x63);
                     tmp = tmp & 0xFE3F; //clear existing bits
@@ -298,7 +298,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return false;//although technically by this point is has already happened
                 }
@@ -309,7 +309,7 @@ namespace Underworld
             }
             set
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     var tmp = GetAt(0x61);
                     tmp = (byte)(tmp & 0xD7);
@@ -330,7 +330,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return ((GetAt(0x64) >> 1) & 1) == 1;
                 }
@@ -338,7 +338,7 @@ namespace Underworld
             }
             set
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     var tmp = GetAt(0x64);
                     if (value)
@@ -360,7 +360,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return GetAt16(0x2FC);
                 }
@@ -368,7 +368,7 @@ namespace Underworld
             }
             set
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     SetAt16(0x2FC, value);
                 }
@@ -383,7 +383,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return GetAt16(0x2FE);
                 }
@@ -391,7 +391,7 @@ namespace Underworld
             }
             set
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     SetAt16(0x2FE, value);
                 }
@@ -405,7 +405,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return GetAt(0x300);
                 }
@@ -413,7 +413,7 @@ namespace Underworld
             }
             set
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     SetAt(0x300, (byte)value);
                 }
@@ -427,7 +427,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return GetAt(0x301);
                 }
@@ -435,7 +435,7 @@ namespace Underworld
             }
             set
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     SetAt(0x301, (byte)value);
                 }
@@ -447,7 +447,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return false;
                 }
@@ -458,7 +458,7 @@ namespace Underworld
             }
             set
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     var tmp = GetAt(0x63);
                     tmp &= 0xFB;
@@ -478,7 +478,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return false;
                 }
@@ -489,7 +489,7 @@ namespace Underworld
             }
             set
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     var tmp = GetAt(0x63);
                     tmp &= 0xF7;

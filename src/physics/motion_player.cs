@@ -190,7 +190,7 @@ namespace Underworld
             }
 
 
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 //seg008_1B09_862:
                 //TODO UW2 specific code for ice and water currents
@@ -201,7 +201,7 @@ namespace Underworld
 
 
 
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 if (
                     ((((int)playerMotionParams.unk_c_X | (int)playerMotionParams.unk_e_Y | (int)playerMotionParams.unk_10_Z) == 0))
@@ -290,7 +290,7 @@ namespace Underworld
                 //player is in same tile
                 if (di_zpos != (playerMotionParams.z_4>>3))
                 {
-                    if (GameConfig.GameSelected == Game.Uw2)
+                    if (Game.Uw2.IsSelected())
                     {
                         //player has changed height in the same tile. Check if pressure triggers in the tile need to be ran
                         trigger.PressureTriggerZChange(
@@ -359,7 +359,7 @@ namespace Underworld
                 {
                     //seg008_1B09_F2F:
                     var FallDamage = playerMotionParams.unk_26_falldamage >> 8;
-                    if (GameConfig.GameSelected == Game.Uw2)
+                    if (Game.Uw2.IsSelected())
                     {
                         if (worlds.GetWorldNo(playerdat.dungeon_level) == 8)
                         {

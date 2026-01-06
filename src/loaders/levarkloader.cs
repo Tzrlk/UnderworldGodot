@@ -45,7 +45,7 @@ namespace Underworld
         public static UWBlock LoadLevArkBlock(int LevelBlockNo)
         {
             UWBlock lev_ark_block;
-            if (GameConfig.GameSelected == Game.Uw0)
+            if (Game.Uw0.IsSelected())
             {//In UWDemo there is no block structure. Just copy the data directly from file.
                 lev_ark_block = new UWBlock
                 {
@@ -57,7 +57,7 @@ namespace Underworld
             {
                 int targetLen = 0x7c08;                
                 //Load the tile and object blocks
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     targetLen = 0x8000; //extra space needed for the animation overlay data.
                 }

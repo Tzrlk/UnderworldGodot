@@ -238,7 +238,7 @@ namespace Underworld
             CurrentWeaponRadius = commonObjDat.radius(currentWeaponItemID);
             var weaponskill = playerdat.GetSkillValue(currentMeleeWeaponSkillNo);
 
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 if (currentWeaponItemID == 10)
                 {

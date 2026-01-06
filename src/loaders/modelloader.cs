@@ -125,7 +125,7 @@ namespace Underworld
             if (buffer == null)
             {
                 var exename = "UW.EXE";
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     exename = "UW2.EXE";
                 }

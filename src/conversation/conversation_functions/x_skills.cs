@@ -5,7 +5,7 @@ namespace Underworld
     public partial class ConversationVM {
         public static void x_skills()
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 var NewValue = at(at(stackptr-1));
                 var SkillNo = at(at(stackptr-2));

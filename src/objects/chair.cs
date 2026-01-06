@@ -81,7 +81,7 @@ namespace Underworld
             switch (meshNo)
             {
                 case 0://Frame
-                    if (GameConfig.GameSelected == Game.Uw2)
+                    if (Game.Uw2.IsSelected())
                     {
                         return 32;
                     }
@@ -90,7 +90,7 @@ namespace Underworld
                         return 30;
                     }
                 default://cushion
-                    if (GameConfig.GameSelected == Game.Uw2)
+                    if (Game.Uw2.IsSelected())
                     {
                         return 38+uwobject.flags;
                     }

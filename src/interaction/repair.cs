@@ -36,7 +36,7 @@ namespace Underworld
                     case > 30:
                         stringno = 4; break;
                 }
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     stringno += 234;
                 }
@@ -47,7 +47,7 @@ namespace Underworld
 
                 var repairstring = $"{GameStrings.GetString(1, GameStrings.str_you_think_it_will_be_)}";
                 repairstring += $"{GameStrings.GetString(1, stringno)}";//trivial etc
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     repairstring += $"{GameStrings.GetString(1, 232)}";//to repair the 
                     repairstring += GameStrings.GetSimpleObjectNameUW(itemToRepair.item_id);

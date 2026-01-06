@@ -97,7 +97,7 @@ namespace Underworld
                 //Handle enter level events
                 LevelChangeEvents(EnterLevelMode, playerdat.dungeon_level);
 
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {//SCD.ARK then needs to be processed in UW2
                     Debug.Print("Processing SCD due to level transition");
                     scd.ProcessSCDArk(1);
@@ -237,7 +237,7 @@ namespace Underworld
         /// <param name="newLevel"></param>
         public static int Teleport(int character, int tileX, int tileY, int newLevel, int heading)
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 return TeleportUW2(character, tileX, tileY, newLevel);
             }
@@ -416,7 +416,7 @@ namespace Underworld
         /// <param name="dungeon">Either the new or previous dungeon.</param>
         static void LevelChangeEvents(int mode, int dungeon)
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 LevelChangeEventsUW2(mode, dungeon);
             }

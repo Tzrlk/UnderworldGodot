@@ -134,7 +134,7 @@ namespace Underworld
         public static int GetInventorySlotListHead(int slot)
         {
             int startOffset = 0xF8;
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 startOffset = 0x3A3;
             }
@@ -144,7 +144,7 @@ namespace Underworld
         public static int GetInventorySlotListHeadOffset(int slot)
         {
             int startOffset = 0xF8;
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 startOffset = 0x3A3;
             }
@@ -161,7 +161,7 @@ namespace Underworld
         {
             value = value << 6;
             int startOffset = 0xF8;
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 startOffset = 0x3A3;
             }

@@ -58,13 +58,13 @@ namespace Underworld
             get
             {
                 int offset = 0x65;
-                if (GameConfig.GameSelected == Game.Uw2) { offset = 0x66; }
+                if (Game.Uw2.IsSelected()) { offset = 0x66; }
                 return (GetAt(offset) >> 5) & 0x7;
             }
             set
             {
                 int offset = 0x65;
-                if (GameConfig.GameSelected == Game.Uw2) { offset = 0x66; }
+                if (Game.Uw2.IsSelected()) { offset = 0x66; }
                 byte existingValue = GetAt(offset);
                 existingValue = (byte)(existingValue & 0x1F); //mask out charclass
                 value = value << 5;

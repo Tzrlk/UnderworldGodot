@@ -127,7 +127,7 @@ namespace Underworld
             {
                 detections_stringNo++;
             }
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 detections_stringNo += 0x3F;
             }
@@ -156,7 +156,7 @@ namespace Underworld
             string Output = "";
             int DirectionOffset;
             int Heightoffset;
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 DirectionOffset = 0x28;
                 Heightoffset = 0x37;

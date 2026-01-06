@@ -133,7 +133,7 @@ namespace Underworld
                     }
                 case 1:
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {
                             switch (obj.classindex)
                             {
@@ -145,7 +145,7 @@ namespace Underworld
                     }
                 case 3: //readables (up to index 8)
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {
                             switch (obj.classindex)
                             {
@@ -376,9 +376,9 @@ namespace Underworld
                 commonObjDat.canhaveowner(obj.item_id)
                 &&
                 (
-                    (GameConfig.GameSelected == Game.Uw2) && (obj.race <= 30)
+                    (Game.Uw2.IsSelected()) && (obj.race <= 30)
                     ||
-                    (GameConfig.GameSelected == Game.Uw2) && (obj.race <= 27)
+                    (Game.Uw2.IsSelected()) && (obj.race <= 27)
                 )
             )
             {

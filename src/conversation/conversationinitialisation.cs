@@ -65,7 +65,7 @@ namespace Underworld
         private static void SetupConversationUI(uwObject talker)
         {
 
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {//set up the unique ui for uw2 conversations
                 uimanager.instance.mainwindowUW2.Texture = uimanager.bitmaps.LoadImageAt(BytLoader.CONV_BYT, false);
                 for (int i=0; i<=uimanager.instance.SelectedRunes.GetUpperBound(0);i++)
@@ -103,8 +103,8 @@ namespace Underworld
             
             var head = new GRLoader(GRLoader.HEADS_GR, GRLoader.GRShaderMode.UIShader);
             //set up relevant UI
-            uimanager.EnableDisable(uimanager.instance.ConversationPanelUW1, GameConfig.GameSelected == Game.Uw2);
-            uimanager.EnableDisable(uimanager.instance.ConversationPanelUW2, GameConfig.GameSelected == Game.Uw2);
+            uimanager.EnableDisable(uimanager.instance.ConversationPanelUW1, Game.Uw2.IsSelected());
+            uimanager.EnableDisable(uimanager.instance.ConversationPanelUW2, Game.Uw2.IsSelected());
 
             //Player name and portrait
             if (playerdat.isFemale)
@@ -152,7 +152,7 @@ namespace Underworld
             else
             {
                 conversationNo = talker.npc_whoami;
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     conversationNo++;
                 }
@@ -195,7 +195,7 @@ namespace Underworld
             else
             {
                 var chead = new GRLoader(GRLoader.CHARHEAD_GR, GRLoader.GRShaderMode.UIShader);
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {//some special portrait cases due to weirdness with charhead.gr
                     switch (whoami)
                     {

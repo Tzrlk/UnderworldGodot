@@ -45,10 +45,10 @@ namespace Underworld
             }
             else
             { //spawn valuable
-                int offset = 0; if (GameConfig.GameSelected == Game.Uw2) { offset = 3; }
+                int offset = 0; if (Game.Uw2.IsSelected()) { offset = 3; }
                 var valuable_type_var_1 = r.Next(0, 37 + offset - world * 3) - (30 + offset - world * 3);
                 if (valuable_type_var_1 < 0) { valuable_type_var_1 = 0; }
-                if ((valuable_type_var_1 == 1) && (GameConfig.GameSelected == Game.Uw2)) { valuable_type_var_1 = 0; }//make sure no storage crystal is dropped in UW2
+                if ((valuable_type_var_1 == 1) && (Game.Uw2.IsSelected())) { valuable_type_var_1 = 0; }//make sure no storage crystal is dropped in UW2
 
                 //now use var_1 to look up the objects monetary value within objects.dat (starting at coin)
                 var coinitemid = 0xA0;

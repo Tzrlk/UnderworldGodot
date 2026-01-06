@@ -30,7 +30,7 @@ namespace Underworld
             PlayingInstrument = false;
             uimanager.instance.scroll.Clear();
             uimanager.AddToMessageScroll(GameStrings.GetString(1, GameStrings.str_you_put_the_instrument_down_));
-            if (GameConfig.GameSelected == Game.Uw1)
+            if (Game.Uw1.IsSelected())
             {
                 //process notes to see if cup of wonder spawned (if at right position)
                 Debug.Print($"{notesplayed}");

@@ -53,13 +53,13 @@ namespace Underworld
             get
             {
                 int offset = 0x65;
-                if (GameConfig.GameSelected == Game.Uw2) { offset = 0x66; }
+                if (Game.Uw2.IsSelected()) { offset = 0x66; }
                 return (GetAt(offset) >> 2) & 0x7;
             }
             set
             {
                 int offset = 0x65;
-                if (GameConfig.GameSelected == Game.Uw2) { offset = 0x66; }
+                if (Game.Uw2.IsSelected()) { offset = 0x66; }
                 byte existingValue = GetAt(offset);
                 existingValue = (byte)(existingValue & 0xE3);
                 value = value << 2;
@@ -76,7 +76,7 @@ namespace Underworld
             get
             {
                 int offset = 0x65;
-                if (GameConfig.GameSelected == Game.Uw2) { offset = 0x66; }
+                if (Game.Uw2.IsSelected()) { offset = 0x66; }
                 return (int)(GetAt(offset) >> 1) & 0x1;
             }
         }
@@ -90,7 +90,7 @@ namespace Underworld
             set
             {
                 int offset = 0x65;
-                if (GameConfig.GameSelected == Game.Uw2) { offset = 0x66; }
+                if (Game.Uw2.IsSelected()) { offset = 0x66; }
                 byte existingValue = GetAt(offset);
                 byte mask = (1 << 1);
                 if (value)
@@ -110,7 +110,7 @@ namespace Underworld
             get
             {
                 int offset = 0x65;
-                if (GameConfig.GameSelected == Game.Uw2) { offset = 0x66; }
+                if (Game.Uw2.IsSelected()) { offset = 0x66; }
                 return (int)GetAt(offset) & 0x1;
             }
         }
@@ -123,13 +123,13 @@ namespace Underworld
             get
             {
                 int offset = 0x65;
-                if (GameConfig.GameSelected == Game.Uw2) { offset = 0x66; }
+                if (Game.Uw2.IsSelected()) { offset = 0x66; }
                 return ((int)(GetAt(offset)) & 0x1) == 0x0;
             }
             set
             {
                 int offset = 0x65;
-                if (GameConfig.GameSelected == Game.Uw2) { offset = 0x66; }
+                if (Game.Uw2.IsSelected()) { offset = 0x66; }
                 byte existingValue = GetAt(offset);
                 byte mask = (1);
                 if (!value)
@@ -423,7 +423,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return GetAt(0xB1);
                 }
@@ -434,7 +434,7 @@ namespace Underworld
             }
             set
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     SetAt(0xB1, (byte)value);
                 }
@@ -449,7 +449,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return GetAt(0x302);
                 }
@@ -460,7 +460,7 @@ namespace Underworld
             }
             set
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     SetAt(0x302, (byte)value);
                 }
@@ -486,7 +486,7 @@ namespace Underworld
 
             if (newEXP >= 0)
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     var world = worlds.GetWorldNo(dungeon_level);
                     world = world << 1;

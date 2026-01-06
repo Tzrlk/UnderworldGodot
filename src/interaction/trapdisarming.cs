@@ -24,7 +24,7 @@ namespace Underworld
 
                     if (foundtrigger != null)
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {
                             if (foundtrigger.minorclass == 3)
                             {//found a (movement/action) based trigger
@@ -77,7 +77,7 @@ namespace Underworld
         /// <returns></returns>
         static playerdat.SkillCheckResult DoTrapSkillCheck(int searchskill)
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 var difficulty = 0xA + (worlds.GetWorldNo(playerdat.dungeon_level) << 1);
                 return playerdat.SkillCheck(searchskill, difficulty, true);
@@ -107,7 +107,7 @@ namespace Underworld
 
                     if (foundtrigger != null)
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {
                             if (foundtrigger.minorclass == 3)
                             {//found a (movement/action) based trigger

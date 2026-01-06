@@ -109,7 +109,7 @@ namespace Underworld
                 case 3: return 1;//pauses for arg[0] / 2 seconds
                 case 4: return 2;//plays up to frame arg[0]
                 case 5: //unknown, set frame for static cutscene? (0 params in UW2, 1 in UW1)
-                    if (GameConfig.GameSelected == Game.Uw2)
+                    if (Game.Uw2.IsSelected())
                     {
                         return 0;
                     }

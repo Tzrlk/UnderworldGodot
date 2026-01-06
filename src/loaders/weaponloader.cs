@@ -40,7 +40,7 @@ namespace Underworld
             string datfile = Path.Combine(GameConfig.GamePath, "DATA", "WEAPONS.DAT");
             string cmfile = Path.Combine(GameConfig.GamePath, "DATA", "WEAPONS.CM");
             string grfile = Path.Combine(GameConfig.GamePath, "DATA", "WEAPONS.GR");
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 datfile = Path.Combine(GameConfig.GamePath, "DATA", "WEAP.DAT");
                 cmfile = Path.Combine(GameConfig.GamePath, "DATA", "WEAP.CM");
@@ -49,7 +49,7 @@ namespace Underworld
             int offset = 0;
             int MaxHeight = 112;
             int MaxWidth = 172;
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 MaxHeight = 128;
                 MaxWidth = 208;
@@ -57,7 +57,7 @@ namespace Underworld
             int add_ptr = 0;
             ReadStreamFile(datfile, out byte[] AnimData);
             ReadStreamFile(grfile, out byte[] textureFile);
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 int GroupSize = 28;
 
@@ -83,7 +83,7 @@ namespace Underworld
             }
 
             int NoOfTextures = textureFile[2] << 8 | textureFile[1];
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 NoOfTextures = 230;
             }
@@ -119,7 +119,7 @@ namespace Underworld
                 int ColCounter = 0; int RowCounter = 0;
                 int cornerX;// = AnimX[i];
                 int cornerY;// = AnimY[i];
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     cornerX = AnimX[i];
                     cornerY = AnimY[i];
@@ -138,7 +138,7 @@ namespace Underworld
                     }
                 }
 
-                if ((GameConfig.GameSelected == Game.Uw1) || ((GameConfig.GameSelected == Game.Uw2) && (UW2_X[i] != -1)))//Only create if UW1 image or a valid uw2 one
+                if ((Game.Uw1.IsSelected()) || ((Game.Uw2.IsSelected()) && (UW2_X[i] != -1)))//Only create if UW1 image or a valid uw2 one
                 {
                     bool ImgStarted = false;
                     for (int y = 0; y < MaxHeight; y++)

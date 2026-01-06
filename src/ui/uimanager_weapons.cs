@@ -20,7 +20,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return instance.weaponanimuw2;
                 }
@@ -99,7 +99,7 @@ namespace Underworld
         public static void InitWeaponAnimation()
         {
             //instance.weaponanimuw1.Texture = grWeapon.LoadImageAt(6);
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 WeaponAnimationweaponframesUW2();
             }

@@ -6,7 +6,7 @@ namespace Underworld
         //targeted spells
         public static void CastClass7_SpellsOnCallBack(int minorclass, int index, uwObject[] objList, uwObject caster, bool WorldObject = true)
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 switch (minorclass)
                 {
@@ -403,7 +403,7 @@ namespace Underworld
         {
             var obj = objList[index];
 
-            if ((obj.item_id != 0x13) && (GameConfig.GameSelected == Game.Uw2))//skull check is uw2 only
+            if ((obj.item_id != 0x13) && (Game.Uw2.IsSelected()))//skull check is uw2 only
             {
                 if (obj.majorclass == 1)
                 {
@@ -459,7 +459,7 @@ namespace Underworld
             var critter = objList[index];
             if (critter != null)
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     int castscore;
                     if (caster == playerdat.playerObject)//player has cast

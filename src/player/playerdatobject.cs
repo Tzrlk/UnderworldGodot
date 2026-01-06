@@ -34,7 +34,7 @@ namespace Underworld
         {
             get
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     return 0x380;
                 }
@@ -57,7 +57,7 @@ namespace Underworld
                 //take the player object out of the previous tile
                 var tile = UWTileMap.current_tilemap.Tiles[previousTileX, previousTileY];
                 ObjectRemover_OLD.RemoveObjectFromLinkedList(tile.indexObjectList, 1, UWTileMap.current_tilemap.LevelObjects, tile.Ptr + 2);
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     trigger.RunPressureEnterExitTriggersInTile(
                         triggeringObject: playerObject,
@@ -73,7 +73,7 @@ namespace Underworld
                 obj.next = tile.indexObjectList;
                 tile.indexObjectList = 1;//insert into the tile object list so it can be subject to collisions.
                 obj.tileX = newTileX; obj.tileY = newTileY;
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     trigger.RunPressureEnterExitTriggersInTile(
                         triggeringObject: playerObject,

@@ -49,7 +49,7 @@ namespace Underworld
             get
             {
                 var div = 6; 
-                if (GameConfig.GameSelected == Game.Uw2){div=8;}
+                if (Game.Uw2.IsSelected()){div=8;}
                 
                 var result = 1 + (SpellIndex / div);
                 if (result > 8)
@@ -290,7 +290,7 @@ namespace Underworld
         /// <returns></returns>
         public bool TestIfPlayerCanCastSpell()
         {
-            if (GameConfig.GameSelected == Game.Uw2)
+            if (Game.Uw2.IsSelected())
             {
                 if (worlds.GetWorldNo(playerdat.dungeon_level) == 0)
                 {//check if spell is allowed in britannia
@@ -303,7 +303,7 @@ namespace Underworld
             }
             if (((playerdat.play_level + 1) / 2) < SpellLevel)
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     uimanager.AddToMessageScroll(GameStrings.GetString(1, 225)); //you are not experienced enough
                 }

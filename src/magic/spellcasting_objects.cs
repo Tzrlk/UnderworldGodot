@@ -76,7 +76,7 @@ namespace Underworld
                     }
                 case 0xD:
                     {
-                        if (GameConfig.GameSelected == Game.Uw2)
+                        if (Game.Uw2.IsSelected())
                         {
                             switch(minorclass)
                             {

@@ -530,7 +530,7 @@ namespace Underworld
             var fluids = critterObjectDat.fluids(critter.item_id);
             if (fluids != 0)
             {
-                if (GameConfig.GameSelected == Game.Uw2)
+                if (Game.Uw2.IsSelected())
                 {
                     fluids += 0xD9;
                 }
@@ -551,7 +551,7 @@ namespace Underworld
 
             //Drop corpse
             var corpse = critterObjectDat.corpse(critter.item_id);
-            if ((GameConfig.GameSelected == Game.Uw2) && (worlds.GetWorldNo(playerdat.dungeon_level) == 7))
+            if ((Game.Uw2.IsSelected()) && (worlds.GetWorldNo(playerdat.dungeon_level) == 7))
             {
                 corpse = 0;//no spawn in the pits of carnage
             }

@@ -71,7 +71,7 @@ namespace Underworld
         {
             int textureindex = UWTileMap.current_tilemap.texture_map[obj.owner];
             uimanager.AddToMessageScroll(GameStrings.TextureDescription(textureindex));
-            if ((textureindex == 142) && ((GameConfig.GameSelected == Game.Uw2)))
+            if ((textureindex == 142) && ((Game.Uw2.IsSelected())))
             {//This is a window into the abyss.
                 uimanager.DisplayCutsImage(cutsfile: "cs400.n01", imageNo: playerdat.dungeon_level, targetControl: uimanager.CutsSmall);
             }
