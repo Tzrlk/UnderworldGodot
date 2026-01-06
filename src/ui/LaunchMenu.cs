@@ -32,15 +32,15 @@ public partial class LaunchMenu : Control {
 	private readonly Stack<Input.MouseModeEnum> _mouseModeHistory = new();
 
 	// Only need one reference to the current settings.
-	private readonly GameConfig _uwSettings = GameConfig.instance;
+	private readonly GameConfig _uwSettings = GameConfig.Instance;
 
 	public override void _Ready()
 	{
 		Debug.Print($"_Ready fired");
 
 		// Load initial paths from settings.
-		PathUW1.Text = _uwSettings.pathuw1;
-		PathUW2.Text = _uwSettings.pathuw2;
+		PathUW1.Text = _uwSettings.PathUw1;
+		PathUW2.Text = _uwSettings.PathUw2;
 
 		// Set the initial focus selection.
 		switch (GameConfig.GameSelected)
@@ -129,12 +129,12 @@ public partial class LaunchMenu : Control {
 			case Game.Uw0:
 			case Game.Uw1:
 				PathUW1.Text = selectedDir;
-				_uwSettings.pathuw1 = selectedDir;
+				_uwSettings.PathUw1 = selectedDir;
 				_uwSettings.Save();
 				break;
 			case Game.Uw2:
 				PathUW2.Text = selectedDir;
-				_uwSettings.pathuw2 = selectedDir;
+				_uwSettings.PathUw2 = selectedDir;
 				_uwSettings.Save();
 				break;
 			default:

@@ -33,7 +33,7 @@ namespace Underworld
         /// <returns></returns>
         public static Godot.ImageTexture GetFullShadingImage(Palette pal, lightmap[] maps, int index, string filename)
         {
-            int BandSize = Math.Max(GameConfig.instance.shaderbandsize,1);
+            int BandSize = Math.Max(GameConfig.Instance.ShaderBandSize,1);
             var img = Godot.Image.Create(256, BandSize * 15, false, Godot.Image.Format.Rgba8);
             var arr = shadesdata[index].ExtractShadeArray();
             //int y = 0;

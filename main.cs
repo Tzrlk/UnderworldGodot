@@ -70,9 +70,9 @@ public partial class main : Node3D
 		gamecam = cam;
 
 		//uimanager.instance = uwUI;	
-		if (GameConfig.instance != null)
+		if (GameConfig.Instance != null)
 		{
-			GetTree().DebugCollisionsHint = GameConfig.instance.showcolliders;
+			GetTree().DebugCollisionsHint = GameConfig.Instance.ShowColliders;
 		}
 
 		// var exe = System.IO.File.ReadAllBytes("C:\\Games\\UW2\\uw2.exe");
@@ -109,7 +109,7 @@ public partial class main : Node3D
 				Debug.Print("UIManager is still null!!");
 			}
 		}
-		gamecam.Fov = Math.Max(50, GameConfig.instance.FOV);
+		gamecam.Fov = Math.Max(50, GameConfig.Instance.Fov);
 		uimanager.EnableDisable(instance.lblPositionDebug, EnablePositionDebug);
 		ObjectCreator.grObjects = new GRLoader(GRLoader.OBJECTS_GR, GRLoader.GRShaderMode.BillboardSpriteShader);
 		ObjectCreator.grObjects.UseRedChannel = true;

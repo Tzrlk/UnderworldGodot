@@ -3,6 +3,7 @@ using System.Text.Json;
 using System;
 using Godot;
 using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace Underworld;
 
@@ -19,40 +20,48 @@ public class GameConfig
 	private static readonly string FilePath
 		= ProjectSettings.GlobalizePath("user://settings.json");
 
-    public static GameConfig instance;
+    public static GameConfig Instance;
 
     // This initialises our instance as soon as the class is loaded.
-    static GameConfig() => LoadSettings();
+    static GameConfig() {
+	    if (File.Exists(FilePath))
+	    {
+		    Debug.Print($"Loading settings from {FilePath}");
+		    using var stream = File.OpenRead(FilePath);
+		    Instance = JsonSerializer.Deserialize<GameConfig>(stream, JsonOpts);
+	    }
+	    else
+	    {
+		    Debug.Print($"No existing settings at {FilePath}. Loading defaults.");
+		    Instance = new();
+	    }
 
-    public static void LoadSettings()
-    {
-
-        if (File.Exists(FilePath))
-        {
-            Debug.Print($"Loading settings from {FilePath}");
-            using var stream = File.OpenRead(FilePath);
-            instance = JsonSerializer.Deserialize<GameConfig>(stream, JsonOpts);
-        }
-        else
-        {
-            Debug.Print($"No existing settings at {FilePath}. Loading defaults.");
-            instance = new();
-        }
-
-        if (main.gamecam != null)
-        {
-            main.gamecam.Fov = Math.Max(50, instance.FOV);
-        }
-
+	    if (main.gamecam != null)
+	    {
+		    main.gamecam.Fov = Math.Max(50, Instance.Fov);
+	    }
     }
 
-    public string pathuw1 { get; set; } = @"C:\Games\UW";
-    public string pathuw2 { get; set; } = @"C:\Games\UW2";
-    public string gametoload { get; set; } = "UW1";
-    public int level { get; set; } = 0;
-    public float FOV { get; set; } = 75;
-    public bool showcolliders { get; set; }
-    public int shaderbandsize { get; set; } = 8;
+    [JsonPropertyName("pathuw1")]
+    public string PathUw1 { get; set; } = @"C:\Games\UW";
+    
+    [JsonPropertyName("pathuw2")]
+    public string PathUw2 { get; set; } = @"C:\Games\UW2";
+    
+    [JsonPropertyName("gametoload")]
+    public string GameToLoad { get; set; } = "UW1";
+    
+    [JsonPropertyName("level")]
+    public int GameLevel { get; set; } = 0;
+    
+    [JsonPropertyName("FOV")]
+    public float Fov { get; set; } = 75;
+    
+    [JsonPropertyName("showcolliders")]
+    public bool ShowColliders { get; set; }
+    
+    [JsonPropertyName("shaderbandsize")]
+    public int ShaderBandSize { get; set; } = 8;
 
     public void Save()
     {
@@ -62,8 +71,8 @@ public class GameConfig
     }
 
     public static Game GameSelected {
-	    set => instance.gametoload = Enum.GetName(value)!.ToUpper();
-	    get => instance.gametoload.ToUpper() switch {
+	    set => Instance.GameToLoad = Enum.GetName(value)!.ToUpper();
+	    get => Instance.GameToLoad.ToUpper() switch {
 		    "UW0" => Game.Uw0,
 		    "UW1" => Game.Uw1,
 		    "UW2" => Game.Uw2,
@@ -73,8 +82,8 @@ public class GameConfig
 
     public static string GamePath
 	    => GameSelected switch {
-		    Game.Uw0 or Game.Uw1 => instance.pathuw1,
-		    Game.Uw2 => instance.pathuw2,
+		    Game.Uw0 or Game.Uw1 => Instance.PathUw1,
+		    Game.Uw2 => Instance.PathUw2,
 		    var game => throw new ApplicationException($"Unrecognised game selection: {game}")
 	    };
 
